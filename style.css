@@ -1,74 +1,165 @@
 .introduction {
-  background-color: #1a1a1a;
-  color : #ffffff;
-  text-align : center;
- 
-            }
-            
+    background-color: #1a1a1a;
+    color : #ffffff;
+    text-align : center;
+
+}
+
 .connection {
-     background-color: #1a1a1a;
-     color : #ffffff;
-     text-align: center;
-            }           
+    background-color: #1a1a1a;
+    color : #ffffff;
+    text-align: center;
+
+}  
 
 .headerbtn {
     background-color: #1a1a1a;
     border: none;   
     color: #ffffff;
-                
-            }
-           
-             
-h1 {
-   color :#ffffff;
-   font-size: 10px;
-   }            
-            
-.navbar {
-  position :static;
+    cursor:alias;
 }
+
+a.nav-link.zoom:hover {
+    font-size: 20px;
+    color:orange;
+
+}
+
+span.error {
+    color : red;      
+}
+
+.modal.body {
+    background-color: whitesmoke;
+} 
+.modal-header {
+    background-color: #1a1a1a;
+    text-align: center;
+
+}
+
+.modal-title {
+    color : white;
+    text-align: center;
+}
+
+
+form {
+    color: black;
+}
+
+h1 {
+    color :#ffffff;
+    font-size : medium;
+    color: orange;
+}            
+
 
 btn btn-dark {
     color:#ea970b;
 }
 
 body {
-  scroll-behavior: smooth;
-}
-
-h1 {
-  font-size : medium;
+    scroll-behavior: smooth;
 }
 
 p{
-  margin-left: 1100px;
-  color:orange;
+    margin-left: 1100px;
+    color:orange;
 }
 
 .navbar {
-  position: static;
+    position: static;
 
 }
 
-
 .container-fluid citation {
-position: relative;
+    position: relative;
 }
 
 .citation {
-  position: absolute ;
-  top: 150px;
-  right : 15px;
-  text-shadow: 1px 1px 2px #e5d80e, 0 0 1em #e78200, 0 0 0.2em #cf1717;
+    position: absolute ;
+    top: 150px;
+    right : 15px;
+    text-shadow: 1px 1px 2px #e5d80e, 0 0 1em #e78200, 0 0 0.2em #cf1717;
 }
 
 .container-fluid {
-  position: inherit;
+    position: inherit;
+}
+
+#footer {
+    width: 200px;
+    height: 250px;
+}
+
+.parallaxtop {
+    background-image: url("/images/clown-362155_1280.jpg");
+
+    /* Set a specific height */
+    height: 500px;
+    opacity:0.5;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#concert {
+    width: 65%;
+    height: 62%;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 50px;
+
+}
+
+.parallaxbottom {
+    background-image: url("/images/admission-2974645_1280.jpg");
+
+    /* Set a specific height */
+    height: 500px;
+    opacity: 0.5;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*début du footer*/
+
+.row {
+    text-align: center;
+
+}
+
+.picto {
+    width:20px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 
-#footer {
+.rubriquebottomfooter{
+    color : #6E6E6E;
+
+}
+
+.footer {
+    width: 100%;
     background-color: #1a1a1a;
-    color: #ffffff;
-    
+    color:  #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+a:hover {
+    color : orange;
 }
