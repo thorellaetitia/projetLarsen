@@ -1,4 +1,0 @@
-
-$(function () {
-    $('.modalError').modal('toggle');      
-});
