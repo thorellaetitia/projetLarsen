@@ -31,7 +31,9 @@ span.error {
 
 .modal.body {
     background-color: whitesmoke;
+
 } 
+
 .modal-header {
     background-color: #1a1a1a;
     text-align: center;
@@ -87,6 +89,30 @@ p{
 .container-fluid {
     position: inherit;
 }
+
+.btn-secondary {
+    background-color: #f2af58;
+}
+
+
+input{
+    float: right;
+    width: 250px;
+}
+
+select {
+    display: block;
+    float: right;
+    width: 250px;
+}
+
+label {
+    display:block;
+    float:left;
+    width: 180px;
+    text-align: center;
+}
+
 
 #footer {
     width: 200px;
@@ -162,4 +188,16 @@ a {
 }
 a:hover {
     color : orange;
+}
+
+@media all and (max-width: 1024px)
+
+{
+    .carousel
+    {
+        display: none;
+    }
+
+    
+    
 }

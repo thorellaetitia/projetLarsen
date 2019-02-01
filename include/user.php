@@ -1,6 +1,3 @@
-<?php
-include_once('controllers/controllerIndex.php');
-?>
 <!DOCTYPE HTML>
 <html lang="fr">
     <head>
@@ -14,18 +11,19 @@ include_once('controllers/controllerIndex.php');
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
         <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/style.css" />
+        <link rel="stylesheet" href="../assets/style.css" />
         <title>MON PROJET PRO</title>
     </head>
     <body>
         <?php
-        include_once ('headernavbar.php');
+        include_once ('../headernavbar.php');
         ?>
         <?php
-        include_once ('navbar.php');
+        include_once ('../navbar.php');
         ?>
 
-       
+        
+        
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

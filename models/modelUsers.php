@@ -4,12 +4,14 @@ class users extends database { //on crée une class clients dont le parent est d
 //on définit les attributs de la table clients car ils n'existent pas dans database
 
     public $id;
+    public $civilite;
     public $name;
     public $firstName;
     public $mail;
     public $age;
     public $login;
     public $password;
+    public $secondpassword;
     public $userTypes;
 
     //création fonction creatusers pour ajouter des users dans la bdd
@@ -87,6 +89,29 @@ class users extends database { //on crée une class clients dont le parent est d
         $resultQueryModifyPatient->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $resultQueryModifyPatient->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         return $resultQueryModifyPatient->execute();
+    }
+    
+    //exercice11
+    public function deletePatientsById() {
+        $query = 'DELETE FROM `patients` WHERE `id`=:id';
+        //on commence une transaction et désactivation de l'autocommit =begintransaction
+        $this->database->beginTransaction();
+        $resultQueryDeletePatient = $this->database->prepare($query);
+        $resultQueryDeletePatient->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $resultQueryDeletePatient->execute();
+        //on valide les modifications et la connexion a la bdd = retour en mode auto-commit =commit
+        $this->database->commit();
+        //on s'apercoit d'une erreur et on annule les modifications =rollBack
+    }
+
+    //exercice12
+    public function searchPatient() {
+        $query = 'SELECT * FROM patients WHERE lastName LIKE :search2 or firstName LIKE :search1';
+        $resultQuerySearchPatient = $this->database->prepare($query);
+        $resultQuerySearchPatient->bindValue(':search1', '%' . $this->firstName . '%', PDO::PARAM_STR);
+        $resultQuerySearchPatient->bindValue(':search2', '%' . $this->lastName . '%', PDO::PARAM_STR);
+        $resultQuerySearchPatient->execute();
+        return $resultQuerySearchPatient->fetchAll(PDO::FETCH_OBJ);
     }
     
     

@@ -1,12 +1,12 @@
 <?php
-include_once('controllers/controllerIndex.php');
+include_once('controllers/controllerevent.php');
 ?>
 
-<div class="modal fade <?= $modalError ? 'modalError' : ''; ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
+<div class="modal fade <?= $modalErrorevent ? 'modalErrorevent' : ''; ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Déjà inscrit ? Vous êtes ici pour annoncer un événement</h5>
+                <h5 class="modal-title" id="ModalEvent">Déjà inscrit ? Vous êtes ici pour annoncer un événement</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,7 +56,7 @@ include_once('controllers/controllerIndex.php');
                     </div>
                     <div class="form-group">
                         <label for="time">Heure : </label> 
-                        <input type="text" name="time" id="time" placeholder="..h.." value="<?php (isset($time)) ? $time : '';  ?>" required /><br>
+                        <input type="text" name="time" id="time" placeholder="  :  " value="<?php (isset($time)) ? $time : '';  ?>" required /><br>
                         <span class="error"><?= isset($errorsArray['time']) ? $errorsArray['time'] : ''; ?></span>
                     </div>
                     <div class="form-group">

@@ -1,5 +1,7 @@
 <?php
-include_once('controllers/controllerIndex.php');
+include_once('controllers/controllerinscription.php');
+include_once('controllers/controllerseconnecter.php');
+include_once('controllers/controllerevent.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -26,7 +28,6 @@ include_once('controllers/controllerIndex.php');
         include_once('include/seconnecter.php');
         include_once('include/inscription.php');
         include_once ('include/createanevent.php');
-        include_once ('include/user.php');
         ?>
         <!--caroussel  -->
         <div class="container-fluid">
@@ -68,9 +69,12 @@ include_once('controllers/controllerIndex.php');
 
                     <?php
                     $url = 'http://www.fnacspectacles.com/rss/?flux=famille&famid=1MC';
-//                    $url2 = 'https://www.infoconcert.com/rss/news.xml';
-                    $rss = simplexml_load_file($url);
-
+                    $url2 = 'http://projet/xml/fluxrssfnac';
+                    
+                    $rss = @simplexml_load_file($url);
+                    if(!$rss) {
+                        $rss = simplexml_load_file($url2);
+                    }
                     foreach ($rss->channel->item as $item) {
                         ?>                    
                         <div class="col-sm-12 col-md-3 col-lg-3">

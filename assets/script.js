@@ -1,4 +1,12 @@
 
 $(function () {
-    $('.modalError').modal('toggle');      
+    $('.modalErrorconnection').modal('toggle');      
+});
+
+$(function () {
+    $('.modalErrorinscription').modal('toggle');      
+});
+
+$(function () {
+    $('.modalErrorevent').modal('toggle');      
 });

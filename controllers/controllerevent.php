@@ -14,17 +14,8 @@ $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/'; // autorise les chiffres
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chiffres, lettres et accents et formats jpg bmp et png
 //on déclare un tableau d'erreurs vide
 $errorsArray = [];
-$modalError = false;
 
-if (isset($_POST['civilite'])) {
-    $civilite = htmlspecialchars($_POST['civilite']);
-    if (!preg_match($regexLetter, $civilite)) {
-        $errorsArray['civilite'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($civilite)) {
-        $errorsArray['civilite'] = 'Merci de saisir un nom';
-    }
-}
+$modalErrorevent=false;
 
 if (isset($_POST['category'])) {
     $category = htmlspecialchars($_POST['category']);
@@ -53,80 +44,6 @@ if (isset($_POST['status'])) {
     }
     if (empty($status)) {
         $errorsArray['status'] = 'Merci de faire votre choix';
-    }
-}
-
-if (isset($_POST['name'])) {
-    $name = htmlspecialchars($_POST['name']);
-    if (!preg_match($regexLetter, $name)) {
-        $errorsArray['name'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($name)) {
-        $errorsArray['name'] = 'Merci de saisir un nom';
-    }
-}
-
-if (isset($_POST['firstname'])) {
-    $firstname = htmlspecialchars($_POST['firstname']);
-    if (!preg_match($regexLetter, $firstname)) {
-        $errorsArray['firstname'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($firstname)) {
-        $errorsArray['firstname'] = 'Merci de saisir un prénom';
-    }
-}
-
-if (isset($_POST['age'])) {
-    $age = htmlspecialchars($_POST['age']);
-    if (!preg_match($regexNumber, $age)) {
-        $errorsArray['age'] = 'Merci de saisir un chiffre';
-    }
-    if (empty($age)) {
-        $errorsArray['age'] = 'Merci de saisir votre âge';
-    }
-}
-
-if (isset($_POST['mail'])) {
-    $mail = htmlspecialchars($_POST['mail']);
-    if (!preg_match($regexMail, $mail)) {
-        $errorsArray['mail'] = 'Merci de saisir une adresse mail valide';
-    }
-    if (empty($mail)) {
-        $errorsArray['mail'] = 'Merci de saisir votre adresse mail';
-    }
-}
-
-if (isset($_POST['login'])) {
-    $login = htmlspecialchars($_POST['login']);
-    if (!preg_match($regexLetternumber, $login)) {
-        $errorsArray['login'] = 'Merci de saisir un login valide';
-    }
-    if (empty($login)) {
-        $errorsArray['login'] = 'Merci de saisir un login';
-    }
-}
-
-if (isset($_POST['password'])) {
-    $password = htmlspecialchars($_POST['password']);
-    if (!preg_match($regexPassword, $password)) {
-        $errorsArray['password'] = 'Merci de saisir un minimum de 6 caractères';
-    }
-    if (empty($password)) {
-        $errorsArray['password'] = 'Merci de saisir un mot de passe';
-    }
-}
-
-if (isset($_POST['secondpassword'])) {
-    $secondpassword = htmlspecialchars($_POST['secondpassword']);
-    if (!preg_match($regexPassword, $secondpassword)) {
-        $errorsArray['secondpassword'] = 'Merci de saisir un minimum de 6 caractères';
-
-        if ($secondpassword !== $password) {
-            $errorsArray['secondpassword'] = 'Mot de passe invalide';
-        }
-        if (empty($secondpassword)) {
-            $errorsArray['secondpassword'] = 'Veuillez rentrer un mot de passe';
-        }
     }
 }
 
@@ -211,7 +128,9 @@ if (isset($_POST['description'])) {
 }
 
 if ((isset($_POST['submit'])) && (count($errorsArray) !== 0)) {
-    $modalError = true;
-    var_dump($errorsArray);
+    
+    $modalErrorevent = true;
 }
+
+var_dump($_POST);
 ?>
