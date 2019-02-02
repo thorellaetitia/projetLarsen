@@ -1,4 +1,5 @@
 <?php
+
 include_once('controllers/controllerevent.php');
 ?>
 
@@ -15,14 +16,15 @@ include_once('controllers/controllerevent.php');
                 <!--form-->
                 <form method="post" action="index.php" enctype="multipart/form-data" novalidate>
                     <div class="form-group">
-                        Vous êtes : <select value="<?php (isset($status)) ? $status : '';  ?>" name="status">
+                        Vous êtes : <select value="<?php (isset($status)) ? $status : ''; ?>" name="status">
                             <option>Veuillez renseigner un champ</option> 
                             <option value="Particulier">Particulier</option>
                             <option value="Professionnel">Professionnel</option>
+                            <span class="error"><?= isset($errorsArrayevent['status']) ? $errorsArrayevent['status'] : ''; ?></span>
                         </select>
                     </div>
                     <div class="form-group">
-                        Catégorie événement <select value="<?php (isset($category)) ? $category : '';  ?>" name="status" name="category">
+                        Catégorie événement <select value="<?php (isset($category)) ? $category : ''; ?>" name="status" name="category">
                             <option>Veuillez renseigner un champ</option> 
                             <option value="concert">Concert</option>
                             <option value="spectacle">Spectacle</option>
@@ -30,7 +32,7 @@ include_once('controllers/controllerevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        Sous-catégorie événement <select value="<?php (isset($souscategory)) ? $souscategory : '';  ?>" name="souscategory">
+                        Sous-catégorie événement <select value="<?php (isset($souscategory)) ? $souscategory : ''; ?>" name="souscategory">
                             <option>Veuillez renseigner un champ</option>
                             <option value="spectacle">Plans gratuits</option>
                             <option value="concert">Concert</option>
@@ -46,22 +48,22 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="form-group">
                         <label for="title">Titre de l'événement </label> 
-                        <textarea type="text" name="title" id="title" placeholder="Merci de le saisir en majuscule svp" rows="2" cols="50" value="<?php (isset($title)) ? $title : '';  ?>" required></textarea><br>
-                        <span class="error"><?= isset($errorsArray['title']) ? $errorsArray['title'] : ''; ?></span>
+                        <textarea type="text" name="title" id="title" placeholder="Merci de le saisir en majuscule svp" rows="2" cols="50" value="<?php (isset($title)) ? $title : ''; ?>" required></textarea><br>
+                        <span class="error"><?= isset($errorsArrayevent['title']) ? $errorsArrayevent['title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="date">Date : </label> 
-                        <input type="date" name="date" id="date" placeholder="ex jj/mm/yyyy" value="<?php (isset($date)) ? $date : '';  ?>"  required /><br>
-                        <span class="error"><?= isset($errorsArray['date']) ? $errorsArray['date'] : ''; ?></span>
+                        <input type="date" name="date" id="date" placeholder="ex jj/mm/yyyy" value="<?php (isset($date)) ? $date : ''; ?>"  required /><br>
+                        <span class="error"><?= isset($errorsArrayevent['date']) ? $errorsArrayevent['date'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="time">Heure : </label> 
-                        <input type="text" name="time" id="time" placeholder="  :  " value="<?php (isset($time)) ? $time : '';  ?>" required /><br>
-                        <span class="error"><?= isset($errorsArray['time']) ? $errorsArray['time'] : ''; ?></span>
+                        <input type="text" name="time" id="time" placeholder="  :  " value="<?php (isset($time)) ? $time : ''; ?>" required /><br>
+                        <span class="error"><?= isset($errorsArrayevent['time']) ? $errorsArrayevent['time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            Le lieu : <select name="theater" value="<?php (isset($theater)) ? $theater : '';  ?>">
+                            Le lieu : <select name="theater" value="<?php (isset($theater)) ? $theater : ''; ?>">
                                 <option>Veuillez renseigner un champ</option> 
                                 <option value="106">Le 106</option>
                                 <option value="volcan">Le VOLCAN</option>
@@ -85,12 +87,12 @@ include_once('controllers/controllerevent.php');
                         <label for="image">Photo </label> 
                         <input type="file" name="image" id="image" placeholder="parcourir" value="<?php (isset($image)) ? $image : ''; ?>" required /><br>
                         <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                        <span class="error"><?= isset($errorsArray['image']) ? $errorsArray['image'] : ''; ?></span>
+                        <span class="error"><?= isset($errorsArrayevent['image']) ? $errorsArrayevent['image'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="description">Description de l'événement : </label>
                         <textarea type="text" name="description" id="description" rows="4" cols="50" placeholder="description de l'événement" value="<?php (isset($description)) ? $description : ''; ?>" required ></textarea><br>
-                        <span class="error"><?= isset($errorsArray['description']) ? $errorsArray['description'] : ''; ?></span>
+                        <span class="error"><?= isset($errorsArrayevent['description']) ? $errorsArrayevent['description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

@@ -107,6 +107,6 @@ if ((isset($_POST['submit'])) && (count($errorsArrayinscription) !== 0)) {
     $modalErrorinscription = true;
 }
 
-var_dump($_POST);
+
 ?>
 
