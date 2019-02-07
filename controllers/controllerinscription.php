@@ -1,5 +1,12 @@
 <?php
 
+require 'models/modelDatabase.php';
+require 'models/modelUsers.php';
+
+//on instancie un nouvel objet users
+//$usersObj = new users();
+//// Hachage du mot de passe
+//on realise des verifications de notre formulaire
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
 $regextitle = '/^[A-ZÄ-ÿ\-]+$/'; //autorise les lettres de l'alphabet seulement les majuscules et accents
@@ -16,18 +23,6 @@ $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chif
 $errorsArrayinscription = [];
 
 $modalErrorinscription = false;
-
-
-if (isset($_POST['civilite'])) {
-    $civilite = htmlspecialchars($_POST['civilite']);
-    if (!preg_match($regexLetter, $civilite)) {
-        $errorsArrayinscription['civilite'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($civilite)) {
-        $errorsArrayinscription['civilite'] = 'Merci de saisir un nom';
-    }
-}
-
 
 if (isset($_POST['name'])) {
     $name = htmlspecialchars($_POST['name']);
@@ -103,10 +98,25 @@ if (isset($_POST['secondpassword'])) {
     }
 }
 
-if ((isset($_POST['submit'])) && (count($errorsArrayinscription) !== 0)) {
-    $modalErrorinscription = true;
+if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
+    if ($_POST['password'] != $_POST['secondpassword']) {
+        $errorsArrayinscription['password'] = 'Le mot de passe n\'est pas identique';
+        $errorsArrayinscription['secondpassword'] = 'Le mot de passe n\'est pas identique';
+    }
 }
 
 
+if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
+//    $usersObj->name = $name;
+//    $usersObj->firstname = $firstname;
+//    $usersObj->mail = $mail;
+//    $usersObj->age = $age;
+//    $usersObj->login = $login;
+//    $usersObj->password = $password;
+    $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
+////j'éxécute la méthode createUsers avec les attributs précedement stockés
+//    $usersObj->CreateUsers();
+    $modalErrorinscription = true;
+}
 ?>
 

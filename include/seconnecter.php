@@ -18,18 +18,13 @@ include_once('controllers/controllerseconnecter.php');
                 <form method="post" action="">
                     <div class="form-group">
                         <label for="login">Votre login : </label>
-                        <input type="text" name="login" id="login" placeholder="login" value="<?php isset($login) ? $login : '';  ?>" required /><br>
-                        <span class="error"><?= isset($errorsArrayconnection['login']) ? $errorsArrayconnection['login'] : ''; ?></span>
+                        <input type="text" name="login" id="login" placeholder="login" value="" required /><br>
+                        <span class="error"><?= !empty($errorsArrayconnection['login']) ? $errorsArrayconnection['login'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe : </label>
-                        <input type="password" name="password" id="password" placeholder="mot de passe" value="<?php isset($password) ? $password : '';  ?>" required /><br>
-                        <span class="error"><?= isset($errorsArrayconnection['password']) ? $errorsArrayconnection['password'] : ''; ?></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="secondpassword">Confirmer : </label>
-                        <input type="password" name="secondpassword" id="secondpassword" placeholder="mot de passe" value="<?php isset($secondpassword) ? $secondpassword : '';  ?>" required /><br>
-                        <span class="error"><?= isset($errorsArrayconnection['secondpassword']) ? $errorsArrayconnection['secondpassword'] : ''; ?></span>
+                        <input type="password" name="password" id="password" placeholder="mot de passe" value="" required /><br>
+                        <span class="error"><?= !empty($errorsArrayconnection['password']) ? $errorsArrayconnection['password'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

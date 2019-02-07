@@ -15,7 +15,6 @@ include_once('controllers/controllerevent.php');
         <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
         <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/style.css" />
         <title>MON PROJET PRO</title>
     </head>
@@ -70,9 +69,9 @@ include_once('controllers/controllerevent.php');
                     <?php
                     $url = 'http://www.fnacspectacles.com/rss/?flux=famille&famid=1MC';
                     $url2 = 'http://projet/xml/fluxrssfnac';
-                    
+
                     $rss = @simplexml_load_file($url);
-                    if(!$rss) {
+                    if (!$rss) {
                         $rss = simplexml_load_file($url2);
                     }
                     foreach ($rss->channel->item as $item) {

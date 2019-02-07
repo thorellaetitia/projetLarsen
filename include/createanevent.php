@@ -1,5 +1,4 @@
 <?php
-
 include_once('controllers/controllerevent.php');
 ?>
 
@@ -85,8 +84,8 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="form-group">
                         <label for="image">Photo </label> 
-                        <input type="file" name="image" id="image" placeholder="parcourir" value="<?php (isset($image)) ? $image : ''; ?>" required /><br>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                        <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
+                        <input type="file" accept="image/*" name="image" id="image" placeholder="parcourir" value="<?php (isset($image)) ? $image : ''; ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['image']) ? $errorsArrayevent['image'] : ''; ?></span>
                     </div>
                     <div class="form-group">

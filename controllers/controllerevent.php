@@ -9,13 +9,14 @@ $regexPassword = '/^[\w0-9\-._]{6,}+$/'; //autorise les lettres aplhabets chiffr
 $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/'; //autorise les lettres et chiffres .-_
 //regexdate autorise pour le JJ j'autorise le 0 et entre 1 et 9 (ex02) ou bien entre 1 et 9 (ex14)ou bien entre 10 et 19 ou bien
 //20 et 29 ou bien 30 et 31 pour le MM j'autorise entre 01 et 09 puis 10 à 12 pour le YYYY j'autorise 2018 2019 ou 2020 à 2022//
-$regexdate = '/^(20(1[89]|2[0-2]))-(0[1-9]|1[0-2])-(0[1-9]|([1-9])|[12][0-9]|3[01])$/'; //autorise le format date US ex 2018/01/12
+$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19([1-9][0-9])|(20([0-9][0-9])))$/'; //autorise le format date ex 12/01/2018
 $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/'; // autorise les chiffres
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chiffres, lettres et accents et formats jpg bmp et png
 //on déclare un tableau d'erreurs vide
 $errorsArrayevent = [];
+$extensions_valides = array('jpg', 'bmp', 'png');
 
-$modalErrorevent=false;
+$modalErrorevent = false;
 
 if (isset($_POST['category'])) {
     $category = htmlspecialchars($_POST['category']);
@@ -40,20 +41,10 @@ if (isset($_POST['souscategory'])) {
 if (isset($_POST['status'])) {
     $status = htmlspecialchars($_POST['status']);
     if (!preg_match($regexLetter, $status)) {
-        $errorsArrayevent['status'] = 'Merci de sélectionner un status';
+        $errorsArrayevent['status'] = 'Merci de sélectionner un statut';
     }
     if (empty($status)) {
         $errorsArrayevent['status'] = 'Merci de faire votre choix';
-    }
-}
-
-if (isset($_POST['category'])) {
-    $category = htmlspecialchars($_POST['category']);
-    if (!preg_match($regexLetter, $category)) {
-        $errorsArrayevent['category'] = 'Merci de sélectionner une catégorie';
-    }
-    if (empty($category)) {
-        $errorsArrayevent['category'] = 'Merci de faire votre choix svp';
     }
 }
 
@@ -80,7 +71,7 @@ if (isset($_POST['date'])) {
 if (isset($_POST['time'])) {
     $time = htmlspecialchars($_POST['time']);
     if (!preg_match($regextime, $time)) {
-        $errorsArrayevent['time'] = 'Merci de saisir un horaire au format HHhMM';
+        $errorsArrayevent['time'] = 'Merci de saisir un horaire au format HH:MM:SS';
     }
     if (empty($time)) {
         $errorsArrayevent['time'] = 'Merci de saisir un horaire';
@@ -90,12 +81,20 @@ if (isset($_POST['time'])) {
 if (isset($_FILES['fileUpload']['name'])) {
     $image = htmlspecialchars($_FILES['fileUpload']['name']);
     if (!preg_match($regexformatfichier, $image)) {
-        $errorsArrayevent['image'] = 'Merci de choisir un fichier aux formats suivants png jpg bmp';
+        $errorsArrayevent['image'] = 'Merci de choisir un fichier .png .jpg .bmp';
     }
     if (empty($image)) {
         $errorsArrayevent['image'] = 'Merci de charger une image';
     }
 }
+
+
+//if ($_FILES['fileUpload']['error'] > 0) {
+//    $erreur = "erreur los du transfert";
+//}
+//if ($_FILES['fileUpload']['size'] > $MAX_SIZE) {
+//    $erreur = "erreur le fichier est trop gros";
+//}
 
 if (isset($_POST['postalcode'])) {
     $postalcode = htmlspecialchars($_POST['postalcode']);
@@ -126,10 +125,11 @@ if (isset($_POST['description'])) {
         $errorsArrayevent['description'] = 'Merci de saisir une courte description';
     }
 }
+var_dump($_FILES);
+var_dump($errorsArrayevent);
 
 if ((isset($_POST['submit'])) && (count($errorsArrayevent) !== 0)) {
-    
+
     $modalErrorevent = true;
 }
-
 ?>

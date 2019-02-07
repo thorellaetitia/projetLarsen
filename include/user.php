@@ -21,14 +21,32 @@
         <?php
         include_once ('../navbar.php');
         ?>
+<!--        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-12" id="patient">
+                    <div>
+                        <table class="table table-striped" >
+                            <div class="closebutton">
+                                <a href="index1.php">Fermer</a>
+                            </div>
+                            <caption>Liste des patients</caption>
+                            <tr>
+                                <th> N° patient </th>
+                                <th> Prénom </th>
+                                <th>  Nom </th>
+                                <th>Profil patient</th>
+                                <th>Suppression</th>
+                            </tr>
+                            
+                        </table>-->
 
-        
-        
 
-        <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="assets/script.js"></script>
-    </body>
-</html>
+
+
+                        <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
+                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+                        <script src="assets/script.js"></script>
+                        </body>
+                        </html>
