@@ -4,9 +4,8 @@ require 'models/modelDatabase.php';
 require 'models/modelUsers.php';
 
 //on instancie un nouvel objet users
-//$usersObj = new users();
-//// Hachage du mot de passe
-//on realise des verifications de notre formulaire
+$usersObj = new users();
+
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
 $regextitle = '/^[A-ZÄ-ÿ\-]+$/'; //autorise les lettres de l'alphabet seulement les majuscules et accents
@@ -23,6 +22,18 @@ $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chif
 $errorsArrayinscription = [];
 
 $modalErrorinscription = false;
+
+//on realise des verifications de notre formulaire
+
+if (isset($_POST['usertypes_id'])) {
+    $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
+    if (!preg_match($regexLetter, $usertypes_id)) {
+        $errorsArrayevent['usertypes_id'] = 'Merci de sélectionner un statut';
+    }
+    if (empty($usertypes_id)) {
+        $errorsArrayevent['usertypes_id'] = 'Merci de faire votre choix';
+    }
+}
 
 if (isset($_POST['name'])) {
     $name = htmlspecialchars($_POST['name']);
@@ -106,16 +117,20 @@ if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
 }
 
 
+
 if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
-//    $usersObj->name = $name;
-//    $usersObj->firstname = $firstname;
-//    $usersObj->mail = $mail;
-//    $usersObj->age = $age;
-//    $usersObj->login = $login;
-//    $usersObj->password = $password;
-    $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $usersObj->name = $name;
+    $usersObj->firstname = $firstname;
+    $usersObj->mail = $mail;
+    $usersObj->age = $age;
+    $usersObj->login = $login;
+    $usersObj->users_admin = $users_admin;
+    $usersObj->usertypes_id = $usertypes_id;
+
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés
-//    $usersObj->CreateUsers();
+    $usersObj->CreateUsers();
     $modalErrorinscription = true;
 }
 ?>

@@ -9,7 +9,7 @@ $regexPassword = '/^[\w0-9\-._]{6,}+$/'; //autorise les lettres aplhabets chiffr
 $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/'; //autorise les lettres et chiffres .-_
 //regexdate autorise pour le JJ j'autorise le 0 et entre 1 et 9 (ex02) ou bien entre 1 et 9 (ex14)ou bien entre 10 et 19 ou bien
 //20 et 29 ou bien 30 et 31 pour le MM j'autorise entre 01 et 09 puis 10 à 12 pour le YYYY j'autorise 2018 2019 ou 2020 à 2022//
-$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19([1-9][0-9])|(20([0-9][0-9])))$/'; //autorise le format date ex 12/01/2018
+$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(20([0-9][0-9]))$/'; //autorise le format date ex 12/01/2018
 $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/'; // autorise les chiffres
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chiffres, lettres et accents et formats jpg bmp et png
 //on déclare un tableau d'erreurs vide
@@ -126,7 +126,7 @@ if (isset($_POST['description'])) {
     }
 }
 var_dump($_FILES);
-var_dump($errorsArrayevent);
+
 
 if ((isset($_POST['submit'])) && (count($errorsArrayevent) !== 0)) {
 

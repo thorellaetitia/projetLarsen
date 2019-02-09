@@ -15,6 +15,14 @@ include_once('controllers/controllerinscription.php');
                 <!--form-->
                 <form method="post" action="" >
                     <div class="form-group">
+                        Vous êtes : <select value="<?php (isset($usertypes)) ? $usertypes : ''; ?>" name="usertypes">
+                            <option>Veuillez renseigner un champ</option> 
+                            <option value="Professionnel">1-Professionnel</option>
+                            <option value="Particulier">2-Particulier</option>
+                            <span class="error"><?= isset($errorsArrayevent['usertypes']) ? $errorsArrayevent['usertypes'] : ''; ?></span>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="name">Votre nom : </label>
                         <input type="text" name="name" id="name" placeholder="ex : Dupont" value="<?php (isset($name)) ? $name : ''; ?>"  required /><br>
                         <span class="error"><?= isset($errorsArrayinscription['name']) ? $errorsArrayinscription['name'] : ''; ?></span>

@@ -1,41 +1,46 @@
-<?php //
+<?php
 
-//class users extends database { //on crée une class clients dont le parent est database donc clients héritent des attributs et methodes de database
+class users extends database { //on crée une class clients dont le parent est database donc clients héritent des attributs et methodes de database
 ////on définit les attributs de la table clients car ils n'existent pas dans database
-//
-//    public $id;
-//    public $name;
-//    public $firstname;
-//    public $mail;
-//    public $age;
-//    public $login;
-//    public $password;
-//    public $userTypes;
-//
-//    //création fonction creatusers pour ajouter des users dans la bdd
-//    //on crée une fonction qui va nous permettre de créer les internautes qui veulent s'inscrire
-//    public function CreateUsers() {
-//        $query = 'INSERT INTO `USERS` SET `name` = :name,'
-//                . ' `firstname` = :firstname,'     //:firstname = marqueur nominatif
-//                . ' `mail` = :mail,'
-//                . ' `age` = :age,'
-//                . ' `login` = :login'
-//                . ' `password` = :password';
-//        //injection d'éléments dans la base de données (lastName,fistName...)donc on prépare la requête
-//        //besoin de bindvalue pour faire le lien entre les éléments que l'on va rentrer dans la base et 
-//        //les éléments du formulaire.
-//        $usersList = $this->database->prepare($query);
+
+    public $id;
+    public $name;
+    public $firstname;
+    public $mail;
+    public $age;
+    public $login;
+    public $password;
+    public $users_admin;
+    public $usertypes_id;
+
+//      création fonction createusers pour ajouter des users dans la bdd
+//    on crée une fonction qui va nous permettre d'inscrire les internautes
+    public function CreateUsers() {
+        $query = 'INSERT INTO `poqs_users` SET `users_name` = :name,'
+                . ' `users_firstname` = :firstname,'     //:firstname = marqueur nominatif
+                . ' `users_mail` = :mail,'
+                . ' `users_age` = :age,'
+                . ' `users_login` = :login,'
+                . ' `users_password` = :password,'
+                . '`users_admin` = :users_admin,'
+                . '`usertypes_id`=:usertypes_id';
+
+        //injection d'éléments dans la base de données (lastName,fistName...)donc on prépare la requête
+        //besoin de bindvalue pour faire le lien entre les éléments que l'on va rentrer dans la base et 
+        //les éléments du formulaire.
+        $usersList = $this->database->prepare($query);
 //        //les bindvalue sécurisent l'injection d'éléments dans la base en spécifiant les valeurs sring entiers...
-//        $usersList->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-//        $usersList->bindValue(':name', $this->name, PDO::PARAM_STR);
-//        $usersList->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-//        $usersList->bindValue(':age', $this->age, PDO::PARAM_INT);
-//        $usersList->bindValue(':login', $this->login, PDO::PARAM_STR);
-//        $usersList->bindValue(':password', $this->$pass_hache, PDO::PARAM_STR);
-//        
-//        //lorsque l'on prépare la requete on doit l'éxécuter
-//        return $usersList->execute();
-//    }
+        $usersList->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+        $usersList->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $usersList->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $usersList->bindValue(':age', $this->age, PDO::PARAM_INT);
+        $usersList->bindValue(':login', $this->login, PDO::PARAM_STR);
+        $usersList->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $usersList->bindValue(':users_admin', $this->users_admin, PDO::PARAM_STR);
+        $usersList->bindvalue(':usertypes_id', $this->usertypes_id, PDO::PARAM_INT);
+//lorsque l'on prépare la requete on doit l'éxécuter
+        return $usersList->execute();
+    }
 
 //     //création fonction showlistUsers pour afficher la liste des users
 //    //on crée une fonction qui va nous permettre d'afficher les patients
@@ -111,6 +116,6 @@
 //    }
 //    
 //    
-//}
+}
 
 ?>

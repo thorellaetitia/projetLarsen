@@ -14,14 +14,7 @@ include_once('controllers/controllerevent.php');
             <div class="modal-body">
                 <!--form-->
                 <form method="post" action="index.php" enctype="multipart/form-data" novalidate>
-                    <div class="form-group">
-                        Vous êtes : <select value="<?php (isset($status)) ? $status : ''; ?>" name="status">
-                            <option>Veuillez renseigner un champ</option> 
-                            <option value="Particulier">Particulier</option>
-                            <option value="Professionnel">Professionnel</option>
-                            <span class="error"><?= isset($errorsArrayevent['status']) ? $errorsArrayevent['status'] : ''; ?></span>
-                        </select>
-                    </div>
+                   
                     <div class="form-group">
                         Catégorie événement <select value="<?php (isset($category)) ? $category : ''; ?>" name="status" name="category">
                             <option>Veuillez renseigner un champ</option> 
