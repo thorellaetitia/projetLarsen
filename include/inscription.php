@@ -17,8 +17,8 @@ include_once('controllers/controllerinscription.php');
                     <div class="form-group">
                         Vous êtes : <select value="<?php (isset($usertypes_id)) ? $usertypes_id : ''; ?>" name="usertypes_id">
                             <option>Veuillez renseigner un champ</option> 
-                            <option value="Professionnel">1-Professionnel</option>
-                            <option value="Particulier">2-Particulier</option>
+                            <option value="1">Professionnel</option>
+                            <option value="2">Particulier</option>
                             <span class="error"><?= isset($errorsArrayevent['usertypes_id']) ? $errorsArrayevent['usertypes_id'] : ''; ?></span>
                         </select>
                     </div>
