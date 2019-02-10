@@ -126,7 +126,6 @@ if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
     $usersObj->mail = $mail;
     $usersObj->age = $age;
     $usersObj->login = $login;
-    $usersObj->users_admin = $users_admin;
     $usersObj->usertypes_id = $usertypes_id;
 
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés

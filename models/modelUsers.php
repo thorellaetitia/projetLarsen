@@ -36,7 +36,7 @@ class users extends database { //on crée une class clients dont le parent est d
         $usersList->bindValue(':age', $this->age, PDO::PARAM_INT);
         $usersList->bindValue(':login', $this->login, PDO::PARAM_STR);
         $usersList->bindValue(':password', $this->password, PDO::PARAM_STR);
-        $usersList->bindValue(':users_admin', $this->users_admin, PDO::PARAM_STR);
+        $usersList->bindValue(':users_admin', 0, PDO::PARAM_BOOL);
         $usersList->bindvalue(':usertypes_id', $this->usertypes_id, PDO::PARAM_INT);
 //lorsque l'on prépare la requete on doit l'éxécuter
         return $usersList->execute();
