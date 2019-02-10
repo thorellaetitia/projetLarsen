@@ -13,78 +13,78 @@ include_once('controllers/controllerevent.php');
             </div>
             <div class="modal-body">
                 <!--form-->
-                <form method="post" action="index.php" enctype="multipart/form-data" novalidate>
+                <form method="post" action="recordanevent.php" enctype="multipart/form-data" novalidate>
                    
                     <div class="form-group">
-                        Catégorie événement <select value="<?php (isset($category)) ? $category : ''; ?>" name="status" name="category">
+                        Catégorie événement <select value="<?php (isset($eventcategory_id)) ? $eventcategory_id : ''; ?>" name="eventcategory_id">
                             <option>Veuillez renseigner un champ</option> 
-                            <option value="concert">Concert</option>
-                            <option value="spectacle">Spectacle</option>
-                            <option value="expo">Expos</option>
+                            <option value="1">Concert</option>
+                            <option value="2">Spectacle</option>
+                            <option value="3">Expos</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        Sous-catégorie événement <select value="<?php (isset($souscategory)) ? $souscategory : ''; ?>" name="souscategory">
+                        Sous-catégorie événement <select value="<?php (isset($eventsubcategory_id)) ? $eventsubcategory_id : ''; ?>" name="eventsubcategory_id">
                             <option>Veuillez renseigner un champ</option>
-                            <option value="spectacle">Plans gratuits</option>
-                            <option value="concert">Concert</option>
-                            <option value="danse">Danse</option>
-                            <option value="cirque">Cirque</option>
-                            <option value="theater">Théâtre</option>
-                            <option value="humour">Humour</option>
-                            <option value="expos">Expo</option>
-                            <option value="musees">Musée</option>
-                            <option value="walk">Balade</option>
-                            <option value="ateliers">Atelier</option>
+                            <option value="1">Plans gratuits</option>
+                            <option value="2">Concert</option>
+                            <option value="3">Danse</option>
+                            <option value="4">Cirque</option>
+                            <option value="5">Théâtre</option>
+                            <option value="6">Humour</option>
+                            <option value="7">Expo</option>
+                            <option value="8">Musée</option>
+                            <option value="9">Balade</option>
+                            <option value="10">Atelier</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="title">Titre de l'événement </label> 
-                        <textarea type="text" name="title" id="title" placeholder="Merci de le saisir en majuscule svp" rows="2" cols="50" value="<?php (isset($title)) ? $title : ''; ?>" required></textarea><br>
-                        <span class="error"><?= isset($errorsArrayevent['title']) ? $errorsArrayevent['title'] : ''; ?></span>
+                        <label for="event_title">Titre de l'événement </label> 
+                        <textarea type="text" name="event_title" id="title" placeholder="Merci de le saisir en majuscule svp" rows="2" cols="50" value="<?php (isset($event_title)) ? $event_title : ''; ?>" required></textarea><br>
+                        <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="date">Date : </label> 
-                        <input type="date" name="date" id="date" placeholder="ex jj/mm/yyyy" value="<?php (isset($date)) ? $date : ''; ?>"  required /><br>
-                        <span class="error"><?= isset($errorsArrayevent['date']) ? $errorsArrayevent['date'] : ''; ?></span>
+                        <label for="event_date">Date : </label> 
+                        <input type="date" name="event_date" id="date" placeholder="ex jj/mm/yyyy" value="<?php (isset($event_date)) ? $event_date : ''; ?>"  required /><br>
+                        <span class="error"><?= isset($errorsArrayevent['event_date']) ? $errorsArrayevent['event_date'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="time">Heure : </label> 
-                        <input type="text" name="time" id="time" placeholder="  :  " value="<?php (isset($time)) ? $time : ''; ?>" required /><br>
-                        <span class="error"><?= isset($errorsArrayevent['time']) ? $errorsArrayevent['time'] : ''; ?></span>
+                        <label for="event_time">Heure : </label> 
+                        <input type="text" name="event_time" id="time" placeholder="  :  " value="<?php (isset($event_time)) ? $event_time : ''; ?>" required /><br>
+                        <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            Le lieu : <select name="theater" value="<?php (isset($theater)) ? $theater : ''; ?>">
+                            Le lieu : <select name="showplaces_id" value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>">
                                 <option>Veuillez renseigner un champ</option> 
-                                <option value="106">Le 106</option>
-                                <option value="volcan">Le VOLCAN</option>
-                                <option value="Juliobona">Théâtre Juliobona</option>
-                                <option value="Tetris">Le Tetris</option>
-                                <option value="Juliobona">Le MuMa</option>
+                                <option value="1">Le 106</option>
+                                <option value="2">Le VOLCAN</option>
+                                <option value="3">Théâtre Juliobona</option>
+                                <option value="4">Le Tetris</option>
+                                <option value="5">Le MuMa</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            Code postal : <select name="postalcode" value="<?php (isset($postalcode)) ? $postalcode : ''; ?>">
+                            Code postal : <select name="postalcode_id" value="<?php (isset($postalcode_id)) ? $postalcode_id : ''; ?>">
                                 <option disabled selected>Veuillez renseigner un champ</option> 
-                                <option value="76000">76000-Rouen</option>
-                                <option value="76600">76600-Le Havre</option>
-                                <option value="76170">76170-Lillebonne</option>
+                                <option value="1">76000-Rouen</option>
+                                <option value="2">76600-Le Havre</option>
+                                <option value="3">76170-Lillebonne</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="image">Photo </label> 
+                        <label for="event_picture">Photo </label> 
                         <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                        <input type="file" accept="image/*" name="image" id="image" placeholder="parcourir" value="<?php (isset($image)) ? $image : ''; ?>" required /><br>
-                        <span class="error"><?= isset($errorsArrayevent['image']) ? $errorsArrayevent['image'] : ''; ?></span>
+                        <input type="file" accept="image/*" name="event_picture" id="image" placeholder="parcourir" value="<?php (isset($event_picture)) ? $event_picture : ''; ?>" required /><br>
+                        <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description de l'événement : </label>
-                        <textarea type="text" name="description" id="description" rows="4" cols="50" placeholder="description de l'événement" value="<?php (isset($description)) ? $description : ''; ?>" required ></textarea><br>
-                        <span class="error"><?= isset($errorsArrayevent['description']) ? $errorsArrayevent['description'] : ''; ?></span>
+                        <label for="event_description">Description de l'événement : </label>
+                        <textarea type="text" name="event_description" id="description" rows="4" cols="50" placeholder="description de l'événement" value="<?php (isset($event_description)) ? $event_description : ''; ?>" required ></textarea><br>
+                        <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

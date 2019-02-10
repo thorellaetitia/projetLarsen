@@ -131,6 +131,7 @@ if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés
     $usersObj->CreateUsers();
     $modalErrorinscription = true;
+    
 }
 ?>
 

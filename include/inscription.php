@@ -13,7 +13,8 @@ include_once('controllers/controllerinscription.php');
             </div>
             <div class="modal-body">
                 <!--form-->
-                <form method="post" action="" >
+                
+                <form method="post" action="../register.php" >
                     <div class="form-group">
                         Vous êtes : <select value="<?php (isset($usertypes_id)) ? $usertypes_id : ''; ?>" name="usertypes_id">
                             <option>Veuillez renseigner un champ</option> 
@@ -63,6 +64,7 @@ include_once('controllers/controllerinscription.php');
                     </div>
                 </form>
                 <!--fin du form-->
+                
             </div>
         </div>
     </div>

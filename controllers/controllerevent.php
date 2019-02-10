@@ -1,5 +1,11 @@
 <?php
 
+require_once 'models/modelDatabase.php';
+require_once 'models/modelEvent.php';
+
+//on instancie un nouvel objet event
+$eventObj = new event();
+
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
 $regextitle = '/^[A-ZÄ-ÿ\-]+$/'; //autorise les lettres de l'alphabet seulement les majuscules et accents
@@ -18,73 +24,63 @@ $extensions_valides = array('jpg', 'bmp', 'png');
 
 $modalErrorevent = false;
 
-if (isset($_POST['category'])) {
-    $category = htmlspecialchars($_POST['category']);
-    if (!preg_match($regexLetter, $category)) {
-        $errorsArrayevent['category'] = 'Merci de saisir une catégorie d\'événements';
+if (isset($_POST['eventcategory_id'])) {
+    $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
+    if (!preg_match($regexLetter, $eventcategory_id)) {
+        $errorsArrayevent['eventcategory_id'] = 'Merci de saisir une catégorie d\'événements';
     }
-    if (empty($category)) {
-        $errorsArrayeventvent['category'] = 'Merci de faire votre choix';
-    }
-}
-
-if (isset($_POST['souscategory'])) {
-    $souscategory = htmlspecialchars($_POST['souscategory']);
-    if (!preg_match($regexLetter, $souscategory)) {
-        $errorsArrayevent['souscategory'] = 'Merci de saisir une sous-catégorie d\'événements';
-    }
-    if (empty($souscategory)) {
-        $errorsArrayevent['souscategory'] = 'Merci de faire votre choix';
+    if (empty($eventcategory_id)) {
+        $errorsArrayeventvent['eventcategory_id'] = 'Merci de faire votre choix';
     }
 }
 
-if (isset($_POST['status'])) {
-    $status = htmlspecialchars($_POST['status']);
-    if (!preg_match($regexLetter, $status)) {
-        $errorsArrayevent['status'] = 'Merci de sélectionner un statut';
+if (isset($_POST['eventsubcategory_id'])) {
+    $eventsubcategory_id = htmlspecialchars($_POST['eventsubcategory_id']);
+    if (!preg_match($regexLetter, $eventsubcategory_id)) {
+        $errorsArrayevent['eventsubcategory_id'] = 'Merci de saisir une sous-catégorie d\'événements';
     }
-    if (empty($status)) {
-        $errorsArrayevent['status'] = 'Merci de faire votre choix';
-    }
-}
-
-if (isset($_POST['title'])) {
-    $title = htmlspecialchars($_POST['title']);
-    if (!preg_match($regextitle, $title)) {
-        $errorsArrayevent['title'] = 'Merci de saisir un titre en majuscule';
-    }
-    if (empty($title)) {
-        $errorsArrayevent['title'] = 'Merci de saisir un titre';
+    if (empty($eventsubcategory_id)) {
+        $errorsArrayevent['eventsubcategory_id'] = 'Merci de faire votre choix';
     }
 }
 
-if (isset($_POST['date'])) {
-    $date = htmlspecialchars($_POST['date']);
-    if (!preg_match($regexdate, $date)) {
-        $errorsArrayevent['date'] = 'Merci de saisir une date au format JJ/MM/YYYY';
+if (isset($_POST['event_title'])) {
+    $event_title = htmlspecialchars($_POST['event_title']);
+    if (!preg_match($regextitle, $event_title)) {
+        $errorsArrayevent['event_title'] = 'Merci de saisir un titre en majuscule';
     }
-    if (empty($date)) {
-        $errorsArrayevent['date'] = 'Merci de saisir une date';
+    if (empty($event_title)) {
+        $errorsArrayevent['event_title'] = 'Merci de saisir un titre';
     }
 }
 
-if (isset($_POST['time'])) {
-    $time = htmlspecialchars($_POST['time']);
-    if (!preg_match($regextime, $time)) {
-        $errorsArrayevent['time'] = 'Merci de saisir un horaire au format HH:MM:SS';
+if (isset($_POST['event_date'])) {
+    $event_date = htmlspecialchars($_POST['event_date']);
+    if (!preg_match($regexdate, $event_date)) {
+        $errorsArrayevent['event_date'] = 'Merci de saisir une date au format JJ/MM/YYYY';
     }
-    if (empty($time)) {
-        $errorsArrayevent['time'] = 'Merci de saisir un horaire';
+    if (empty($event_date)) {
+        $errorsArrayevent['event_date'] = 'Merci de saisir une date';
+    }
+}
+
+if (isset($_POST['event_time'])) {
+    $event_time = htmlspecialchars($_POST['event_time']);
+    if (!preg_match($regextime, $event_time)) {
+        $errorsArrayevent['event_time'] = 'Merci de saisir un horaire au format HH:MM:SS';
+    }
+    if (empty($event_time)) {
+        $errorsArrayevent['event_time'] = 'Merci de saisir un horaire';
     }
 }
 
 if (isset($_FILES['fileUpload']['name'])) {
-    $image = htmlspecialchars($_FILES['fileUpload']['name']);
-    if (!preg_match($regexformatfichier, $image)) {
-        $errorsArrayevent['image'] = 'Merci de choisir un fichier .png .jpg .bmp';
+    $event_picture = htmlspecialchars($_FILES['fileUpload']['name']);
+    if (!preg_match($regexformatfichier, $event_picture)) {
+        $errorsArrayevent['event_picture'] = 'Merci de choisir un fichier .png .jpg .bmp';
     }
-    if (empty($image)) {
-        $errorsArrayevent['image'] = 'Merci de charger une image';
+    if (empty($event_picture)) {
+        $errorsArrayevent['event_picture'] = 'Merci de charger une image';
     }
 }
 
@@ -96,40 +92,51 @@ if (isset($_FILES['fileUpload']['name'])) {
 //    $erreur = "erreur le fichier est trop gros";
 //}
 
-if (isset($_POST['postalcode'])) {
-    $postalcode = htmlspecialchars($_POST['postalcode']);
-    if (!preg_match($regexLetternumber, $postalcode)) {
-        $errorsArrayevent['postalcode'] = 'Merci de saisir une chaine de caractères';
+if (isset($_POST['postalcode_id'])) {
+    $postalcode_id = htmlspecialchars($_POST['postalcode_id']);
+    if (!preg_match($regexLetternumber, $postalcode_id)) {
+        $errorsArrayevent['postalcode_id'] = 'Merci de saisir une chaine de caractères';
     }
-    if (empty($postalcode)) {
-        $errorsArrayevent['description'] = 'Merci de saisir une courte description';
-    }
-}
-
-if (isset($_POST['theater'])) {
-    $theater = htmlspecialchars($_POST['theater']);
-    if (!preg_match($regexLetternumber, $theater)) {
-        $errorsArrayevent['theater'] = 'Merci de renseigner une salle de spectacle';
-    }
-    if (empty($theater)) {
-        $errorsArrayevent['theater'] = 'Merci de faire votre choix';
+    if (empty($postalcode_id)) {
+        $errorsArrayevent['postalcode_id'] = 'Merci de saisir une courte description';
     }
 }
 
-if (isset($_POST['description'])) {
-    $description = htmlspecialchars($_POST['description']);
-    if (!preg_match($regexLetternumber, $description)) {
-        $errorsArrayevent['description'] = 'Merci de saisir une chaine de caractères';
+if (isset($_POST['showplaces_id'])) {
+    $showplaces_id = htmlspecialchars($_POST['showplaces_id']);
+    if (!preg_match($regexLetternumber, $showplaces_id)) {
+        $errorsArrayevent['showplaces_id'] = 'Merci de renseigner une salle de spectacle';
     }
-    if (empty($description)) {
-        $errorsArrayevent['description'] = 'Merci de saisir une courte description';
+    if (empty($showplaces_id)) {
+        $errorsArrayevent['showplaces_id'] = 'Merci de faire votre choix';
     }
 }
-var_dump($_FILES);
+
+if (isset($_POST['event_description'])) {
+    $event_description = htmlspecialchars($_POST['event_description']);
+    if (!preg_match($regexLetternumber, $event_description)) {
+        $errorsArrayevent['event_description'] = 'Merci de saisir une chaine de caractères';
+    }
+    if (empty($event_description)) {
+        $errorsArrayevent['event_description'] = 'Merci de saisir une courte description';
+    }
+}
 
 
 if ((isset($_POST['submit'])) && (count($errorsArrayevent) !== 0)) {
+    $newDate = str_replace('/', '-', $event_date);
 
+    $eventObj->event_title = $event_title;
+    $eventObj->event_date = $event_date;
+    $eventObj->event_time = $event_time;
+    $eventObj->event_picture = $event_picture;
+    $eventObj->event_description = $event_description;
+    $eventObj->users_id = $users_id;
+    $eventObj->eventcategory_id = $eventcategory_id;
+    $eventObj->postalcode_id = $postalcode_id;
+    $eventObj->showplaces_id = $showplaces_id;
+////j'éxécute la méthode createEvent avec les attributs précedement stockés
+    $eventObj->CreateEvent();
     $modalErrorevent = true;
 }
 ?>
