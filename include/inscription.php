@@ -14,7 +14,7 @@ include_once('controllers/controllerinscription.php');
             <div class="modal-body">
                 <!--form-->
                 
-                <form method="post" action="../register.php" >
+                <form method="post" action="" >
                     <div class="form-group">
                         Vous êtes : <select value="<?php (isset($usertypes_id)) ? $usertypes_id : ''; ?>" name="usertypes_id">
                             <option>Veuillez renseigner un champ</option> 
@@ -60,7 +60,7 @@ include_once('controllers/controllerinscription.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <input type="submit" class="btn btn-primary " name="submit" value="S'inscrire" />
+                        <input type="submit" class="btn btn-primary " name="createUserBtn" value="S'inscrire" />
                     </div>
                 </form>
                 <!--fin du form-->

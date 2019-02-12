@@ -3,13 +3,13 @@
 class users extends database { //on crée une class clients dont le parent est database donc clients héritent des attributs et methodes de database
 ////on définit les attributs de la table clients car ils n'existent pas dans database
 
-    public $id;
-    public $name;
-    public $firstname;
-    public $mail;
-    public $age;
-    public $login;
-    public $password;
+    public $users_id;
+    public $users_name;
+    public $users_firstname;
+    public $users_mail;
+    public $users_age;
+    public $users_login;
+    public $users_password;
     public $users_admin;
     public $usertypes_id;
 
@@ -42,23 +42,25 @@ class users extends database { //on crée une class clients dont le parent est d
         return $usersList->execute();
     }
 
-//     //création fonction showlistUsers pour afficher la liste des users
-//    //on crée une fonction qui va nous permettre d'afficher les patients
-//    //pas d'injection d'éléments donc pas besoin de préparer ni éxécuter ni de bindvalue
-//    //je crée ma fonction ShowAllPatients
-//    public function ShowAllUsers() {
-//        //je stock ma requête dans une variable $query
-//        $query = 'SELECT * FROM users';
-//        //le résultat de ma requête je le stocke dans $resultQueryAllPatients
-//        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
-//        $resultQueryAllUsers = $this->database->query($query);
-//        //avec le this il faut cibler l'élément de ma classe
-//        //le fetchall permet de récupérer toutes les infos de la requete et les transformer ds un tableau d'objets
-//        $arrayAllUsers = $resultQueryAllUsers->fetchALL(PDO::FETCH_OBJ);
-//        return $arrayAllUsers;
-//        //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
-//        //faire un fetchALL en utilisant l'objet PDO.
-//    }
+    //création fonction checkUsersByMail pour vérifier si l'adresse mail existe bien ds la bdd
+    //je crée ma fonction checkUsersByMail
+    public function checkUserByMail($users_mail) {
+        //je stock ma requête dans une variable $query
+        $query = 'SELECT * FROM `poqs_users` WHERE `users_mail` = :users_mail';
+
+    //le résultat de ma requête je le stocke dans $resultQueryAllPatients
+      //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        $resultQuerycheckUserByMail = $this->database->query($query);
+        $resultQuerycheckUserByMail->bindValue(':users_mail', $this->users_mail, PDO::PARAM_STR);
+        //avec le this il faut cibler l'élément de ma classe
+        //le fetchall permet de récupérer toutes les infos de la requete et les transformer ds un tableau d'objets
+        $resultQuerycheckUserByMail->execute();
+        $dataUser = $resultQuerycheckUserByMail->fetch(PDO::FETCH_OBJ);
+        return $dataUser;
+       //le résultat = on lui demande d'aller chercher les éléments users pour en faire un tableau 
+       //faire un fetch en utilisant l'objet PDO.
+    }
+
 //
 //    //exercice 3
 //    public function lastInsertId() {

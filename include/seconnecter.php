@@ -28,7 +28,7 @@ include_once('controllers/controllerseconnecter.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <input type="submit" class="btn btn-primary " name="submit" value="Se connecter" /><br>
+                        <input type="submit" class="btn btn-primary " name="connectBtn" value="Se connecter" /><br>
                     </div>
                 </form>
 

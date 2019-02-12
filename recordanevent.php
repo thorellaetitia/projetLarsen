@@ -1,3 +1,7 @@
+<?php
+include_once('controllers/controllerevent.php');
+?>
+
 <!DOCTYPE HTML>
 <html lang="fr">
     <head>
@@ -24,7 +28,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="col-sm-12 col-md-4 col-lg-4">
                     <div class="card" id="event">
                         <div class="card-body">
                             <p>Récapitulatif de l'événement</p>
@@ -32,31 +36,35 @@
                                 <a href="index.php">Fermer</a>
                             </div>
                             <?php
-                            foreach ($eventList as $events) {
+                            foreach ($arrayProfileEvent as $events) {
                                 ?>
-                                <div class="card-id">Titre : <?= $events->event_title ?></div>
-                                <p class="card-title" >Nom de l'inscrit : <?= $events->users_id ?></p>
-                                <p class="card-title" >Date de l'événement : <?= $events->event_date ?></p>
-                                <p class="card-subtitle mb-2 text-muted">Heure : <?= $events->event_time ?></p>
-                                <p class="card-text">Image : <?= $events->event_picture ?></p>
-                                <p class="card-text">Description: <?= $events->event_description ?></p>
-                                <p class="card-text"> Catégorie événement : <?= $events->eventcategory_id ?></p>
-                                <p class="card-text"> code postal : <?= $events->postalcode_id ?></p>
-                                <p class="card-text"> Lieu  : <?= $events->showplaces_id ?></p>
+                                <div class="card">
+                                    <img src="<?= $events->event_picture ?>" class="card-img-top" alt="event_picture">
+                                    <div class="card-body">
+                                        <h1 class="card-title">Titre :<?= $events->users_id ?><?= $events->event_title ?></h1>
+                                        <p class="card-text">Description: <?= $events->event_description ?></p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Catégorie :<?= $events->eventcategory_id ?></li>
+                                        <li class="list-group-item">Date :<?= $events->event_date ?></li>
+                                        <li class="list-group-item">Heure :<?= $events->event_time ?></li>
+                                        <li class="list-group-item">Lieu :<?= $events->showplaces_id ?></li>
+                                        <li class="list-group-item">code postal:<?= $events->postalcode_id ?></li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Supprimer</a>
+                                        <a href="modifyevent.php?id=<?= $events->users_id ?>"" class="card-link">Modifier l'événement</a>
+                                    </div>
+                                </div>  
+                                <?php
+                            }
+                            ?>
+                        </div>
 
-                                <a href="modifyevent.php?id=<?= $events-- > users_id ?>" class="card-link">Modifier l'événement</a>
-                            </div>
-                            <?php
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

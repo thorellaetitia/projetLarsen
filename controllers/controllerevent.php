@@ -2,9 +2,11 @@
 
 require_once 'models/modelDatabase.php';
 require_once 'models/modelEvent.php';
+require_once 'models/modelUsers.php';
 
 //on instancie un nouvel objet event
 $eventObj = new event();
+$profilEventObj = new event();
 
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
@@ -23,6 +25,18 @@ $errorsArrayevent = [];
 $extensions_valides = array('jpg', 'bmp', 'png');
 
 $modalErrorevent = false;
+
+////////////////////////////////
+//TEST FAUSSE VARIABLE SESSION
+////////////////////////////////
+//$sessionUserId = 16;
+////////////////////////////////
+//TEST FAUSSE VARIABLE SESSION
+////////////////////////////////
+$profilEventObj->users_id = $sessionUserId;
+$arrayProfileEvent = $profilEventObj->displayEventById();
+
+
 
 if (isset($_POST['eventcategory_id'])) {
     $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
@@ -74,8 +88,8 @@ if (isset($_POST['event_time'])) {
     }
 }
 
-if (isset($_FILES['fileUpload']['name'])) {
-    $event_picture = htmlspecialchars($_FILES['fileUpload']['name']);
+if (isset($_FILES['event_picture']['name'])) {
+    $event_picture = htmlspecialchars($_FILES['event_picture']['name']);
     if (!preg_match($regexformatfichier, $event_picture)) {
         $errorsArrayevent['event_picture'] = 'Merci de choisir un fichier .png .jpg .bmp';
     }
@@ -83,14 +97,49 @@ if (isset($_FILES['fileUpload']['name'])) {
         $errorsArrayevent['event_picture'] = 'Merci de charger une image';
     }
 }
+//////////verifications sur le type de fichier upload//////////
 
+//spécifie le dossier dans lequel les images sont stockées
+$target_dir = "img/";
 
-//if ($_FILES['fileUpload']['error'] > 0) {
-//    $erreur = "erreur los du transfert";
-//}
-//if ($_FILES['fileUpload']['size'] > $MAX_SIZE) {
-//    $erreur = "erreur le fichier est trop gros";
-//}
+//spécifie le chemin du fichier à être chargé
+$target_file = $target_dir . basename($_FILES['event_picture']['name']);
+//déclaration de la variable uploadok si = 1 alors fichier correct prêt a chargé
+$uploadOk = 1;
+
+//spécifie l'extension du fichier
+$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+// Vérifie si chaque image est bien un fichier image ou du fake
+if (isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["event_picture"]["tmp_name"]);
+    if ($check !== false) {
+        echo "c'est bien une image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "Ce n'est pas une image";
+        $uploadOk = 0;
+    }
+}
+
+// Vérifie si le nom du fichier existe déjà dans la bdd
+if (file_exists($target_file)) {
+    echo "désolé le fichier existe déjà";
+    $uploadOk = 0;
+}
+// Vérifie le poids du fichier
+if ($_FILES["event_picture"]["size"] > 500000) {
+    echo "désolé votre fichier dépasse le maximum autorisé 500kb";
+    $uploadOk = 0;
+}
+// Prise en compte de certains formats de fichiers
+if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+   && $imageFileType != "bmp") {
+    echo "Désolé, seuls les formats autorisés sont JPG, JPEG, PNG & BMP";
+    $uploadOk = 0;
+}
+
+/////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
 
 if (isset($_POST['postalcode_id'])) {
     $postalcode_id = htmlspecialchars($_POST['postalcode_id']);
@@ -123,20 +172,20 @@ if (isset($_POST['event_description'])) {
 }
 
 
-if ((isset($_POST['submit'])) && (count($errorsArrayevent) !== 0)) {
+if ((isset($_POST['createEventBtn'])) && (count($errorsArrayevent) !== 0)) {
+ 
     $newDate = str_replace('/', '-', $event_date);
-
     $eventObj->event_title = $event_title;
     $eventObj->event_date = $event_date;
     $eventObj->event_time = $event_time;
     $eventObj->event_picture = $event_picture;
     $eventObj->event_description = $event_description;
-    $eventObj->users_id = $users_id;
+    $eventObj->users_id = $sessionUserId;
     $eventObj->eventcategory_id = $eventcategory_id;
     $eventObj->postalcode_id = $postalcode_id;
     $eventObj->showplaces_id = $showplaces_id;
 ////j'éxécute la méthode createEvent avec les attributs précedement stockés
     $eventObj->CreateEvent();
     $modalErrorevent = true;
-}
+} 
 ?>

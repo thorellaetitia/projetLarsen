@@ -1,7 +1,7 @@
 <?php
 
-require 'models/modelDatabase.php';
-require 'models/modelUsers.php';
+require_once 'models/modelDatabase.php';
+require_once 'models/modelUsers.php';
 
 //on instancie un nouvel objet users
 $usersObj = new users();
@@ -117,8 +117,14 @@ if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
 }
 
 
+if(count($errorsArrayinscription) !== 0){
+    $modalErrorinscription = true;
+}
 
-if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
+
+
+
+if ((isset($_POST['createUserBtn'])) && (count($errorsArrayinscription) == 0)) {
 
     $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $usersObj->name = $name;
@@ -127,10 +133,10 @@ if ((isset($_POST['submit'])) && (count($errorsArrayinscription) == 0)) {
     $usersObj->age = $age;
     $usersObj->login = $login;
     $usersObj->usertypes_id = $usertypes_id;
-
+    var_dump($usersObj);
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés
     $usersObj->CreateUsers();
-    $modalErrorinscription = true;
+    
     
 }
 ?>

@@ -1,7 +1,10 @@
 <?php
+session_start();
+
 include_once('controllers/controllerinscription.php');
 include_once('controllers/controllerseconnecter.php');
 include_once('controllers/controllerevent.php');
+
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">

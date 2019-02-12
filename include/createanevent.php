@@ -14,7 +14,7 @@ include_once('controllers/controllerevent.php');
             <div class="modal-body">
                 <!--form-->
                 <form method="post" action="recordanevent.php" enctype="multipart/form-data" novalidate>
-                   
+
                     <div class="form-group">
                         Catégorie événement <select value="<?php (isset($eventcategory_id)) ? $eventcategory_id : ''; ?>" name="eventcategory_id">
                             <option>Veuillez renseigner un champ</option> 
@@ -88,7 +88,7 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <input type="submit" class="btn btn-primary " name="submit" value="Créer" />
+                        <input type="submit" class="btn btn-primary " name="createEventBtn" value="Créer" />
                     </div>
                 </form>
                 <!--fin du form-->

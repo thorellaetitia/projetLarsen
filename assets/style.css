@@ -194,6 +194,18 @@ a:hover {
     color : orange;
 }
 
+.card {
+    background-color: white;
+    margin-top: 20px;
+    width: 25rem;
+    border-radius: 30px;
+    color:cadetblue;
+} 
+
+.card-img-top {
+    width: 50px;
+}
+
 @media all and (max-width: 1024px)
 
 {
