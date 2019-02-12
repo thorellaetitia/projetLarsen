@@ -2,9 +2,8 @@
 session_start();
 include_once('controllers/controllerinscription.php');
 include_once('controllers/controllerseconnecter.php');
-var_dump($_SESSION);
 include_once('controllers/controllerevent.php');
-var_dump($_SESSION);
+
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">

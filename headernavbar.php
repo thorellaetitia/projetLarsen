@@ -1,11 +1,11 @@
 <div>
     <div class="container-fluid header">
-        <div class="row">
-            <div class="introduction col-lg-6 col-md-6 col-sm-12">
-                <h1>Professionnel ou particulier,  <?php if (isset($_SESSION['userlogin'])) { ?>Bienvenue, <?= $_SESSION['users_login'] ?> <a href=""></a></h1> 
-                <a href="deconnexion.php">deconnexion</a>
+        <div class="row" id="header">
+            <div class="introduction col-lg-8 col-md-8 col-sm-12">
+                <h1>Larsen, votre agenda culturel gratuit,  <?php if (isset($_SESSION['userlogin'])) { ?>Bienvenue  <a href="moncompte.php" class="userprofil" ><i class="far fa-user"></i></a> <?= $_SESSION['users_login'] ?></h1> 
+                <a href="deconnexion.php">déconnexion <i class="far fa-times-circle"></i></a>
             </div>            
-            <div class="connection col-lg-6 col-md-6 col-sm-12">
+            <div class="connection col-lg-4 col-md-4 col-sm-12">
                 <button type="button" class="headerbtn" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>
                
                     <?php } else { ?>

@@ -33,7 +33,7 @@ if (count($errorsArrayinscription) !== 0) {
 if ((isset($_POST['connectBtn'])) && (count($errorsArrayconnection) == 0)) {
     $dataUser = $loginusersObj->checkUserBylogin($users_login);
     
-var_dump($dataUser->users_id);
+
 //on va vérifier que le mot de passe soit égale au mot de passe récupéré dans la bdd
     if (is_object($dataUser)) {
         if (password_verify($users_password, $dataUser->users_password)) {

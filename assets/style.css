@@ -11,6 +11,15 @@
 
 }  
 
+#header{
+    background-color: #1a1a1a;
+}
+
+
+.container-fluid header {
+     background-color: #1a1a1a;
+}
+
 .headerbtn {
     background-color: #1a1a1a;
     border: none;   
@@ -183,7 +192,7 @@ label {
     background-color: #1a1a1a;
     color:  #ffffff;
 }
-
+/*//////////////////////////fin du footer//////////////////////*/
 a {
     text-decoration: none;
     color: inherit;
