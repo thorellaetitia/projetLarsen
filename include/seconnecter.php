@@ -1,5 +1,5 @@
 <?php
-include_once('controllers/controllerseconnecter.php');
+include_once('./controllers/controllerseconnecter.php');
 ?>
 
 <!-- Modal -->
@@ -18,13 +18,13 @@ include_once('controllers/controllerseconnecter.php');
                 <form method="post" action="">
                     <div class="form-group">
                         <label for="login">Votre login : </label>
-                        <input type="text" name="login" id="login" placeholder="login" value="" required /><br>
-                        <span class="error"><?= !empty($errorsArrayconnection['login']) ? $errorsArrayconnection['login'] : ''; ?></span>
+                        <input type="text" name="users_login" id="login" placeholder="login" value="" required /><br>
+                        <span class="error"><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe : </label>
-                        <input type="password" name="password" id="password" placeholder="mot de passe" value="" required /><br>
-                        <span class="error"><?= !empty($errorsArrayconnection['password']) ? $errorsArrayconnection['password'] : ''; ?></span>
+                        <input type="password" name="users_password" id="password" placeholder="mot de passe" value="" required /><br>
+                        <span class="error"><?= !empty($errorsArrayconnection['users_password']) ? $errorsArrayconnection['users_password'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

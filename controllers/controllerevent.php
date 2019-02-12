@@ -7,6 +7,7 @@ require_once 'models/modelUsers.php';
 //on instancie un nouvel objet event
 $eventObj = new event();
 $profilEventObj = new event();
+//j'instancie un nouvel objet
 
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
@@ -26,17 +27,12 @@ $extensions_valides = array('jpg', 'bmp', 'png');
 
 $modalErrorevent = false;
 
-////////////////////////////////
-//TEST FAUSSE VARIABLE SESSION
-////////////////////////////////
-//$sessionUserId = 16;
-////////////////////////////////
-//TEST FAUSSE VARIABLE SESSION
-////////////////////////////////
-$profilEventObj->users_id = $sessionUserId;
+if (isset($_SESSION['userlogin'])) {
+    $profilEventObj->users_id = $_SESSION['users_id'];
+    $usersObj->users_id = $_SESSION['users_id'];
+}
+
 $arrayProfileEvent = $profilEventObj->displayEventById();
-
-
 
 if (isset($_POST['eventcategory_id'])) {
     $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
@@ -98,7 +94,6 @@ if (isset($_FILES['event_picture']['name'])) {
     }
 }
 //////////verifications sur le type de fichier upload//////////
-
 //spécifie le dossier dans lequel les images sont stockées
 $target_dir = "img/";
 
@@ -133,8 +128,7 @@ if ($_FILES["event_picture"]["size"] > 500000) {
     $uploadOk = 0;
 }
 // Prise en compte de certains formats de fichiers
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-   && $imageFileType != "bmp") {
+if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "bmp") {
     echo "Désolé, seuls les formats autorisés sont JPG, JPEG, PNG & BMP";
     $uploadOk = 0;
 }
@@ -173,19 +167,18 @@ if (isset($_POST['event_description'])) {
 
 
 if ((isset($_POST['createEventBtn'])) && (count($errorsArrayevent) !== 0)) {
- 
     $newDate = str_replace('/', '-', $event_date);
+    $eventObj->users_id = $_SESSION['users_id'];
     $eventObj->event_title = $event_title;
     $eventObj->event_date = $event_date;
     $eventObj->event_time = $event_time;
     $eventObj->event_picture = $event_picture;
     $eventObj->event_description = $event_description;
-    $eventObj->users_id = $sessionUserId;
     $eventObj->eventcategory_id = $eventcategory_id;
     $eventObj->postalcode_id = $postalcode_id;
     $eventObj->showplaces_id = $showplaces_id;
 ////j'éxécute la méthode createEvent avec les attributs précedement stockés
     $eventObj->CreateEvent();
     $modalErrorevent = true;
-} 
+}
 ?>

@@ -44,21 +44,20 @@ class users extends database { //on crée une class clients dont le parent est d
 
     //création fonction checkUsersByMail pour vérifier si l'adresse mail existe bien ds la bdd
     //je crée ma fonction checkUsersByMail
-    public function checkUserByMail($users_mail) {
+    public function checkUserBylogin($users_login) {
         //je stock ma requête dans une variable $query
-        $query = 'SELECT * FROM `poqs_users` WHERE `users_mail` = :users_mail';
-
-    //le résultat de ma requête je le stocke dans $resultQueryAllPatients
-      //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
-        $resultQuerycheckUserByMail = $this->database->query($query);
-        $resultQuerycheckUserByMail->bindValue(':users_mail', $this->users_mail, PDO::PARAM_STR);
+        $query = "SELECT * FROM `poqs_users` WHERE `users_login` LIKE :users_login";
+        //le résultat de ma requête je le stocke dans $resultQueryAllPatients
+        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        $resultQuerycheckUserBylogin = $this->database->prepare($query);
+        $resultQuerycheckUserBylogin->bindValue("users_login", $users_login, PDO::PARAM_STR);
         //avec le this il faut cibler l'élément de ma classe
         //le fetchall permet de récupérer toutes les infos de la requete et les transformer ds un tableau d'objets
-        $resultQuerycheckUserByMail->execute();
-        $dataUser = $resultQuerycheckUserByMail->fetch(PDO::FETCH_OBJ);
+        $resultQuerycheckUserBylogin->execute();
+        $dataUser = $resultQuerycheckUserBylogin->fetch(PDO::FETCH_OBJ);
         return $dataUser;
-       //le résultat = on lui demande d'aller chercher les éléments users pour en faire un tableau 
-       //faire un fetch en utilisant l'objet PDO.
+        //le résultat = on lui demande d'aller chercher les éléments users pour en faire un tableau 
+        //faire un fetch en utilisant l'objet PDO.
     }
 
 //

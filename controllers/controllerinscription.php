@@ -25,6 +25,7 @@ $modalErrorinscription = false;
 
 //on realise des verifications de notre formulaire
 
+if ((isset($_POST['createUserBtn']))) { 
 if (isset($_POST['usertypes_id'])) {
     $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
     if (!preg_match($regexLetter, $usertypes_id)) {
@@ -110,7 +111,7 @@ if (isset($_POST['secondpassword'])) {
 }
 
 if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
-    if ($_POST['password'] != $_POST['secondpassword']) {
+    if ($_POST['password'] !== $_POST['secondpassword']) {
         $errorsArrayinscription['password'] = 'Le mot de passe n\'est pas identique';
         $errorsArrayinscription['secondpassword'] = 'Le mot de passe n\'est pas identique';
     }
@@ -124,7 +125,7 @@ if(count($errorsArrayinscription) !== 0){
 
 
 
-if ((isset($_POST['createUserBtn'])) && (count($errorsArrayinscription) == 0)) {
+if (count($errorsArrayinscription) == 0) {
 
     $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $usersObj->name = $name;
@@ -133,11 +134,12 @@ if ((isset($_POST['createUserBtn'])) && (count($errorsArrayinscription) == 0)) {
     $usersObj->age = $age;
     $usersObj->login = $login;
     $usersObj->usertypes_id = $usertypes_id;
-    var_dump($usersObj);
+   
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés
     $usersObj->CreateUsers();
     
     
+}
 }
 ?>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('controllers/controllerevent.php');
 ?>
 
