@@ -17,7 +17,7 @@
 
 
 .container-fluid header {
-     background-color: #1a1a1a;
+    background-color: #1a1a1a;
 }
 
 .headerbtn {
@@ -78,9 +78,15 @@ body {
 }
 
 p{
-    margin-left: 1100px;
+    float: left;
     color:orange;
 }
+
+.btn btn-outline-warning {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 
 .navbar {
     position: static;

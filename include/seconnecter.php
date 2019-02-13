@@ -14,18 +14,20 @@ include_once('./controllers/controllerseconnecter.php');
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php ?>
                     <!--form-->
+
                     <form method="post" action="">
                         <div class="form-group">
                             <label for="login">Votre login : </label>
                             <input type="text" name="users_login" id="login" placeholder="login" value="" required /><br>
                             <span class="error"><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span>
+                            <?= isset($messageErrorAccount) ? 'Le compte n\'existe pas' : '' ?>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe : </label>
                             <input type="password" name="users_password" id="password" placeholder="mot de passe" value="" required /><br>
                             <span class="error"><?= !empty($errorsArrayconnection['users_password']) ? $errorsArrayconnection['users_password'] : ''; ?></span>
+                            <?= isset($messageNonValidPassword) ? 'le mot de passe ne correspond pas à l\'utilisateur' : '' ?>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

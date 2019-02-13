@@ -2,7 +2,7 @@
 include_once('controllers/controllerevent.php');
 ?>
 
-<div class="modal fade <?= $modalErrorevent ? 'modalErrorevent' : ''; ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
+<div class="modal fade <?= isset($modalStayOpenIfErrors) ? 'modalErrorevent' : '' ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,10 +13,10 @@ include_once('controllers/controllerevent.php');
             </div>
             <div class="modal-body">
                 <!--form-->
-                <form method="post" action="recordanevent.php" enctype="multipart/form-data" novalidate>
+                <form method="post" action="" enctype="multipart/form-data" novalidate>
 
                     <div class="form-group">
-                        Catégorie événement <select value="<?php (isset($eventcategory_id)) ? $eventcategory_id : ''; ?>" name="eventcategory_id">
+                        Catégorie événement <select name="eventcategory_id">
                             <option>Veuillez renseigner un champ</option> 
                             <option value="1">Concert</option>
                             <option value="2">Spectacle</option>
@@ -24,7 +24,7 @@ include_once('controllers/controllerevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        Sous-catégorie événement <select value="<?php (isset($eventsubcategory_id)) ? $eventsubcategory_id : ''; ?>" name="eventsubcategory_id">
+                        Sous-catégorie événement <select name="eventsubcategory_id">
                             <option>Veuillez renseigner un champ</option>
                             <option value="1">Plans gratuits</option>
                             <option value="2">Concert</option>
@@ -77,7 +77,6 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="form-group">
                         <label for="event_picture">Photo </label> 
-                        <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
                         <input type="file" accept="image/*" name="event_picture" id="image" placeholder="parcourir" value="<?php (isset($event_picture)) ? $event_picture : ''; ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>

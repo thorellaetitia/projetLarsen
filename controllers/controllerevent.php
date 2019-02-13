@@ -10,6 +10,7 @@ $profilEventObj = new event();
 //j'instancie un nouvel objet
 
 // On édite les regex
+$regexEventCategoryId = '/^[0-9]$/';
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
 $regextitle = '/^[A-ZÄ-ÿ\-]+$/'; //autorise les lettres de l'alphabet seulement les majuscules et accents
 $regexLetternumber = '/^[\wÄ-ÿ\-]+$/'; //autorise les lettres maj et min et accents et chiffres de 0 à 9
@@ -18,25 +19,25 @@ $regexPassword = '/^[\w0-9\-._]{6,}+$/'; //autorise les lettres aplhabets chiffr
 $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/'; //autorise les lettres et chiffres .-_
 //regexdate autorise pour le JJ j'autorise le 0 et entre 1 et 9 (ex02) ou bien entre 1 et 9 (ex14)ou bien entre 10 et 19 ou bien
 //20 et 29 ou bien 30 et 31 pour le MM j'autorise entre 01 et 09 puis 10 à 12 pour le YYYY j'autorise 2018 2019 ou 2020 à 2022//
-$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(20([0-9][0-9]))$/'; //autorise le format date ex 12/01/2018
+$regexdate = '/^(20(1[89]|2[0-2]))-(0[1-9]|1[0-2])-(0[1-9]|([1-9])|[12][0-9]|3[01])$/';//autorise le format date ex 2018/02/10
 $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/'; // autorise les chiffres
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chiffres, lettres et accents et formats jpg bmp et png
 //on déclare un tableau d'erreurs vide
 $errorsArrayevent = [];
-$extensions_valides = array('jpg', 'bmp', 'png');
 
 $modalErrorevent = false;
 
 if (isset($_SESSION['userlogin'])) {
     $profilEventObj->users_id = $_SESSION['users_id'];
-    $usersObj->users_id = $_SESSION['users_id'];
-}
+    }
 
 $arrayProfileEvent = $profilEventObj->displayEventById();
 
+if (isset($_POST['createEventBtn'])) {
+
 if (isset($_POST['eventcategory_id'])) {
     $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
-    if (!preg_match($regexLetter, $eventcategory_id)) {
+    if (!preg_match($regexEventCategoryId, $eventcategory_id)) {
         $errorsArrayevent['eventcategory_id'] = 'Merci de saisir une catégorie d\'événements';
     }
     if (empty($eventcategory_id)) {
@@ -46,7 +47,7 @@ if (isset($_POST['eventcategory_id'])) {
 
 if (isset($_POST['eventsubcategory_id'])) {
     $eventsubcategory_id = htmlspecialchars($_POST['eventsubcategory_id']);
-    if (!preg_match($regexLetter, $eventsubcategory_id)) {
+    if (!preg_match($regexEventCategoryId, $eventsubcategory_id)) {
         $errorsArrayevent['eventsubcategory_id'] = 'Merci de saisir une sous-catégorie d\'événements';
     }
     if (empty($eventsubcategory_id)) {
@@ -83,55 +84,34 @@ if (isset($_POST['event_time'])) {
         $errorsArrayevent['event_time'] = 'Merci de saisir un horaire';
     }
 }
-
-if (isset($_FILES['event_picture']['name'])) {
-    $event_picture = htmlspecialchars($_FILES['event_picture']['name']);
-    if (!preg_match($regexformatfichier, $event_picture)) {
-        $errorsArrayevent['event_picture'] = 'Merci de choisir un fichier .png .jpg .bmp';
-    }
-    if (empty($event_picture)) {
-        $errorsArrayevent['event_picture'] = 'Merci de charger une image';
-    }
-}
-//////////verifications sur le type de fichier upload//////////
+///////verifications sur le type de fichier upload//////////
 //spécifie le dossier dans lequel les images sont stockées
-$target_dir = "img/";
-
-//spécifie le chemin du fichier à être chargé
-$target_file = $target_dir . basename($_FILES['event_picture']['name']);
-//déclaration de la variable uploadok si = 1 alors fichier correct prêt a chargé
-$uploadOk = 1;
-
-//spécifie l'extension du fichier
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 // Vérifie si chaque image est bien un fichier image ou du fake
-if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["event_picture"]["tmp_name"]);
-    if ($check !== false) {
-        echo "c'est bien une image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "Ce n'est pas une image";
-        $uploadOk = 0;
+if (isset($_FILES["event_picture"])) {
+    $target_dir = "img/";
+//spécifie le chemin du fichier à être chargé
+    $target_file = $target_dir . basename($_FILES['event_picture']['name']);
+//déclaration de la variable uploadok si = 1 alors fichier correct prêt a chargé
+    //spécifie l'extension du fichier
+    $imageFileType = strtolower(pathinfo($_FILES['event_picture']['name'], PATHINFO_EXTENSION));
+        // Vérifie si le nom du fichier existe déjà dans la bdd
+    if (file_exists($target_file)) {
+        $errorsArrayevent['event_picture'] = 'Le fichier existe déjà';
+    }
+    // Vérifie le poids du fichier
+    if ($_FILES["event_picture"]["size"] > 500000) {
+        $errorsArrayevent['event_picture'] = 'L\'image ne doit pas accéder 500kb';
+    }
+    
+    $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
+    // Prise en compte de certains formats de fichiers
+    if (!in_array($imageFileType, $arrayValidFormat)) {
+        $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
     }
 }
 
-// Vérifie si le nom du fichier existe déjà dans la bdd
-if (file_exists($target_file)) {
-    echo "désolé le fichier existe déjà";
-    $uploadOk = 0;
-}
-// Vérifie le poids du fichier
-if ($_FILES["event_picture"]["size"] > 500000) {
-    echo "désolé votre fichier dépasse le maximum autorisé 500kb";
-    $uploadOk = 0;
-}
-// Prise en compte de certains formats de fichiers
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "bmp") {
-    echo "Désolé, seuls les formats autorisés sont JPG, JPEG, PNG & BMP";
-    $uploadOk = 0;
-}
+
 
 /////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
 
@@ -165,20 +145,29 @@ if (isset($_POST['event_description'])) {
     }
 }
 
-
-if ((isset($_POST['createEventBtn'])) && (count($errorsArrayevent) !== 0)) {
-    $newDate = str_replace('/', '-', $event_date);
-    $eventObj->users_id = $_SESSION['users_id'];
-    $eventObj->event_title = $event_title;
-    $eventObj->event_date = $event_date;
-    $eventObj->event_time = $event_time;
-    $eventObj->event_picture = $event_picture;
-    $eventObj->event_description = $event_description;
-    $eventObj->eventcategory_id = $eventcategory_id;
-    $eventObj->postalcode_id = $postalcode_id;
-    $eventObj->showplaces_id = $showplaces_id;
-////j'éxécute la méthode createEvent avec les attributs précedement stockés
-    $eventObj->CreateEvent();
-    $modalErrorevent = true;
+    if (count($errorsArrayevent) == 0) {
+        if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/'.$_FILES["event_picture"]["name"])) {
+            echo "The file ". basename($_FILES["event_picture"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        } 
+        $newDate = str_replace('/', '-', $event_date);
+        $eventObj->users_id = $_SESSION['users_id'];
+        $eventObj->event_title = $event_title;
+        $eventObj->event_date = $event_date;
+        $eventObj->event_time = $event_time;
+        $eventObj->event_picture = $_FILES["event_picture"]["name"];
+        $eventObj->event_description = $event_description;
+        $eventObj->eventcategory_id = $eventcategory_id;
+        $eventObj->postalcode_id = $postalcode_id;
+        $eventObj->showplaces_id = $showplaces_id;
+    ////j'éxécute la méthode createEvent avec les attributs précedement stockés
+        $eventObj->CreateEvent();
+        $modalErrorevent = true;
+        header('Location: moncompte.php');
+        exit();
+    }
+    else {
+        $modalStayOpenIfErrors = true;
+    }
 }
-?>

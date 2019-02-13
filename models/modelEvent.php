@@ -1,6 +1,7 @@
 <?php
 
-class event extends database { 
+class event extends database {
+
 //on crée une class event dont le parent est database donc  héritent des attributs et methodes de database
 //on définit les attributs de la table event car ils n'existent pas dans database
 
@@ -48,24 +49,36 @@ class event extends database {
     }
 
     public function displayEventById() {
-        //je fais ma requête dans une variable $query
+//je fais ma requête dans une variable $query
         $query = 'SELECT * FROM `poqs_event` WHERE `users_id`=:users_id';
-        //le résultat de ma requête je le stocke dans $showProfileList
-        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+//le résultat de ma requête je le stocke dans $showProfileList
+//$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
         $resultProfileEvent = $this->database->prepare($query);
-        //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
-        //Je lie le marqueur nominatif id à l'attribut id
+//avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
+//Je lie le marqueur nominatif id à l'attribut id
         $resultProfileEvent->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
         $resultProfileEvent->execute();
         $arrayProfileEvent = $resultProfileEvent->fetchAll(PDO::FETCH_OBJ);
         return $arrayProfileEvent;
-        //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
-        //faire un fetchALL en utilisant l'objet PDO.
+//le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
+//faire un fetchALL en utilisant l'objet PDO.
     }
 
-    
-    
-    
-}
+    public function getAllDataEventCategory() {
 
-?>
+        $query = 'SELECT * FROM `poqs_event`,
+            . 'INNER JOIN `poqs_eventcategory`,'   
+            . 'ON `poqs_event`.eventcategory_id = `poqs_eventcategory`.eventcategory_id, '
+            . 'INNER JOIN `poqs_postalcode`, '   
+            . 'ON `poqs_event`.postalcode_id = `poqs_postalcode`.postalcode_id',
+            . 'INNER JOIN `poqs_showplaces`',
+            . ON `poqs_event`.showplaces_id=`poqs_showplaces`.showplaces_id;'
+
+        $resultAllDataEvent = $this->database->prepare($query);
+         $resultAllDataEvent->execute();
+        $arrayAllDataEvent = $resultAllDataEvent->fetchAll(PDO::FETCH_OBJ);
+        return $arrayAllDataEvent;
+        
+    }
+
+}
