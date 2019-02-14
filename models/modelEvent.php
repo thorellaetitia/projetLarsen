@@ -13,7 +13,7 @@ class event extends database {
     public $event_description;
     public $users_id;
     public $eventcategory_id;
-    public $postalcode_id;
+    public $event_free;
     public $showplaces_id;
 
 //      création fonction createEvent pour ajouter des event dans la bdd
@@ -27,8 +27,8 @@ class event extends database {
                 . ' `event_description` = :event_description,'
                 . '`users_id` = :users_id,'
                 . '`eventcategory_id`=:eventcategory_id,'
-                . '`postalcode_id` = :postalcode_id,'
-                . '`showplaces_id` = :showplaces_id';
+                . '`showplaces_id` = :showplaces_id,'
+                . '`event_free` = :event_free';
 
 //injection d'éléments dans la base de données (lastName,fistName...)donc on prépare la requête
 //besoin de bindvalue pour faire le lien entre les éléments que l'on va rentrer dans la base et 
@@ -42,9 +42,9 @@ class event extends database {
         $eventList->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
         $eventList->bindvalue(':users_id', $this->users_id, PDO::PARAM_INT);
         $eventList->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
-        $eventList->bindValue(':postalcode_id', $this->postalcode_id, PDO::PARAM_INT);
+        $eventList->bindValue(':event_free', $this->event_free, PDO::PARAM_INT);
         $eventList->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
-//lorsque l'on prépare la requete on doit l'éxécuter
+        //lorsque l'on prépare la requete on doit l'éxécuter
         return $eventList->execute();
     }
 
@@ -64,21 +64,20 @@ class event extends database {
 //faire un fetchALL en utilisant l'objet PDO.
     }
 
-    public function getAllDataEventCategory() {
-
-        $query = 'SELECT * FROM `poqs_event`,
-            . 'INNER JOIN `poqs_eventcategory`,'   
-            . 'ON `poqs_event`.eventcategory_id = `poqs_eventcategory`.eventcategory_id, '
-            . 'INNER JOIN `poqs_postalcode`, '   
-            . 'ON `poqs_event`.postalcode_id = `poqs_postalcode`.postalcode_id',
-            . 'INNER JOIN `poqs_showplaces`',
-            . ON `poqs_event`.showplaces_id=`poqs_showplaces`.showplaces_id;'
-
-        $resultAllDataEvent = $this->database->prepare($query);
-         $resultAllDataEvent->execute();
-        $arrayAllDataEvent = $resultAllDataEvent->fetchAll(PDO::FETCH_OBJ);
-        return $arrayAllDataEvent;
-        
-    }
-
+//    public function getAllDataEventCategory() {
+//
+//        $query = 'SELECT * FROM `poqs_event`,
+//            . 'INNER JOIN `poqs_eventcategory`,'   
+//            . 'ON `poqs_event`.eventcategory_id = `poqs_eventcategory`.eventcategory_id, '
+//            . 'INNER JOIN `poqs_postalcode`, '   
+//            . 'ON `poqs_event`.postalcode_id = `poqs_postalcode`.postalcode_id',
+//            . 'INNER JOIN `poqs_showplaces`',
+//            . ON `poqs_event`.showplaces_id=`poqs_showplaces`.showplaces_id;'
+//
+//        $resultAllDataEvent = $this->database->prepare($query);
+//         $resultAllDataEvent->execute();
+//        $arrayAllDataEvent = $resultAllDataEvent->fetchAll(PDO::FETCH_OBJ);
+//        return $arrayAllDataEvent;
+//        
+//    }
 }

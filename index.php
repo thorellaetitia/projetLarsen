@@ -78,8 +78,8 @@ include_once('controllers/controllerevent.php');
                     foreach ($rss->channel->item as $item) {
                         ?>                    
                         <div class="col-sm-12 col-md-3 col-lg-3">
-                            <div class="card" id="concert">
-                                <img class="card-img-top image-fluid" id="cardimagetop" src="<?= $item->enclosure['url']; ?>" alt="Card image cap">
+                            <div class="card">
+                                <img class="img-fluidcard" src="<?= $item->enclosure['url']; ?>" alt="Card image cap">
                                 <div class="card-body">
                                     <div class="card-text"><strong><?= $item->title; ?></strong><br><?= $item->description; ?><br></div>
                                 </div>

@@ -26,21 +26,24 @@ include_once('controllers/controllerevent.php');
                     <div class="form-group">
                         Sous-catégorie événement <select name="eventsubcategory_id">
                             <option>Veuillez renseigner un champ</option>
-                            <option value="1">Plans gratuits</option>
-                            <option value="2">Concert</option>
-                            <option value="3">Danse</option>
-                            <option value="4">Cirque</option>
-                            <option value="5">Théâtre</option>
-                            <option value="6">Humour</option>
-                            <option value="7">Expo</option>
-                            <option value="8">Musée</option>
-                            <option value="9">Balade</option>
-                            <option value="10">Atelier</option>
+                            <option value="1">Concert</option>
+                            <option value="2">Danse</option>
+                            <option value="3">Cirque</option>
+                            <option value="4">Théâtre</option>
+                            <option value="5">Humour</option>
+                            <option value="6">Expo</option>
+                            <option value="7">Musée</option>
+                            <option value="8">Balade</option>
+                            <option value="9">Atelier</option>
                         </select>
                     </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="event_free">Plans gratuits</label>
+                        <input class="form-check-input" name="event_free" type="checkbox" value="" id="event_free">
+                    </div>
                     <div class="form-group">
-                        <label for="event_title">Titre de l'événement </label> 
-                        <textarea type="text" name="event_title" id="title" placeholder="Merci de le saisir en majuscule svp" rows="2" cols="50" value="<?php (isset($event_title)) ? $event_title : ''; ?>" required></textarea><br>
+                        <label class="mr-" for="event_title">Titre de l'événement</label> 
+                        <textarea type="text" name="event_title" id="title" placeholder="Merci de saisir un titre " rows="1" cols="30" value="<?php (isset($event_title)) ? $event_title : ''; ?>" required></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
@@ -67,7 +70,7 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            Code postal : <select name="postalcode_id" value="<?php (isset($postalcode_id)) ? $postalcode_id : ''; ?>">
+                            Code postal : <select name="showplaces_postalcode" value="<?php (isset($showplaces_postalcode)) ? $showplaces_postalcode : ''; ?>">
                                 <option disabled selected>Veuillez renseigner un champ</option> 
                                 <option value="1">76000-Rouen</option>
                                 <option value="2">76600-Le Havre</option>

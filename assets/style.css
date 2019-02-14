@@ -112,6 +112,16 @@ p{
     background-color: #f2af58;
 }
 
+.form-check-input {
+
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px; 
+}
 
 input{
     float: right;
@@ -130,7 +140,6 @@ label {
     width: 180px;
     text-align: center;
 }
-
 
 #footer {
     width: 200px;
@@ -151,14 +160,7 @@ label {
     background-size: cover;
 }
 
-#concert {
-    width: 65%;
-    height: 62%;
-    margin-left: 40px;
-    margin-right: 40px;
-    padding-bottom: 50px;
 
-}
 
 .parallaxbottom {
     background-image: url("../assets/images/admission-2974645_1280.jpg");
@@ -211,13 +213,16 @@ a:hover {
 .card {
     background-color: white;
     margin-top: 20px;
-    width: 25rem;
     border-radius: 30px;
-    color:cadetblue;
+    color: #1a1a1a;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 50px;
 } 
 
-.card-img-top {
-    width: 50px;
+.img-fluidcard {
+    max-width: 50%;
+    height: 60%;
 }
 
 @media all and (max-width: 1024px)

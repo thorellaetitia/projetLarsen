@@ -26,24 +26,21 @@ include_once('controllers/controllerevent.php');
         <?php
         include_once ('navbar.php');
         ?>
-
+        <div class="closebutton">
+            <a href="index.php">Fermer</a>
+        </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <p>Récapitulatif de l'événement</p>
-                    <div class="closebutton">
-                        <a href="index.php">Fermer</a>
-                    </div>
-                    <div id="event">
-                        <div class="card-body">
-
-                            <?php
-                            foreach ($arrayProfileEvent as $events) {
-                                echo $events->event_picture;
-                                ?>
+                <?php
+                foreach ($arrayProfileEvent as $events) {
+                    ?>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div id="event">
+                            <div class="card-body">
                                 <div class="card">
-                                    <img src="img/<?= $events->event_picture ?>" class="card-img-top" alt="event_picture">
+                                    <img class="img-fluidcard" src="img/<?= $events->event_picture ?>" alt="event_picture">
                                     <div class="card-body">
+                                        <h1>Récapitulatif</h1>
                                         <h1 class="card-title">Titre :<?= $events->users_id ?><?= $events->event_title ?></h1>
                                         <p class="card-text">Description: <?= $events->event_description ?></p>
                                     </div>
@@ -52,20 +49,24 @@ include_once('controllers/controllerevent.php');
                                         <li class="list-group-item">Date :<?= $events->event_date ?></li>
                                         <li class="list-group-item">Heure :<?= $events->event_time ?></li>
                                         <li class="list-group-item">Lieu :<?= $events->showplaces_id ?></li>
-                                        <li class="list-group-item">code postal:<?= $events->postalcode_id ?></li>
                                     </ul>
                                     <div class="card-body">
                                         <a href="#" class="card-link">Supprimer</a>
                                         <a href="modifyevent.php?id=<?= $events->users_id ?>"" class="card-link">Modifier l'événement</a>
                                     </div>
+                                    <div class="footer">
+                                        <div>Prix indicatif : </div>
+                                        <div>Réserver vos billets<a href="https://www.digitick.com/"><img src="assets/images/digitick.jpg" width="50px" /></a></div>
+                                    </div>
                                 </div>  
-                                <?php
-                            }
-                            ?>
-                        </div>
 
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
 
