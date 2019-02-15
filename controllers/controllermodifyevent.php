@@ -5,9 +5,8 @@ require_once 'models/modelEvent.php';
 require_once 'models/modelUsers.php';
 
 //on instancie un nouvel objet event
-$eventObj = new event();
-$profilEventObj = new event();
-//j'instancie un nouvel objet
+$modifyEventObj = new event();
+
 ///////////////// On édite les regex//////////////////////////////////////
 $regexEventCategoryId = '/^[0-9]$/';
 //autorise les lettres alplhabet majuscules, minuscules,accents, . espace et chiffres
@@ -29,20 +28,14 @@ $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/';
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/';
 ////////////////////////fin des regex///////////////////////////////////////////
 //on déclare un tableau d'erreurs vide
-$errorsArrayevent = [];
+$errorsArraymodifyevent = [];
 
-$modalErrorevent = false;
 
-if (isset($_SESSION['userlogin'])) {
-    $profilEventObj->users_id = $_SESSION['users_id'];
-}
-
-$arrayProfileEvent = $profilEventObj->displayEventById();
 
 //debut de la condition au click sur le bouton créer l'événement
 //et début des vérifs de chaque input du formulaire
 ////////////////////////////////////////////////////////////////////////////////////////////
-if (isset($_POST['createEventBtn'])) {
+if (isset($_POST['modifyEventBtn'])) {
 
     if (isset($_POST['eventcategory_id'])) {
         $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
@@ -155,34 +148,34 @@ if (isset($_POST['createEventBtn'])) {
         }
     }
 
-    if (count($errorsArrayevent) == 0) {
+    if (count($errorsArraymodifyevent) == 0) {
         if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
             echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
         } else {
             echo "désolé, il y a une erreur de chargement de fichier.";
         }
-        
-        $eventObj->users_id = $_SESSION['users_id'];
-        $eventObj->event_title = $event_title;
-        $eventObj->event_date = $event_date;
-        $eventObj->event_time = $event_time;
-        $eventObj->event_free = $event_free;
-        $eventObj->event_picture = $_FILES["event_picture"]["name"];
-        $eventObj->event_description = $event_description;
-        $eventObj->eventcategory_id = $eventcategory_id;
-        $eventObj->showplaces_id = $showplaces_id;
+       
+        $modifyEventObj->users_id = $_SESSION['users_id'];
+        $modifyEventObj->event_title = $event_title;
+        $modifyEventObj->event_date = $event_date;
+        $modifyEventObj->event_time = $event_time;
+        $modifyEventObj->event_id = $_GET['id'];
+        $modifyEventObj->event_free = $event_free;
+        $modifyEventObj->event_picture = $_FILES["event_picture"]["name"];
+        $modifyEventObj->event_description = $event_description;
+        $modifyEventObj->eventcategory_id = $eventcategory_id;
+        $modifyEventObj->showplaces_id = $showplaces_id;
         
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
-        $eventObj->CreateEvent();
+        $modifyEventObj->modifyEvent();
 
-        $modalErrorevent = true;
+        
         //si tout est ok renvoi vers moncompte.php 
-        //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
-        //car le formulaire est sur la page d'accueil
+        
         header('Location: moncompte.php');
         exit();
        
-    } else {
-        $modalStayOpenIfErrors = true;
+    
     }
 }
+

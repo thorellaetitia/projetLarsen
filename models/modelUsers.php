@@ -78,20 +78,7 @@ class users extends database { //on crée une class clients dont le parent est d
 //        //faire un fetchALL en utilisant l'objet PDO.
 //    }
 //
-//    //exercice4
-//    public function modifypatient() {
-//        $query = 'UPDATE `patients` SET `lastname` = :lastName, `firstname` = :firstName, `birthdate` = :birthDate, `phone` = :phone, `mail` = :mail WHERE `id` = :id';
-//        $resultQueryModifyPatient = $this->database->prepare($query);
-//        $resultQueryModifyPatient->bindValue(':id', $this->id, PDO::PARAM_INT);
-//        $resultQueryModifyPatient->bindValue(':lastName', $this->lastName, PDO::PARAM_STR);
-//        $resultQueryModifyPatient->bindValue(':firstName', $this->firstName, PDO::PARAM_STR);
-//        $date= DateTime::createFromFormat('d/m/Y', $this->birthDate); 
-//        $dateus = $date->format('Y-m-d');
-//        $resultQueryModifyPatient->bindValue(':birthDate', $dateus, PDO::PARAM_STR);
-//        $resultQueryModifyPatient->bindValue(':phone', $this->phone, PDO::PARAM_STR);
-//        $resultQueryModifyPatient->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-//        return $resultQueryModifyPatient->execute();
-//    }
+// 
 //    
 //    //exercice11
 //    public function deletePatientsById() {

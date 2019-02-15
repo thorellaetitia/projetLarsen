@@ -64,20 +64,44 @@ class event extends database {
 //faire un fetchALL en utilisant l'objet PDO.
     }
 
-//    public function getAllDataEventCategory() {
-//
-//        $query = 'SELECT * FROM `poqs_event`,
-//            . 'INNER JOIN `poqs_eventcategory`,'   
-//            . 'ON `poqs_event`.eventcategory_id = `poqs_eventcategory`.eventcategory_id, '
-//            . 'INNER JOIN `poqs_postalcode`, '   
-//            . 'ON `poqs_event`.postalcode_id = `poqs_postalcode`.postalcode_id',
-//            . 'INNER JOIN `poqs_showplaces`',
-//            . ON `poqs_event`.showplaces_id=`poqs_showplaces`.showplaces_id;'
-//
-//        $resultAllDataEvent = $this->database->prepare($query);
-//         $resultAllDataEvent->execute();
-//        $arrayAllDataEvent = $resultAllDataEvent->fetchAll(PDO::FETCH_OBJ);
-//        return $arrayAllDataEvent;
-//        
-//    }
+    public function getAllDataEventCategory() {
+
+        $query = 'SELECT *'
+                . 'FROM `poqs_event`'
+                . 'INNER JOIN `poqs_eventcategory`'
+                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . 'INNER JOIN `poqs_showplaces`'
+                . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
+
+        $result = $this->database->query($query);
+
+        $resultAllDataEvent = $result->fetchAll(PDO::FETCH_OBJ);
+        return $resultAllDataEvent;
+    }
+
+    public function modifyEvent() {
+        $query = 'UPDATE `poqs_event` SET `event_title` = :event_title,'
+                . ' `event_date` = :event_date,'
+                . '`event_time` = :event_time,'
+                . '`event_picture` = :event_picture,'
+                . '`event_description` = :event_description,'
+                . '`users_id` = :users_id,'
+                . '`eventcategory_id` = :eventcategory_id,'
+                . '`showplaces_id` = :showplaces_id '
+                . 'WHERE `event_id` = :event_id';
+
+        $resultQueryModifyEvent = $this->database->prepare($query);
+        $resultQueryModifyEvent->bindValue(':event_title', $this->event_title, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_date', $this->event_date, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_time', $this->event_time, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_picture', $this->event_picture, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindvalue(':users_id', $this->users_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
+
+        $resultQueryModifyEvent->execute();
+    }
+
 }

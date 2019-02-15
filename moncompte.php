@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('controllers/controllerevent.php');
+include_once('controllers/controllermoncompte.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -32,7 +32,8 @@ include_once('controllers/controllerevent.php');
         <div class="container-fluid">
             <div class="row">
                 <?php
-                foreach ($arrayProfileEvent as $events) {
+                foreach ($resultAllDataEvent as $events) {
+                   
                     ?>
                     <div class="col-sm-12 col-md-4 col-lg-4">
                         <div id="event">
@@ -45,14 +46,14 @@ include_once('controllers/controllerevent.php');
                                         <p class="card-text">Description: <?= $events->event_description ?></p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Catégorie :<?= $events->eventcategory_id ?></li>
+                                        <li class="list-group-item">Catégorie :<?= $events->eventcategory_name ?></li>
                                         <li class="list-group-item">Date :<?= $events->event_date ?></li>
                                         <li class="list-group-item">Heure :<?= $events->event_time ?></li>
-                                        <li class="list-group-item">Lieu :<?= $events->showplaces_id ?></li>
+                                        <li class="list-group-item">Lieu :<?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></li>
                                     </ul>
                                     <div class="card-body">
                                         <a href="#" class="card-link">Supprimer</a>
-                                        <a href="modifyevent.php?id=<?= $events->users_id ?>"" class="card-link">Modifier l'événement</a>
+                                        <a href="modifyevent.php?id=<?= $events->event_id ?>" class="card-link">Modifier l'événement</a>
                                     </div>
                                     <div class="footer">
                                         <div>Prix indicatif : </div>

@@ -7,7 +7,7 @@ class database { //on crée une class database
     public function __construct() { //utilisation méthode magique double underscore construct
         //connexion à la base
         try {
-            $this->database = new PDO('mysql:host=localhost;dbname=LARSEN2', 'fiadone', 'fiadone', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); //pour afficher les erreurs sql
+            $this->database = new PDO('mysql:host=localhost;dbname=LARSEN2;charset=utf8', 'fiadone', 'fiadone', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); //pour afficher les erreurs sql
         } catch (Exception $e) {
             die('Erreur: ' . $e->getMessage());
         }

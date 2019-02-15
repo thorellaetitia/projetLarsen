@@ -1,7 +1,6 @@
+CREATE DATABASE LARSEN2;
 #------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
-
+USE LARSEN2;
 
 #------------------------------------------------------------
 # Table: poqs_eventcategory
@@ -120,4 +119,3 @@ CREATE TABLE poqs_event(
 	,CONSTRAINT poqs_event_poqs_eventcategory0_FK FOREIGN KEY (eventcategory_id) REFERENCES poqs_eventcategory(eventcategory_id)
 	,CONSTRAINT poqs_event_poqs_showplaces1_FK FOREIGN KEY (showplaces_id) REFERENCES poqs_showplaces(showplaces_id)
 )ENGINE=InnoDB;
-
