@@ -20,6 +20,7 @@ include_once('controllers/controllermodifyevent.php');
     </head>
     <body>
         <?php
+        
         include_once('navbar.php');
         ?>
         <div class="closebutton">

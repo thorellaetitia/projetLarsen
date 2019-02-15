@@ -104,4 +104,18 @@ class event extends database {
         $resultQueryModifyEvent->execute();
     }
 
+    
+    public function deleteEvent() {
+        $query = 'DELETE FROM `poqs_event` WHERE `event_id`=:event_id';
+        //on commence une transaction et désactivation de l'autocommit =begintransaction
+        $this->database->beginTransaction();
+        $resultQueryDeleteEvent = $this->database->prepare($query);
+        $resultQueryDeleteEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
+        $resultQueryDeleteEvent->execute();
+        //on valide les modifications et la connexion a la bdd = retour en mode auto-commit =commit
+        $this->database->commit();
+        //on s'apercoit d'une erreur et on annule les modifications =rollBack
+    }
+    
+    
 }

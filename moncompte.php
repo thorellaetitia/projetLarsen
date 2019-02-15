@@ -33,7 +33,6 @@ include_once('controllers/controllermoncompte.php');
             <div class="row">
                 <?php
                 foreach ($resultAllDataEvent as $events) {
-                   
                     ?>
                     <div class="col-sm-12 col-md-4 col-lg-4">
                         <div id="event">
@@ -52,7 +51,7 @@ include_once('controllers/controllermoncompte.php');
                                         <li class="list-group-item">Lieu :<?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></li>
                                     </ul>
                                     <div class="card-body">
-                                        <a href="#" class="card-link">Supprimer</a>
+                                        <a href="moncompte.php?id=<?= $events->event_id ?>" class="card-link"><img id="trash" src="garbage.svg" alt="delete" /></a>
                                         <a href="modifyevent.php?id=<?= $events->event_id ?>" class="card-link">Modifier l'événement</a>
                                     </div>
                                     <div class="footer">
