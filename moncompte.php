@@ -17,6 +17,7 @@ include_once('controllers/controllermoncompte.php');
         <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../assets/style.css" />
+
         <title>MON PROJET PRO</title>
     </head>
     <body>
@@ -29,46 +30,64 @@ include_once('controllers/controllermoncompte.php');
         <div class="closebutton">
             <a href="index.php">Fermer</a>
         </div>
+
         <div class="container-fluid">
             <div class="row">
                 <?php
                 foreach ($resultAllDataEvent as $events) {
                     ?>
-                    <div class="col-sm-12 col-md-4 col-lg-4">
-                        <div id="event">
-                            <div class="card-body">
-                                <div class="card">
-                                    <img class="img-fluidcard" src="img/<?= $events->event_picture ?>" alt="event_picture">
-                                    <div class="card-body">
-                                        <h1>Récapitulatif</h1>
-                                        <h1 class="card-title">Titre :<?= $events->users_id ?><?= $events->event_title ?></h1>
-                                        <p class="card-text">Description: <?= $events->event_description ?></p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Catégorie :<?= $events->eventcategory_name ?></li>
-                                        <li class="list-group-item">Date :<?= $events->event_date ?></li>
-                                        <li class="list-group-item">Heure :<?= $events->event_time ?></li>
-                                        <li class="list-group-item">Lieu :<?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></li>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="containerevent">
+
+                            <div class="card-media">
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(img/<?= $events->event_picture ?>);"></div>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s13.postimg.cc/c5aoiq1w7/stock3_f.jpg" class="">
+                                        </li>
                                     </ul>
-                                    <div class="card-body">
-                                        <a href="moncompte.php?id=<?= $events->event_id ?>" class="card-link"><img id="trash" src="garbage.svg" alt="delete" /></a>
-                                        <a href="modifyevent.php?id=<?= $events->event_id ?>" class="card-link">Modifier l'événement</a>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle"> <?= $events->event_date ?>, <?= $events->event_time ?></span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <a href="moncompte.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Supprimer</a>
+                                            <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Modifier</a>
+<!--                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                                            <path d="M0 0h24v24H0z" fill="none"/>
+                                            </svg>-->
+                                        </div>
                                     </div>
-                                    <div class="footer">
-                                        <div>Prix indicatif : </div>
-                                        <div>Réserver vos billets<a href="https://www.digitick.com/"><img src="assets/images/digitick.jpg" width="50px" /></a></div>
+                                    <span class="card-media-body-heading"><?= $events->event_title ?><br><?= $events->event_description ?></span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
                                     </div>
-                                </div>  
-
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#<?= $events->eventcategory_name ?></span>
+                                        <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">VIEW TICKETS</a>
+                                    </div>
+                                </div>
+                                <!-- media container -->
                             </div>
-
                         </div>
+
                     </div>
                     <?php
                 }
                 ?>
             </div>
+
         </div>
+
+
+
+        <!--        <a href="index.php" class="btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>
+                > 
+                
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

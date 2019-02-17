@@ -161,9 +161,11 @@ if (isset($_POST['createEventBtn'])) {
         } else {
             echo "désolé, il y a une erreur de chargement de fichier.";
         }
-        
+
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
+//        $originalDate = "Y-m-d";
+//        $newdate = date("d-m-Y", strtotime($originalDate));
         $eventObj->event_date = $event_date;
         $eventObj->event_time = $event_time;
         $eventObj->event_free = $event_free;
@@ -171,7 +173,7 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->event_description = $event_description;
         $eventObj->eventcategory_id = $eventcategory_id;
         $eventObj->showplaces_id = $showplaces_id;
-        
+
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
         $eventObj->CreateEvent();
 
@@ -181,7 +183,6 @@ if (isset($_POST['createEventBtn'])) {
         //car le formulaire est sur la page d'accueil
         header('Location: moncompte.php');
         exit();
-       
     } else {
         $modalStayOpenIfErrors = true;
     }
