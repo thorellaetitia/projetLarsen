@@ -12,6 +12,19 @@
 
 }  
 
+.connexion {
+    float: right;
+    color:orange;
+    margin-top: 10px;
+
+}
+
+.intro {
+    margin-top: 20px;
+    float: left;
+    color: orange;
+
+}
 /*#headerbtnconnexion {
     margin-right: 0px;
 }*/
@@ -42,7 +55,9 @@
 
 a.nav-link.zoom:hover {
     font-size: 20px;
-    color:orange;
+    color:orange;  
+    border-bottom: red solid 2px; 
+    padding-bottom: 10px; 
 
 }
 
@@ -90,10 +105,7 @@ body {
     scroll-behavior: smooth;
 }
 
-p{
-    float: left;
-    color:orange;
-}
+
 
 .btn btn-outline-warning {
     margin-left: 10px;
@@ -105,6 +117,8 @@ p{
     position: static;
 
 }
+
+
 
 .container-fluid citation {
     position: fixed;
@@ -197,7 +211,7 @@ label {
 
 .containerevent {
     margin: 50px auto 0;
-   
+
 }
 
 .u-float-right {
@@ -331,6 +345,7 @@ label {
     font-size: 18px;
     color:black;
     border-right-style: solid;
+    border-width: 5px;
 
 }
 
@@ -339,19 +354,20 @@ card-media-body-heading {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: bold;
-   
+
 }
 
+/*//////////////code couleur par card/////////////////////////*/
 .concert {
     border-color: red;
-   }
+}
 
 .spectacle {
     border-color: orange;
 }
 
 .expos {
-    border-color: black;
+    border-color: greenyellow;
 }
 
 .card-media-body-top {

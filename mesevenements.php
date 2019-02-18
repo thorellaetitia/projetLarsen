@@ -62,7 +62,7 @@ include_once('controllers/controllermesevenements.php');
                                             </svg>-->
                                         </div>
                                     </div>
-                                    <span class="card-media-body-heading"><?= $events->event_title ?><br><?= $events->event_description ?></span>
+                                    <span class="card-media-body-heading"><?= $events->event_title ?></span>
                                     <div class="card-media-body-supporting-bottom">
                                         <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
                                         <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>

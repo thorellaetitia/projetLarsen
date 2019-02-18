@@ -131,4 +131,25 @@ class event extends database {
         return $resultArrayAllEvents;
     }
 
+    public function showByCategory($eventcategory_id,$eventsub_category_id) {
+
+        $query = 'SELECT * FROM `poqs_event`'
+                . ' INNER JOIN `poqs_eventcategory`'
+                . ' ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . ' INNER JOIN poqs_eventsub_category'
+                . ' ON poqs_event.eventcategory_id = poqs_eventsub_category.eventcategory_id'
+                . ' INNER JOIN `poqs_showplaces`'
+                . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
+                . ' WHERE poqs_eventsub_category.eventsub_category_id = :eventsub_category_id'
+                . ' AND poqs_eventcategory.eventcategory_id = :eventcategory_id';
+
+        $resultQueryShowCategory = $this->database->prepare($query);
+
+        $resultQueryShowCategory->bindValue(':eventcategory_id', $eventcategory_id, PDO::PARAM_INT);
+        $resultQueryShowCategory->bindValue(':eventsub_category_id', $eventsub_category_id, PDO::PARAM_INT);
+        $resultQueryShowCategory->execute();
+        $arrayShowCategory = $resultQueryShowCategory->fetchAll(PDO::FETCH_OBJ);
+        return $arrayShowCategory;
+    }
+
 }

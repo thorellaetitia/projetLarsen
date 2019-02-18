@@ -9,7 +9,16 @@ $allEventsObj = new event();
 
 //j'instancie un nouvel objet
 
-$resultArrayAllEvents = $allEventsObj->showAllEvents();
+if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
+   
+    $eventcategory_id=$_GET['eventcategory_id'];
+    $eventsub_category_id= $_GET['eventsub_category_id'];
+    $resultArrayAllEvents = $allEventsObj->showByCategory($eventcategory_id,$eventsub_category_id);
+}else {
+    $resultArrayAllEvents = $allEventsObj->showAllEvents();
+}
+
+
 
 //if (isset($_GET['id'])) {
 //    $allEventsObj->id = $_GET['id'];

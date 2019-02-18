@@ -5,10 +5,11 @@
         <group>
             <file>file:/home/thorel/www/PROJET/headernavbar.php</file>
             <file>file:/home/thorel/www/PROJET/assets/style.css</file>
-            <file>file:/home/thorel/www/PROJET/moncompte.php</file>
+            <file>file:/home/thorel/www/PROJET/mesevenements.php</file>
+            <file>file:/home/thorel/www/PROJET/controllers/controllerindex.php</file>
+            <file>file:/home/thorel/www/PROJET/index.php</file>
             <file>file:/home/thorel/www/PROJET/models/modelEvent.php</file>
-            <file>file:/home/thorel/www/PROJET/assets/script.js</file>
-            <file>file:/home/thorel/www/PROJET/controllers/controllermoncompte.php</file>
+            <file>file:/home/thorel/www/PROJET/navbar.php</file>
         </group>
     </open-files>
 </project-private>
