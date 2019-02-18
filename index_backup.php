@@ -124,6 +124,34 @@ include_once('inscription.php');
         <section>
             <div class="container-fluid">
                 <div class="row">
+                    <div class="row">
+
+                        <?php
+                  $url = 'http://www.fnacspectacles.com/rss/?flux=famille&famid=1MC';
+                   $url2 = 'http://projet/xml/fluxrssfnac';
+
+                   $rss = @simplexml_load_file($url);
+                   if (!$rss) {
+                       $rss = simplexml_load_file($url2);
+                   }
+                   foreach ($rss->channel->item as $item) {
+                      
+                        ?>                    
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <div class="card">
+                                <img class="img-fluidcard" src="////<?= $item->enclosure['url']; ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="card-text"><strong>////<?= $item->title; ?></strong><br><?= $item->description; ?><br></div>
+                                </div>
+                                <div class="footer">
+                                    <div>Prix indicatif : </div>
+                                    <div>Réserver vos billets<a href="https://www.digitick.com/"><img src="assets/images/digitick.jpg" width="50px" /></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>  
+
+                    </div>
                     <div class="col-sm-12 col-md-4 col-lg-4">
                         <div class="card" id="concert">
                             <img class="card-img-top image-fluid" src="images/hyphen-hyphen.jpg" alt="Card image cap">

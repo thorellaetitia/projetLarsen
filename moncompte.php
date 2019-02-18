@@ -30,57 +30,19 @@ include_once('controllers/controllermoncompte.php');
         <div class="closebutton">
             <a href="index.php">Fermer</a>
         </div>
-
-        <div class="container-fluid">
+        <div class="row">
+            <h2 class="myevents">Mes informations</h2>
+        </div>
+                <div class="container-fluid">
             <div class="row">
-                <?php
-                foreach ($resultAllDataEvent as $events) {
-                    ?>
+                
                     <div class="col-sm-12 col-md-8 col-lg-8">
                         <div class="containerevent">
 
-                            <div class="card-media">
-                                <div class="card-media-object-container">
-                                    <div class="card-media-object" style="background-image: url(img/<?= $events->event_picture ?>);"></div>
-                                    <ul class="card-media-object-social-list">
-                                        <li>
-                                            <img src="https://s13.postimg.cc/c5aoiq1w7/stock3_f.jpg" class="">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- body container -->
-                                <div class="card-media-body">
-                                    <div class="card-media-body-top">
-                                        <span class="subtle"> <?= $events->event_date ?>, <?= $events->event_time ?></span>
-                                        <div class="card-media-body-top-icons u-float-right">
-                                            <a href="moncompte.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Supprimer</a>
-                                            <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Modifier</a>
-<!--                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                                            <path d="M0 0h24v24H0z" fill="none"/>
-                                            </svg>-->
-                                        </div>
-                                    </div>
-                                    <span class="card-media-body-heading"><?= $events->event_title ?><br><?= $events->event_description ?></span>
-                                    <div class="card-media-body-supporting-bottom">
-                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
-                                    </div>
-                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
-                                        <span class="card-media-body-supporting-bottom-text subtle">#<?= $events->eventcategory_name ?></span>
-                                        <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">VIEW TICKETS</a>
-                                    </div>
-                                </div>
-                                <!-- media container -->
-                            </div>
                         </div>
-
                     </div>
-                    <?php
-                }
-                ?>
+                  
             </div>
-
         </div>
 
 

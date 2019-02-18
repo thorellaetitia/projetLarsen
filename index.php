@@ -3,6 +3,7 @@ session_start();
 include_once('controllers/controllerinscription.php');
 include_once('controllers/controllerseconnecter.php');
 include_once('controllers/controllerevent.php');
+include_once('controllers/controllerindex.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -22,8 +23,8 @@ include_once('controllers/controllerevent.php');
     <body>
         <?php
         include_once ('headernavbar.php');
-        ?>
-        <?php
+        include_once ('picturenavbar.php');
+        ?>        <?php
         include_once ('navbar.php');
         include_once('include/seconnecter.php');
         include_once('include/inscription.php');
@@ -66,44 +67,73 @@ include_once('controllers/controllerevent.php');
         <section>
             <div class="container-fluid">
                 <div class="row">
-
                     <?php
-                    $url = 'http://www.fnacspectacles.com/rss/?flux=famille&famid=1MC';
-                    $url2 = 'http://projet/xml/fluxrssfnac';
+                    foreach ($resultArrayAllEvents as $allEvents) {
+                        ?>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="containerevent">
 
-                    $rss = @simplexml_load_file($url);
-                    if (!$rss) {
-                        $rss = simplexml_load_file($url2);
-                    }
-                    foreach ($rss->channel->item as $item) {
-                        ?>                    
-                        <div class="col-sm-12 col-md-3 col-lg-3">
-                            <div class="card">
-                                <img class="img-fluidcard" src="<?= $item->enclosure['url']; ?>" alt="Card image cap">
-                                <div class="card-body">
-                                    <div class="card-text"><strong><?= $item->title; ?></strong><br><?= $item->description; ?><br></div>
-                                </div>
-                                <div class="footer">
-                                    <div>Prix indicatif : </div>
-                                    <div>Réserver vos billets<a href="https://www.digitick.com/"><img src="assets/images/digitick.jpg" width="50px" /></a></div>
+                                <div class="card-media row">
+                                    <div class="card-media-object-container col-xs-12 col-sm-12 col-md-6">
+                                        <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"></div>
+                                        <ul class="card-media-object-social-list">
+                                            <li>
+                                                <img src="https://s13.postimg.cc/c5aoiq1w7/stock3_f.jpg" class="">
+                                                <!--bouton-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--modal-->
+                                    <!-- body container -->
+                                    <div class="card-media-body col-xs-12 col-sm-12 col-md-6 <?= $allEvents->eventcategory_name ?>">
+                                        <div class="card-media-body-top">
+                                            <span class="subtle"> <?= $allEvents->event_date ?>, <?= $allEvents->event_time ?></span>
+<!--                                            <div class="card-media-body-top-icons u-float-right">
+                                                <a href="mesevenements.php?id=<?= $allEvents->event_id ?>" class="btn btn-outline-warning btn-sm">Supprimer</a>
+                                                <a href="modifyevent.php?id=<?= $allEvents->event_id ?>" class="btn btn-outline-warning btn-sm">Modifier</a>
+                                                    <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                                                <path d="M0 0h24v24H0z" fill="none"/>
+                                                </svg>
+                                            </div>-->
+                                        </div>
+                                        <span class="card-media-body-heading"><?= $allEvents->event_title ?></span>
+                                        <div class="card-media-body-supporting-bottom">
+                                            <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?> <?= $allEvents->showplaces_postalcode ?></span>
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                        </div>
+                                        <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                            <span class="card-media-body-supporting-bottom-text subtle">#<?= $allEvents->eventcategory_name ?></span>
+                                            <a href="https://www.digitick.com/" class="card-media-body-supporting-bottom-text card-media-link u-float-right"><img src="assets/images/digitick.jpg" width="50px" /></a>
+                                        </div>
+                                    </div>
+                                    <!-- media container -->
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>  
-
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
-            <!--fin des cards-->
-        </section>
-        <div class="parallaxbottom"></div>
-        <?php
-        include_once ('footer.php');
-        ?>
 
-        <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="assets/script.js"></script>
-    </body>
+
+
+
+
+        </div>
+    </div>
+    <!--fin des cards-->
+</section>
+<div class="parallaxbottom"></div>
+<?php
+include_once ('footer.php');
+?>
+
+<script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="assets/script.js"></script>
+</body>
 </html>

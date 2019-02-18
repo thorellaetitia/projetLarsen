@@ -181,7 +181,7 @@ if (isset($_POST['createEventBtn'])) {
         //si tout est ok renvoi vers moncompte.php 
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil
-        header('Location: moncompte.php');
+        header('Location: mesevenements.php');
         exit();
     } else {
         $modalStayOpenIfErrors = true;

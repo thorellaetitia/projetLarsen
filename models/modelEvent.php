@@ -104,7 +104,6 @@ class event extends database {
         $resultQueryModifyEvent->execute();
     }
 
-    
     public function deleteEvent() {
         $query = 'DELETE FROM `poqs_event` WHERE `event_id`=:event_id';
         //on commence une transaction et désactivation de l'autocommit =begintransaction
@@ -116,6 +115,20 @@ class event extends database {
         $this->database->commit();
         //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
-    
-    
+
+    public function showAllEvents() {
+
+        $query = 'SELECT *'
+                . 'FROM `poqs_event`'
+                . 'INNER JOIN `poqs_eventcategory`'
+                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . 'INNER JOIN `poqs_showplaces`'
+                . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
+
+        $result = $this->database->query($query);
+
+        $resultArrayAllEvents = $result->fetchAll(PDO::FETCH_OBJ);
+        return $resultArrayAllEvents;
+    }
+
 }
