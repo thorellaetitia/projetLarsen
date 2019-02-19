@@ -54,13 +54,13 @@ if (isset($_POST['createEventBtn'])) {
         }
     }
 
-    if (isset($_POST['eventsubcategory_id'])) {
-        $eventsubcategory_id = htmlspecialchars($_POST['eventsubcategory_id']);
-        if (!preg_match($regexEventCategoryId, $eventsubcategory_id)) {
-            $errorsArrayevent['eventsubcategory_id'] = 'Merci de saisir une sous-catégorie d\'événements';
+    if (isset($_POST['eventsub_category_id'])) {
+        $eventsub_category_id = htmlspecialchars($_POST['eventsub_category_id']);
+        if (!preg_match($regexEventCategoryId, $eventsub_category_id)) {
+            $errorsArrayevent['eventsub_category_id'] = 'Merci de saisir une sous-catégorie d\'événements';
         }
-        if (empty($eventsubcategory_id)) {
-            $errorsArrayevent['eventsubcategory_id'] = 'Merci de faire votre choix';
+        if (empty($eventsub_category_id)) {
+            $errorsArrayevent['eventsub_category_id'] = 'Merci de faire votre choix';
         }
     }
 
@@ -172,6 +172,7 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->event_picture = $_FILES["event_picture"]["name"];
         $eventObj->event_description = $event_description;
         $eventObj->eventcategory_id = $eventcategory_id;
+        $eventObj->eventsub_category_id = $eventsub_category_id;
         $eventObj->showplaces_id = $showplaces_id;
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés

@@ -5,12 +5,15 @@
                 <p class="intro">Larsen, votre agenda culturel gratuit</p> 
             </div>            
             <div class="connection col-lg-4 col-md-4 col-sm-12">
+                <?php if (isset($_SESSION['userlogin'])) { ?>
                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>
+                <?php } ?>
             </div>
+
             <div class="connection col-lg-4 col-md-4 col-sm-12 text-center" id="headerbtnconnexion">
                 <p class="connexion"><?php if (isset($_SESSION['userlogin'])) { ?> Bienvenue  <?= $_SESSION['users_login'] ?><a href="moncompte.php" id="loginpicto"><i class="far fa-user fa-2x mr-2"></i></a>
-                    <a href="mesevenements.php" ><i class="far fa-edit fa-2x"></i></a>
-                    <a href="deconnexion.php" ><i class="far fa-times-circle fa-2x" id=""></i></a></p>
+                        <a href="mesevenements.php" ><i class="far fa-edit fa-2x"></i></a>
+                        <a href="deconnexion.php" ><i class="far fa-times-circle fa-2x" id=""></i></a></p>
                 <?php } else { ?>
                     <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#inscription" data-whatever="inscription">S'inscrire</button>
                     <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#seconnecter" data-whatever="seconnecter">connexion</button>

@@ -65,7 +65,7 @@ include_once('controllers/controllermesevenements.php');
                                     <span class="card-media-body-heading"><?= $events->event_title ?></span>
                                     <div class="card-media-body-supporting-bottom">
                                         <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $events->eventsub_category_name ?></span>
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                         <span class="card-media-body-supporting-bottom-text subtle">#<?= $events->eventcategory_name ?></span>

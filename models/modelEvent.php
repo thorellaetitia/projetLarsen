@@ -13,6 +13,7 @@ class event extends database {
     public $event_description;
     public $users_id;
     public $eventcategory_id;
+    public $event_sub_category;
     public $event_free;
     public $showplaces_id;
 
@@ -27,6 +28,7 @@ class event extends database {
                 . ' `event_description` = :event_description,'
                 . '`users_id` = :users_id,'
                 . '`eventcategory_id`=:eventcategory_id,'
+                . '`eventsub_category_id`=:eventsub_category_id,'
                 . '`showplaces_id` = :showplaces_id,'
                 . '`event_free` = :event_free';
 
@@ -42,6 +44,7 @@ class event extends database {
         $eventList->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
         $eventList->bindvalue(':users_id', $this->users_id, PDO::PARAM_INT);
         $eventList->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
+        $eventList->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $eventList->bindValue(':event_free', $this->event_free, PDO::PARAM_INT);
         $eventList->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
         //lorsque l'on prépare la requete on doit l'éxécuter
@@ -66,11 +69,13 @@ class event extends database {
 
     public function getAllDataEventCategory() {
 
-        $query = 'SELECT *'
-                . 'FROM `poqs_event`'
-                . 'INNER JOIN `poqs_eventcategory`'
-                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
-                . 'INNER JOIN `poqs_showplaces`'
+        $query = 'SELECT * '
+                . 'FROM `poqs_event` '
+                . 'INNER JOIN `poqs_eventcategory` '
+                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id` '
+                . 'INNER JOIN `poqs_eventsub_category` '
+                . 'ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id` '
+                . 'INNER JOIN `poqs_showplaces` '
                 . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
 
         $result = $this->database->query($query);
@@ -87,6 +92,7 @@ class event extends database {
                 . '`event_description` = :event_description,'
                 . '`users_id` = :users_id,'
                 . '`eventcategory_id` = :eventcategory_id,'
+                . '`eventsub_category_id` = :eventsub_category_id,'
                 . '`showplaces_id` = :showplaces_id '
                 . 'WHERE `event_id` = :event_id';
 
@@ -98,6 +104,7 @@ class event extends database {
         $resultQueryModifyEvent->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindvalue(':users_id', $this->users_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
 
@@ -122,6 +129,8 @@ class event extends database {
                 . 'FROM `poqs_event`'
                 . 'INNER JOIN `poqs_eventcategory`'
                 . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . 'INNER JOIN `poqs_eventsub_category`'
+                . 'ON `poqs_eventsub_category`.`eventsub_category_id` = `poqs_eventsub_category` . `eventsub_category_id`'
                 . 'INNER JOIN `poqs_showplaces`'
                 . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
 
@@ -131,13 +140,13 @@ class event extends database {
         return $resultArrayAllEvents;
     }
 
-    public function showByCategory($eventcategory_id,$eventsub_category_id) {
+    public function showByCategory($eventcategory_id, $eventsub_category_id) {
 
         $query = 'SELECT * FROM `poqs_event`'
                 . ' INNER JOIN `poqs_eventcategory`'
                 . ' ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
                 . ' INNER JOIN poqs_eventsub_category'
-                . ' ON poqs_event.eventcategory_id = poqs_eventsub_category.eventcategory_id'
+                . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
                 . ' INNER JOIN `poqs_showplaces`'
                 . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
                 . ' WHERE poqs_eventsub_category.eventsub_category_id = :eventsub_category_id'

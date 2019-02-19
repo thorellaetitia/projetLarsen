@@ -64,11 +64,12 @@ include_once('controllers/controllerindex.php');
         <!--fin du caroussel  -->
         <div class="parallaxtop"></div>
         <!--debut des cards-->
-        <section>
+        <section id="content">
             <div class="container-fluid">
                 <div class="row">
-                    <?php
-                    foreach ($resultArrayAllEvents as $allEvents) {
+                    <?php 
+                          
+                    foreach ($arrayShowCategory as $allEvents) {
                         ?>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="containerevent">
@@ -87,20 +88,13 @@ include_once('controllers/controllerindex.php');
                                     <!-- body container -->
                                     <div class="card-media-body col-xs-12 col-sm-12 col-md-6 <?= $allEvents->eventcategory_name ?>">
                                         <div class="card-media-body-top">
-                                            <span class="subtle"> <?= $allEvents->event_date ?>, <?= $allEvents->event_time ?></span>
-<!--                                            <div class="card-media-body-top-icons u-float-right">
-                                                <a href="mesevenements.php?id=<?= $allEvents->event_id ?>" class="btn btn-outline-warning btn-sm">Supprimer</a>
-                                                <a href="modifyevent.php?id=<?= $allEvents->event_id ?>" class="btn btn-outline-warning btn-sm">Modifier</a>
-                                                    <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                                                <path d="M0 0h24v24H0z" fill="none"/>
-                                                </svg>
-                                            </div>-->
-                                        </div>
+                                            <span class="subtle"><?= $allEvents->event_date ?>, <?= $allEvents->event_time ?></span>
+                                         
+                                        
                                         <span class="card-media-body-heading"><?= $allEvents->event_title ?></span>
                                         <div class="card-media-body-supporting-bottom">
                                             <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?> <?= $allEvents->showplaces_postalcode ?></span>
-                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $allEvents->eventsub_category_name ?></span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                             <span class="card-media-body-supporting-bottom-text subtle">#<?= $allEvents->eventcategory_name ?></span>

@@ -24,7 +24,7 @@ include_once('controllers/controllerevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        Sous-catégorie événement <select name="eventsubcategory_id">
+                        Sous-catégorie événement <select name="eventsub_category_id">
                             <option>Veuillez renseigner un champ</option>
                             <option value="1">Concert</option>
                             <option value="2">Danse</option>
