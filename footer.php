@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="rubriquebottomfooter">
-                    Copyright @2019 |<a href="Mentions légales"> Mentions légales</a> 
+                    Copyright @2019 |<a href="mentionslegales.php"> Mentions légales</a> 
                     Designed by laetitia |<a href="contact"> Nous contacter</a>  
                 </div>
             </div>

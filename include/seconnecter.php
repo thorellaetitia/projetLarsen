@@ -8,7 +8,7 @@ include_once('./controllers/controllerseconnecter.php');
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalConnecter">Déjà inscrit ? Se connecter</h5>
+                    <h5 class="modal-title" id="modalConnecter">Déjà inscrit ? Connectez vous</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -20,14 +20,14 @@ include_once('./controllers/controllerseconnecter.php');
                         <div class="form-group">
                             <label for="login">Votre login : </label>
                             <input type="text" name="users_login" id="login" placeholder="login" value="" required /><br>
-                            <span class="error"><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span>
-                            <?= isset($messageErrorAccount) ? 'Le compte n\'existe pas' : '' ?>
+                            <span class="error "><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span><br>
+                            <span class="error text-danger"><p> <?= isset($messageErrorAccount) ? 'Ce compte n\'existe pas, merci d\'essayer à nouveau' : '' ?></p></span>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe : </label>
                             <input type="password" name="users_password" id="password" placeholder="mot de passe" value="" required /><br>
                             <span class="error"><?= !empty($errorsArrayconnection['users_password']) ? $errorsArrayconnection['users_password'] : ''; ?></span>
-                            <?= isset($messageNonValidPassword) ? 'le mot de passe ne correspond pas à l\'utilisateur' : '' ?>
+                            <span class="error text-danger"><p> <?= isset($messageNonValidPassword) ? 'le mot de passe ne correspond pas au login, merci d\'essayer à nouveau' : '' ?></p></span>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

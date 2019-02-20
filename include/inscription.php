@@ -6,7 +6,7 @@ include_once('controllers/controllerinscription.php');
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Modalinscription">Bienvenue sur le formulaire d'inscription</h5>
+                <h5 class="modal-title" id="Modalinscription">Pas encore inscrit ? Inscrivez-vous rapidement en quelques clics</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,7 +16,7 @@ include_once('controllers/controllerinscription.php');
                 
                 <form method="post" action="" >
                     <div class="form-group text-center">
-                        Vous êtes : <select value="<?php (isset($usertypes_id)) ? $usertypes_id : ''; ?>" name="usertypes_id">
+                        Vous êtes : <select name="usertypes_id" value="<?php (isset($usertypes_id)) ? $usertypes_id : ''; ?>" required >
                             <option>Veuillez renseigner un champ</option> 
                             <option value="1">Professionnel</option>
                             <option value="2">Particulier</option>

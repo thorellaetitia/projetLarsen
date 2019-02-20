@@ -50,10 +50,11 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
                 header('Location: moncompte.php');
                 exit();
             } else {
+                //création d'un message si le user se trompe de mot de passe
                 $messageNonValidPassword = true;
             }
         } else {
-            //CRÉATION D'UN MESSAGE SI LE USER N'A PAS DE COMPTE
+            //création d'un message si le user n'a pas de compte
             $messageErrorAccount = true;
             
         }

@@ -33,30 +33,35 @@ include_once('controllers/controllermoncompte.php');
         <div class="row">
             <h2 class="myevents mx-auto">Mes informations</h2>
         </div>
-                <div class="container-fluid">
-            <div class="row">
-                
-                    <div class="col-sm-12 col-md-8 col-lg-8">
-                        <div class="containerevent">
+        <div>
+            <h3 class="connexion text-center"><?php if (isset($_SESSION['userlogin'])) { ?> Bienvenue  <?= $_SESSION['users_login'] ?>
+                    vous êtes bien connecté !!!!</h3></div>
 
-                        </div>
+        <?php } ?>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div class="containerevent">
+
                     </div>
-                  
+                </div>
+
             </div>
         </div>
 
 
 
-        <!--        <a href="index.php" class="btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>
-                > 
-                
+        <!--<a href = "index.php" class = "btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>
+        > 
+        
 
-        <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="assets/script.js"></script>
-    </body>
+<script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="assets/script.js"></script>
+</body>
 </html>
 
 

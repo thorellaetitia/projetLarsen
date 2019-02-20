@@ -89,7 +89,7 @@ if (isset($_POST['login'])) {
 if (isset($_POST['password'])) {
     $password = htmlspecialchars($_POST['password']);
     if (!preg_match($regexPassword, $password)) {
-        $errorsArrayinscription['password'] = 'Merci de saisir un minimum de 6 caractères';
+        $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
     }
     if (empty($password)) {
         $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
@@ -99,7 +99,7 @@ if (isset($_POST['password'])) {
 if (isset($_POST['secondpassword'])) {
     $secondpassword = htmlspecialchars($_POST['secondpassword']);
     if (!preg_match($regexPassword, $secondpassword)) {
-        $errorsArrayinscription['secondpassword'] = 'Merci de saisir un minimum de 6 caractères';
+        $errorsArrayinscription['secondpassword'] = 'Merci de saisir un mot de passe';
 
         if ($secondpassword !== $password) {
             $errorsArrayinscription['secondpassword'] = 'Mot de passe invalide';
