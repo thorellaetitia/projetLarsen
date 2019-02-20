@@ -8,12 +8,12 @@
 .connection {
     background-color: #1a1a1a;
     color : #ffffff;
-    text-align: center;
+/*    text-align: center;*/
 
 }  
 
 .connexion {
-    float: right;
+/*    float: right;*/
     color:orange;
     margin-top: 10px;
 
@@ -21,7 +21,7 @@
 
 .intro {
     margin-top: 20px;
-    float: left;
+/*    float: left;*/
     color: orange;
 
 }
@@ -238,7 +238,7 @@ label {
     height: 125px;
     margin-bottom: 25px;
     transition: all 300ms ease-out;
-    width: 100%;
+/*    width: 100%;*/
 }
 
 .card-media:hover {
@@ -487,15 +487,11 @@ a:hover {
     height: 60%;
 }
 
-@media all and (max-width: 1024px)
-
-{
+@media all and (max-width: 640px) {
     .carousel
     {
         display: none;
     }
-
-
 
 }
 

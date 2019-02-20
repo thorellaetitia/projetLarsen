@@ -27,11 +27,11 @@ include_once('controllers/controllermoncompte.php');
         <?php
         include_once ('navbar.php');
         ?>
-        <div class="closebutton">
+        <div class="closebutton ml-3">
             <a href="index.php">Fermer</a>
         </div>
         <div class="row">
-            <h2 class="myevents">Mes informations</h2>
+            <h2 class="myevents mx-auto">Mes informations</h2>
         </div>
                 <div class="container-fluid">
             <div class="row">

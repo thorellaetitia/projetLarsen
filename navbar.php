@@ -10,7 +10,7 @@
                 <a class="nav-link zoom" href="index.php?eventcategory_id=1&eventsub_category_id=1#content">Concert <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=2&eventsub_category_id=2&eventsub_category_id=3#content" id="navbarDropdownspectacle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=2#content" id="navbarDropdownspectacle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Spectacle
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,7 +21,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=3&eventsub_category_id=6#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=3#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Expo
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

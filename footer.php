@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="rubriquefooter">
-                    <a href="#concert">Concert</a>
-                    <a href="#spectacle">Spectacle</a>
-                    <a href="#expo">Expo</a>
+                    <a href="index.php?eventcategory_id=1#content">Concert</a>
+                    <a href="index.php?eventcategory_id=2#content">Spectacle</a>
+                    <a href="index.php?eventcategory_id=3#content">Expo</a>
                     <a href="#plansgratuits">Plans gratuits</a>
                 </div>
                 <div><img src="assets/images/larsen.png" alt="logosite" width="100px"/></div>

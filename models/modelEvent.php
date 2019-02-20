@@ -130,7 +130,7 @@ class event extends database {
                 . 'INNER JOIN `poqs_eventcategory`'
                 . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
                 . 'INNER JOIN `poqs_eventsub_category`'
-                . 'ON `poqs_eventsub_category`.`eventsub_category_id` = `poqs_eventsub_category` . `eventsub_category_id`'
+                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventsub_category`.`eventsub_category_id`'
                 . 'INNER JOIN `poqs_showplaces`'
                 . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
 

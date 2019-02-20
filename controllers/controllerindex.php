@@ -10,15 +10,19 @@ $allEventsObj = new event();
 //j'instancie un nouvel objet
 
 if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
-   
-    $eventcategory_id=$_GET['eventcategory_id'];
-    $eventsub_category_id= $_GET['eventsub_category_id'];
-    $arrayShowCategory = $allEventsObj->showByCategory($eventcategory_id,$eventsub_category_id);
-}else {
-    $resultArrayAllEvents= $allEventsObj->showAllEvents();
+
+    $eventcategory_id = $_GET['eventcategory_id'];
+    $eventsub_category_id = $_GET['eventsub_category_id'];
+    $arrayShowCategory = $allEventsObj->showByCategory($eventcategory_id, $eventsub_category_id);
+} else {
+    $arrayShowCategory = $allEventsObj->showAllEvents();
 }
 
-
+//if (isset($_GET['eventcategory_id'])) {
+//
+//    $eventcategory_id = $_GET['eventcategory_id'];
+//    $resultArrayAllEvents = $allEventsObj->showAllEvents();
+//}
 
 
 
