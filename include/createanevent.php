@@ -37,10 +37,12 @@ include_once('controllers/controllerevent.php');
                             <option value="9">Atelier</option>
                         </select>
                     </div>
+                     <div class="form-group">
                     <div class="form-check">
                         <label class="form-check-label" for="event_free">Plans gratuits</label>
                         <input class="form-check-input" name="event_free" type="checkbox" value="" id="event_free">
                     </div>
+                     </div>
                     <div class="form-group">
                         <label class="mr-" for="event_title">Titre de l'événement</label> 
                         <textarea type="text" name="event_title" id="title" placeholder="Merci de saisir un titre " rows="1" cols="30" value="<?php (isset($event_title)) ? $event_title : ''; ?>" required></textarea><br>

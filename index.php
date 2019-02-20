@@ -73,8 +73,7 @@ include_once('controllers/controllerindex.php');
                                     <div class="card-media-object-container col-xs-12 col-sm-6 col-md-6">
                                         <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"></div>
                                         <ul class="card-media-object-social-list">
-                                            <li>
-                                                <img src="https://s13.postimg.cc/c5aoiq1w7/stock3_f.jpg" class="">
+                                            <li class="rounded-circle bg-warning ml-1 mb-2">
                                                 <!--bouton-->
                                             </li>
                                         </ul>

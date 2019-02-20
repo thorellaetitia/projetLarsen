@@ -15,6 +15,7 @@ if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
     $eventsub_category_id = $_GET['eventsub_category_id'];
     $arrayShowCategory = $allEventsObj->showByCategory($eventcategory_id, $eventsub_category_id);
 } else {
+    $eventcategory_id = $_GET['eventcategory_id'];
     $arrayShowCategory = $allEventsObj->showAllEvents();
 }
 

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once('controllers/controllermesevenements.php');
-
 ?>
 
 <!DOCTYPE HTML>
@@ -44,26 +43,27 @@ include_once('controllers/controllermesevenements.php');
                             <div class="card-media">
                                 <div class="card-media-object-container">
                                     <div class="card-media-object" style="background-image: url(img/<?= $events->event_picture ?>);"></div>
-                                    <ul class="card-media-object-social-list">
-                                        <li>
-                                            <img src="https://s13.postimg.cc/c5aoiq1w7/stock3_f.jpg" class="">
+                                    <ul class="card-media-object-social-list row">
+                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block col-6 rounded-circle bg-warning ml-1 mb-2">
+                                            <a href="mesevenements.php?id=<?= $events->event_id ?>"><i class="far fa-trash-alt pr-5 pt-2 text-dark"></i></a>
+                                        </li>
+                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block col-6 rounded-circle bg-warning ml-1">
+                                            <a href="modifyevent.php?id=<?= $events->event_id ?>"><i class="fas fa-pencil-alt pr-5 pt-2 text-dark"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <!-- body container -->
-                                <div class="card-media-body <?= $events->eventcategory_name ?>">
+                                <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $events->eventcategory_name ?>">
                                     <div class="card-media-body-top">
                                         <span class="subtle"> <?= $events->event_date ?>, <?= $events->event_time ?></span>
                                         <div class="card-media-body-top-icons u-float-right">
-                                            <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Supprimer</a>
-                                            <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm">Modifier</a>
-    <!--                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-                                            <path d="M0 0h24v24H0z" fill="none"/>
-                                            </svg>-->
+                                            <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Supprimer</a>
+                                            <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
                                         </div>
+                                        <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $events->event_title; ?></span>
+                                        <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($events->event_title, 0, 20); ?>...</span>
+
                                     </div>
-                                    <span class="card-media-body-heading"><?= $events->event_title ?></span>
                                     <div class="card-media-body-supporting-bottom">
                                         <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
                                         <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $events->eventsub_category_name ?></span>
@@ -83,11 +83,8 @@ include_once('controllers/controllermesevenements.php');
             </div>
         </div>
 
+        <!--        <a href="index.php" class="btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>-->
 
-
-        <!--        <a href="index.php" class="btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>
-                > 
-                
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
