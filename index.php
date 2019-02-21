@@ -13,6 +13,7 @@ include_once('controllers/controllerindex.php');
 
         <!-- Shortcut Icon -->
         <link rel="shortcut icon" href="assets/images/larsen.png" />
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
@@ -73,9 +74,8 @@ include_once('controllers/controllerindex.php');
                                     <div class="card-media-object-container col-xs-12 col-sm-6 col-md-6">
                                         <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"></div>
                                         <ul class="card-media-object-social-list">
-                                            <li class="rounded-circle bg-warning ml-1 mb-2">
-                                                <!--bouton-->
-                                            </li>
+                                            <!--bouton qui permet l'affichage du descriptif de l'événement-->
+                                            <li type="button" class="rounded-circle bg-warning ml-1 mb-2" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?= $allEvents->event_description ?>"><i class="mx-auto fas fa-search-plus text-dark pt-2"></i></li>
                                         </ul>
                                     </div>
                                     <!--modal-->
@@ -115,8 +115,8 @@ include_once('controllers/controllerindex.php');
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="assets/script.js"></script>
-    </body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"/></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"/></script>
+<script src="assets/script.js"></script>
+</body>
 </html>
