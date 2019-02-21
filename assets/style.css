@@ -8,12 +8,12 @@
 .connection {
     background-color: #1a1a1a;
     color : #ffffff;
-/*    text-align: center;*/
+    /*    text-align: center;*/
 
 }  
 
 .connexion {
-/*    float: right;*/
+    /*    float: right;*/
     color:orange;
     margin-top: 10px;
 
@@ -21,7 +21,7 @@
 
 .intro {
     margin-top: 20px;
-/*    float: left;*/
+    /*    float: left;*/
     color: orange;
 
 }
@@ -84,7 +84,25 @@ span.error {
 
 form {
     color: black;
+    margin-top: 1em;
 }
+
+#formmodifyevent {
+
+    /* Uniquement centrer le formulaire sur la page */
+    margin: 0 auto;
+    width: 600px;
+    /* Encadré pour voir les limites du formulaire */
+    padding: 1em;
+    border: 2px solid orange;
+    border-radius: 1em;
+
+}
+
+.modifyformevent{
+    font-size: 15px;
+}
+
 
 h1 {
     color :#ffffff;
@@ -156,7 +174,6 @@ select {
 
 label {
     display:block;
-    float:left;
     width: 180px;
     text-align: center;
 }
@@ -238,7 +255,7 @@ label {
     height: 125px;
     margin-bottom: 25px;
     transition: all 300ms ease-out;
-/*    width: 100%;*/
+    /*    width: 100%;*/
 }
 
 .card-media:hover {
@@ -360,7 +377,7 @@ card-media-body-heading {
 /*//////////////code couleur par card/////////////////////////*/
 .concert {
     border-color: red;
-  
+
 }
 
 .spectacle {

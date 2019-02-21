@@ -43,12 +43,16 @@ include_once('controllers/controllermesevenements.php');
                             <div class="card-media">
                                 <div class="card-media-object-container">
                                     <div class="card-media-object" style="background-image: url(img/<?= $events->event_picture ?>);"></div>
-                                    <ul class="card-media-object-social-list row">
-                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block col-6 rounded-circle bg-warning ml-1 mb-2">
-                                            <a href="mesevenements.php?id=<?= $events->event_id ?>"><i class="far fa-trash-alt pr-5 pt-2 text-dark"></i></a>
+                                    <ul class="card-media-object-social-list d-flex justify-content-between">
+                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block rounded-circle bg-warning ml-1 mb-2">
+                                            <a href="mesevenements.php?id=<?= $events->event_id ?>"><i class="mx-auto far fa-trash-alt pt-2 text-dark"></i></a>
                                         </li>
-                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block col-6 rounded-circle bg-warning ml-1">
-                                            <a href="modifyevent.php?id=<?= $events->event_id ?>"><i class="fas fa-pencil-alt pr-5 pt-2 text-dark"></i></a>
+                                        <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block rounded-circle bg-warning ml-1 mb-2">
+                                            <a href="modifyevent.php?id=<?= $events->event_id ?>"><i class="mx-auto fas fa-pencil-alt pt-2 text-dark"></i></a>
+                                        </li>
+                                        <li class="rounded-circle bg-warning ml-1 mb-2" data-container="body" data-toggle="popover"
+                                            data-trigger="hover" data-placement="top" data-content="<?= $events->event_description ?>">
+                                            <i class="mx-auto fas fa-search-plus text-dark pt-2"></i>
                                         </li>
                                     </ul>
                                 </div>
@@ -56,12 +60,13 @@ include_once('controllers/controllermesevenements.php');
                                 <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $events->eventcategory_name ?>">
                                     <div class="card-media-body-top">
                                         <span class="subtle"> <?= $events->event_date ?>, <?= $events->event_time ?></span>
-                                        <div class="card-media-body-top-icons u-float-right">
+                                        <div class="card-media-body-top-icons u-float-right d-flex justify-content-between ">
                                             <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Supprimer</a>
                                             <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
                                         </div>
                                         <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $events->event_title; ?></span>
-                                        <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($events->event_title, 0, 20); ?>...</span>
+                                        <a class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"  data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-title="<?= ($events->event_title); ?>"><?= substr($events->event_title, 0, 15); ?>...</a>
+
 
                                     </div>
                                     <div class="card-media-body-supporting-bottom">
