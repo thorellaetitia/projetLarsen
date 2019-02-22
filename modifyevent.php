@@ -25,23 +25,32 @@ include_once('controllers/controllermodifyevent.php');
         include_once('navbar.php');
         ?>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center mt-2">  
-                <div class="btn btn-outline-warning">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-left mt-2">  
+                <div class="btn btn-outline-warning btn-sm">
                     <a href="index.php">Fermer</a>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center mt-2"> 
-                <div class="btn btn-outline-warning">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right mt-2"> 
+                <div class="btn btn-outline-warning btn-sm">
                     <a href="mesevenements.php">Retour mes événements</a>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center mt-2 border" id="steptomodify1">  
+                <h1><i class="far fa-star fa-2x mt-2"></i>Remplissez les informations liées à votre événement</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center mt-2 border" id="steptomodify2"> 
+                <h1><i class="far fa-star fa-2x"></i><i class="far fa-star fa-2x mt-2"></i>N'oubliez pas la photo, qui permettra d'illustrer votre événement</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center mt-2 border" id="steptomodify3"> 
+                <h1><i class="far fa-star fa-2x"></i><i class="far fa-star fa-2x"></i><i class="far fa-star fa-2x mt-2"></i>Valider la modification</h1>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center modifyformevent">                        
-                    <h1><i class="mx-auto fas fa-pencil-alt fa-4x "></i>Vous souhaitez modifier un événement ?</h1>
-                    <h1>Remplissez ce formulaire et</h1>
-                    <h1>votre événement sera modifié et mis en ligne</h1>
+                    <h1><i class="mx-auto fas fa-pencil-alt fa-4x "></i>Modifier un événement</h1>
                 </div>
             </div>
 
@@ -49,9 +58,9 @@ include_once('controllers/controllermodifyevent.php');
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12">
                         <form id="formmodifyevent" class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate="">
-                            <div class="checkbox">
+                            <div class="form-inline">
                                 <label class="checkbox" for="event_free">Plans gratuits</label>
-                                <input class="checkbox mx-auto" name="event_free" type="checkbox" value="" id="event_free" required>
+                                <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free" required>
                             </div>
                             <div class="form-group">
                                 <label for="eventcategory_id"> Catégorie événement</label>
@@ -117,7 +126,7 @@ include_once('controllers/controllermodifyevent.php');
                                 <input type="file" class="form-control-file text-center mb-2" <br>
                                 <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="event_description">Description :</label>
                                 <textarea type="text" class="form-control" name="event_description" id="description" rows="4" placeholder="description de l'événement" value="<?php (isset($event_description)) ? $event_description : ''; ?>" required ></textarea><br>

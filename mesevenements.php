@@ -27,11 +27,21 @@ include_once('controllers/controllermesevenements.php');
         <?php
         include_once ('navbar.php');
         ?>
-        <div class="closebutton ml-3">
-            <a href="index.php">Fermer</a>
-        </div>
         <div class="row">
-            <h2 class="myevents mx-auto">Mes événements</h2>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-left mt-2">  
+                <div class="btn btn-outline-warning btn-sm">
+                    <a href="index.php">Fermer</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right mt-2"> 
+                <div class="btn btn-outline-warning btn-sm">
+                    <a href="moncompte.php">Retour mon compte</a>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <h1 class="myevents mx-auto">Mes événements</h1>
         </div>
         <div class="container-fluid">
             <div class="row">

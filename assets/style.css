@@ -103,6 +103,24 @@ form {
     font-size: 15px;
 }
 
+#steptomodify1 {
+    background-color: #1a1a1a;
+
+}
+
+#steptomodify2 {
+    background-color: #1a1a1a;
+}
+
+#steptomodify3 {
+     background-color: #1a1a1a;
+}
+
+
+.border{
+    border: 2px solid orange;
+    border-radius: 30px;
+}
 
 h1 {
     color :#ffffff;
@@ -130,13 +148,10 @@ body {
     margin-right: 10px;
 }
 
-
 .navbar {
     position: static;
 
 }
-
-
 
 .container-fluid citation {
     position: fixed;
@@ -148,17 +163,6 @@ body {
 
 .btn-secondary {
     background-color: #f2af58;
-}
-
-.form-check-input {
-
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px; 
 }
 
 input{
