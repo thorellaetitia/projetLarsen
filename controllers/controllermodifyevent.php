@@ -7,6 +7,7 @@ require_once 'models/modelUsers.php';
 //on instancie un nouvel objet event
 $modifyEventObj = new event();
 
+
 ///////////////// On édite les regex//////////////////////////////////////
 $regexEventCategoryId = '/^[0-9]$/';
 //autorise les lettres alplhabet majuscules, minuscules,accents, . espace et chiffres
@@ -47,13 +48,13 @@ if (isset($_POST['modifyEventBtn'])) {
         }
     }
 
-    if (isset($_POST['eventsubcategory_id'])) {
-        $eventsubcategory_id = htmlspecialchars($_POST['eventsubcategory_id']);
-        if (!preg_match($regexEventCategoryId, $eventsubcategory_id)) {
-            $errorsArrayevent['eventsubcategory_id'] = 'Merci de saisir une sous-catégorie d\'événements';
+    if (isset($_POST['eventsub_category_id'])) {
+        $eventsub_category_id = htmlspecialchars($_POST['eventsub_category_id']);
+        if (!preg_match($regexEventCategoryId, $eventsub_category_id)) {
+            $errorsArrayevent['eventsub_category_id'] = 'Merci de saisir une sous-catégorie d\'événements';
         }
-        if (empty($eventsubcategory_id)) {
-            $errorsArrayevent['eventsubcategory_id'] = 'Merci de faire votre choix';
+        if (empty($eventsub_category_id)) {
+            $errorsArrayevent['eventsub_category_id'] = 'Merci de faire votre choix';
         }
     }
 
@@ -110,7 +111,7 @@ if (isset($_POST['modifyEventBtn'])) {
 
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
         // Prise en compte de certains formats de fichiers
-        //création d'un tableau et si dans ce tableau on compare le fichier à uploadé et les formats autorisés
+        //création d'un tableau et si dans ce tableau on compare le fichier a uploadé et les formats autorisés
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
@@ -154,28 +155,26 @@ if (isset($_POST['modifyEventBtn'])) {
         } else {
             echo "désolé, il y a une erreur de chargement de fichier.";
         }
-       
+
         $modifyEventObj->users_id = $_SESSION['users_id'];
         $modifyEventObj->event_title = $event_title;
         $modifyEventObj->event_date = $event_date;
         $modifyEventObj->event_time = $event_time;
         $modifyEventObj->event_id = $_GET['id'];
-        $modifyEventObj->event_free = $event_free;
         $modifyEventObj->event_picture = $_FILES["event_picture"]["name"];
         $modifyEventObj->event_description = $event_description;
         $modifyEventObj->eventcategory_id = $eventcategory_id;
+        $modifyEventObj->eventsub_category_id = $eventsub_category_id;
         $modifyEventObj->showplaces_id = $showplaces_id;
-        
+
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
         $modifyEventObj->modifyEvent();
 
-        
+
         //si tout est ok renvoi vers moncompte.php 
-        
+
         header('Location: moncompte.php');
         exit();
-       
-    
     }
 }
 

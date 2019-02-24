@@ -48,6 +48,7 @@ include_once('controllers/controllermodifyevent.php');
                 <h1><i class="mx-auto fas fa-pencil-alt fa-4x "></i>Modifier un événement</h1>
             </div>
             <div class="col-lg-6 col-md-10 col-sm-10 mx-auto">
+                <!--                //////debut du form/////////-->
                 <form id="formmodifyevent" class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate="">
                     <div class="form-inline">
                         <label class="checkbox" for="event_free">Plans gratuits</label>
@@ -56,16 +57,16 @@ include_once('controllers/controllermodifyevent.php');
                     <div class="form-group">
                         <label for="eventcategory_id"> Catégorie événement</label>
                         <select  class="form-control form-control-lg"  name="eventcategory_id"  id="exampleFormControlSelect1">
-                            <option>Veuillez renseigner un champ</option>
+                            <option value="<?= (isset($eventcategory_id)) ? $eventcategory_id : ''; ?>">Veuillez renseigner un champ</option>
                             <option value="1">Concert</option>
                             <option value="2">Spectacle</option>
                             <option value="3">Expos</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="eventsubcategory_id"> Sous-catégorie événement</label>
-                        <select class="form-control form-control-lg" name="eventsubcategory_id" id="exampleFormControlSelect1">
-                            <option>Veuillez renseigner un champ</option>
+                        <label for="eventsub_category_id"> Sous-catégorie événement</label>
+                        <select class="form-control form-control-lg" name="eventsub_category_id" id="exampleFormControlSelect1">
+                            <option value="<?= (isset($eventsub_category_id)) ? $eventsub_category_id : ''; ?>">Veuillez renseigner un champ</option>
                             <option value="1">Concert</option>
                             <option value="2">Danse</option>
                             <option value="3">Cirque</option>
@@ -94,8 +95,8 @@ include_once('controllers/controllermodifyevent.php');
                     </div>
                     <div class="form-group">
                         <label for="showplaces_id">Salles de spectacle :</label>
-                        <select class="form-control form-control-lg" name="showplaces_id" value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>" required">
-                                <option>Veuillez renseigner un champ</option> 
+                        <select class="form-control form-control-lg" name="showplaces_id" value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>" required>
+                                <option value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>">Veuillez renseigner un champ</option> 
                             <option value="1">Le 106</option>
                             <option value="2">Le VOLCAN</option>
                             <option value="3">Théâtre Juliobona</option>
@@ -106,7 +107,7 @@ include_once('controllers/controllermodifyevent.php');
                     <div class="form-group">
                         <label for="showplaces_postalcode"> Code postal :</label>
                         <select class="form-control form-control-lg" name="showplaces_postalcode" value="<?php (isset($showplaces_postalcode)) ? $showplaces_postalcode : ''; ?>" tabindex="8" required>
-                            <option disabled selected>Veuillez renseigner un champ</option> 
+                            <option value="<?php (isset($showplaces_postalcode)) ? $showplaces_postalcode : ''; ?>">Veuillez renseigner un champ</option> 
                             <option value="1">76000-Rouen</option>
                             <option value="2">76600-Le Havre</option>
                             <option value="3">76170-Lillebonne</option>
@@ -114,7 +115,7 @@ include_once('controllers/controllermodifyevent.php');
                     </div>
                     <div class="form-control-file">
                         <label  for="event_picture">Photo </label> 
-                        <input type="file" class="form-control-file text-center mb-2" <br>
+                        <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture"><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
 

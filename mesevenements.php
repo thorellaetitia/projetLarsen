@@ -41,6 +41,7 @@ include_once('controllers/controllermesevenements.php');
             </div>
             <div class="text-center">                        
                 <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
+                 <?php $messagesucessevent ?>
             </div>
             <div class="row">
                 <?php

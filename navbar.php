@@ -38,8 +38,8 @@
             </li>               
         </ul>
     </div>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="recherche à proximité">
-        <button class="btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit"><i class="fas fa-search fa-2x"></i></button>
+    <form class="form-inline">
+        <input class="form-control mr-5" type="text" placeholder="recherche à proximité">
+        <button class="btn btn-outline-warning btn-sm my-2 my-sm-0 mr-5" type="submit"><i class="fas fa-search fa-2x"></i></button>
     </form>
 </nav>

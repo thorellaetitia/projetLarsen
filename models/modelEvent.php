@@ -13,7 +13,7 @@ class event extends database {
     public $event_description;
     public $users_id;
     public $eventcategory_id;
-    public $event_sub_category;
+    public $event_sub_category_id;
     public $event_free;
     public $showplaces_id;
 
@@ -94,7 +94,7 @@ class event extends database {
                 . '`eventcategory_id` = :eventcategory_id,'
                 . '`eventsub_category_id` = :eventsub_category_id,'
                 . '`showplaces_id` = :showplaces_id '
-                . 'WHERE `event_id` = :event_id';
+                . 'WHERE `event_id` = :event_id'; 
 
         $resultQueryModifyEvent = $this->database->prepare($query);
         $resultQueryModifyEvent->bindValue(':event_title', $this->event_title, PDO::PARAM_STR);

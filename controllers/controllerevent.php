@@ -33,6 +33,8 @@ $errorsArrayevent = [];
 
 $modalErrorevent = false;
 
+$messagesucessevent = "Votre événement a été créé avec succès";
+
 if (isset($_SESSION['userlogin'])) {
     $profilEventObj->users_id = $_SESSION['users_id'];
 }
@@ -179,11 +181,13 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->CreateEvent();
 
         $modalErrorevent = true;
-        //si tout est ok renvoi vers moncompte.php 
+        //si tout est ok renvoi vers mesevenements.php 
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil
         header('Location: mesevenements.php');
+        $messagesucessevent;
         exit();
+       
     } else {
         $modalStayOpenIfErrors = true;
     }

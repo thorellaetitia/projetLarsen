@@ -2,8 +2,8 @@
 include_once('controllers/controllerevent.php');
 ?>
 
-<div class="modal fade <?= isset($modalStayOpenIfErrors) ? 'modalErrorevent' : '' ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
-    <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg <?= isset($modalStayOpenIfErrors) ? 'modalErrorevent' : '' ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalEvent">Déjà inscrit ? Vous êtes ici pour annoncer un événement</h5>
@@ -13,19 +13,24 @@ include_once('controllers/controllerevent.php');
             </div>
             <div class="modal-body">
                 <!--form-->
-                <form method="post" action="" enctype="multipart/form-data" novalidate>
-
+                <form class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
+                    <div class="form-inline">
+                        <label class="checkbox" for="event_free">Plans gratuits</label>
+                        <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free" required>
+                    </div>
                     <div class="form-group">
-                        Catégorie événement <select name="eventcategory_id">
-                            <option>Veuillez renseigner un champ</option> 
+                        <label for="eventcategory_id"> Catégorie événement</label>
+                        <select  class="form-control form-control-lg"  name="eventcategory_id"  id="exampleFormControlSelect1" >
+                            <option selected="selected" value="<?= (isset($eventcategory_id)) ? $eventcategory_id : ''; ?>">Veuillez renseigner un champ</option>
                             <option value="1">Concert</option>
                             <option value="2">Spectacle</option>
                             <option value="3">Expos</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        Sous-catégorie événement <select name="eventsub_category_id">
-                            <option>Veuillez renseigner un champ</option>
+                        <label for="eventsub_category_id"> Sous-catégorie événement</label>
+                        <select class="form-control form-control-lg" name="eventsub_category_id" id="exampleFormControlSelect1" >
+                            <option value="<?= (isset($eventsub_category_id)) ? $eventsub_category_id : ''; ?>">Veuillez renseigner un champ</option>
                             <option value="1">Concert</option>
                             <option value="2">Danse</option>
                             <option value="3">Cirque</option>
@@ -37,66 +42,60 @@ include_once('controllers/controllerevent.php');
                             <option value="9">Atelier</option>
                         </select>
                     </div>
-                     <div class="form-group">
-                    <div class="form-check">
-                        <label class="form-check-label" for="event_free">Plans gratuits</label>
-                        <input class="form-check-input" name="event_free" type="checkbox" value="" id="event_free">
-                    </div>
-                     </div>
                     <div class="form-group">
-                        <label class="mr-" for="event_title">Titre de l'événement</label> 
-                        <textarea type="text" name="event_title" id="title" placeholder="Merci de saisir un titre " rows="1" cols="30" value="<?php (isset($event_title)) ? $event_title : ''; ?>" required></textarea><br>
+                        <label for="event_title">Titre :</label>
+                        <textarea class="form-control" name="event_title" id="title" placeholder="titre de l'événement" rows="2" required></textarea>
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="event_date">Date : </label> 
-                        <input type="date" name="event_date" id="date" placeholder="ex jj/mm/yyyy" value="<?php (isset($event_date)) ? $event_date : ''; ?>"  required /><br>
+                        <input type="date" class="form-control" name="event_date" id="date" placeholder="ex jj/mm/yyyy" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_date']) ? $errorsArrayevent['event_date'] : ''; ?></span>
-                    </div>
+                    </div>                  
                     <div class="form-group">
                         <label for="event_time">Heure : </label> 
-                        <input type="text" name="event_time" id="time" placeholder="  :  " value="<?php (isset($event_time)) ? $event_time : ''; ?>" required /><br>
+                        <input type="text" class="form-control" name="event_time" id="time" placeholder="ex h:m" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <div class="form-group">
-                            Le lieu : <select name="showplaces_id" value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>">
-                                <option>Veuillez renseigner un champ</option> 
-                                <option value="1">Le 106</option>
-                                <option value="2">Le VOLCAN</option>
-                                <option value="3">Théâtre Juliobona</option>
-                                <option value="4">Le Tetris</option>
-                                <option value="5">Le MuMa</option>
-                            </select>
-                        </div>
+                        <label for="showplaces_id">Salles de spectacle :</label>
+                        <select class="form-control form-control-lg" name="showplaces_id" required>
+                                <option value="<?php (isset($showplaces_id)) ? $showplaces_id : ''; ?>">Veuillez renseigner un champ</option> 
+                            <option value="1">Le 106</option>
+                            <option value="2">Le VOLCAN</option>
+                            <option value="3">Théâtre Juliobona</option>
+                            <option value="4">Le Tetris</option>
+                            <option value="5">Le MuMa</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <div class="form-group">
-                            Code postal : <select name="showplaces_postalcode" value="<?php (isset($showplaces_postalcode)) ? $showplaces_postalcode : ''; ?>">
-                                <option disabled selected>Veuillez renseigner un champ</option> 
-                                <option value="1">76000-Rouen</option>
-                                <option value="2">76600-Le Havre</option>
-                                <option value="3">76170-Lillebonne</option>
-                            </select>
-                        </div>
+                        <label for="showplaces_postalcode"> Code postal :</label>
+                        <select class="form-control form-control-lg" name="showplaces_postalcode" required>
+                            <option value="<?php (isset($showplaces_postalcode)) ? $showplaces_postalcode : ''; ?>" >Veuillez renseigner un champ</option> 
+                            <option value="1">76000-Rouen</option>
+                            <option value="2">76600-Le Havre</option>
+                            <option value="3">76170-Lillebonne</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="event_picture">Photo </label> 
-                        <input type="file" accept="image/*" name="event_picture" id="image" placeholder="parcourir" value="<?php (isset($event_picture)) ? $event_picture : ''; ?>" required /><br>
+                    <div class="form-control-file">
+                        <label  for="event_picture">Photo </label> 
+                        <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture" id="image" placeholder="parcourir" /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="event_description">Description de l'événement : </label>
-                        <textarea type="text" name="event_description" id="description" rows="4" cols="50" placeholder="description de l'événement" value="<?php (isset($event_description)) ? $event_description : ''; ?>" required ></textarea><br>
+                        <label for="event_description">Description :</label>
+                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="description de l'événement" required></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <input type="submit" class="btn btn-primary " name="createEventBtn" value="Créer" />
+                        <button type="button" class="btn btn-dark">Fermer</button>
+                        <button type="submit" class="btn btn-warning" name="createEventBtn">Créer</button>
                     </div>
                 </form>
-                <!--fin du form-->
             </div>
+
+            <!--fin du form-->
         </div>
     </div>
-</div><!-- fin modal -->
+</div>
+<!-- fin modal -->
