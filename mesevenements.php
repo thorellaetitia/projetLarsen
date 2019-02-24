@@ -27,23 +27,21 @@ include_once('controllers/controllermesevenements.php');
         <?php
         include_once ('navbar.php');
         ?>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-left mt-2">  
-                <div class="btn btn-outline-warning btn-sm">
+        <div class="container-fluid">
+            <div class="row m-2 justify-content-between mt-2">
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12  btn btn-outline-warning btn-sm ml-1">
                     <a href="index.php">Fermer</a>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right mt-2"> 
-                <div class="btn btn-outline-warning btn-sm">
-                    <a href="moncompte.php">Retour mon compte</a>
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12  btn btn-outline-warning btn-sm mr-1">
+                    <a href="index.php">créer mes événements</a>
+                </div>
+                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 btn btn-outline-warning btn-sm mr-1">
+                     <a href="moncompte.php">retour mon compte</a>
                 </div>
             </div>
-        </div>
-       
-        <div class="row">
-            <h1 class="myevents mx-auto">Mes événements</h1>
-        </div>
-        <div class="container-fluid">
+            <div class="text-center">                        
+                <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
+            </div>
             <div class="row">
                 <?php
                 foreach ($resultAllDataEvent as $events) {
@@ -69,7 +67,7 @@ include_once('controllers/controllermesevenements.php');
                                 <!-- body container -->
                                 <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $events->eventcategory_name ?>">
                                     <div class="card-media-body-top">
-                                        <span class="subtle"> <?= $events->event_date ?>, <?= $events->event_time ?></span>
+                                        <span class="subtle"> <?= $newdate = date ('d/m/Y',strtotime($events->event_date))?> à <?= $newdate2 = date ('H:i',strtotime($events->event_time)) ?></span>
                                         <div class="card-media-body-top-icons u-float-right d-flex justify-content-between ">
                                             <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Supprimer</a>
                                             <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
@@ -80,7 +78,7 @@ include_once('controllers/controllermesevenements.php');
 
                                     </div>
                                     <div class="card-media-body-supporting-bottom">
-                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> <?= $events->showplaces_postalcode ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> / <?= $events->showplaces_postalcode ?></span>
                                         <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $events->eventsub_category_name ?></span>
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">

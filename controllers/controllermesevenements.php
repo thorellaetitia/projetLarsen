@@ -28,6 +28,3 @@ if (isset($_GET['id'])) {
 $deleteEventObj->users_id = $_SESSION['users_id'];
 
 
-
-
-

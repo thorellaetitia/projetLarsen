@@ -82,13 +82,13 @@ include_once('controllers/controllerindex.php');
                                     <!-- body container -->
                                     <div class="card-media-body col-xs-12 col-sm-6 col-md-6 <?= $allEvents->eventcategory_name ?>">
                                         <div class="card-media-body-top">
-                                            <span class="subtle"><?= $allEvents->event_date ?>, <?= $allEvents->event_time ?></span>
-
+                                            <span class="subtle"><?= $newdate=date('d/m/Y',strtotime($allEvents->event_date)) ?> à <?= $newdate2=date('H:i',strtotime($allEvents->event_time)) ?></span>
+ 
                                             <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $allEvents->event_title; ?></span>
                                             <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($allEvents->event_title, 0, 20); ?>...</span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom">
-                                            <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?> <?= $allEvents->showplaces_postalcode ?></span>
+                                            <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?> / <?= $allEvents->showplaces_postalcode ?></span>
                                             <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $allEvents->eventsub_category_name ?></span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">

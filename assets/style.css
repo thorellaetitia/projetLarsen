@@ -91,7 +91,7 @@ form {
 
     /* Uniquement centrer le formulaire sur la page */
     margin: 0 auto;
-    width: 600px;
+/*    width: 600px;*/
     /* Encadré pour voir les limites du formulaire */
     padding: 1em;
     border: 2px solid orange;
@@ -103,19 +103,10 @@ form {
     font-size: 15px;
 }
 
-#steptomodify1 {
-    background-color: #1a1a1a;
+.steptomodify {
+    background-color: wheat;
 
 }
-
-#steptomodify2 {
-    background-color: #1a1a1a;
-}
-
-#steptomodify3 {
-     background-color: #1a1a1a;
-}
-
 
 .border{
     border: 2px solid orange;
