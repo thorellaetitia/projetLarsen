@@ -144,6 +144,7 @@ if (isset($_POST['modifyEventBtn'])) {
     //dans notre fichier image img/ puis on crée les objets en récupérant les variables stockés et enfin 
     //on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
     if (count($errorsArraymodifyevent) == 0) {
+        $_SESSION['modifyEventOK'] = true;
         
         $modifyEventObj->event_id = $_GET['id'];
         $modifyEventObj->event_title = $event_title;
@@ -160,6 +161,9 @@ if (isset($_POST['modifyEventBtn'])) {
         }
         else {
             $modifyEventObj->modifyEvent();
+//            $modifyEventObj->event_id = $_GET['id'];
+//            $resultQueryDeletePicture = $modifyEventObj->showEventByIdEvent();
+//            unlink('././img/' . $resultQueryDeletePicture->event_picture);
             if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
                 echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
             } else {

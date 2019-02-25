@@ -43,13 +43,28 @@ if (isset($_SESSION['createEventOk'])) {
 if (isset($_SESSION['deleteEventok'])) {
     ?>
     <div class="alert alert-danger mb-0 alert-dismissible fade show text-center" role = "alert">
-    Votre évenement a bien été supprimé !
-    <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
-    <span aria-hidden = "true">&times;
-    </span>
-    </button>
+        Votre évenement a bien été supprimé !
+        <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
+            <span aria-hidden = "true">&times;
+            </span>
+        </button>
 
     </div> 
+    <?php
+} unset($_SESSION['deleteEventok']);
+?>
+
 <?php
-    } unset($_SESSION['deleteEventok']);
+if (isset($_SESSION['modifyEventOK'])) {
+    ?>
+    <div class="alert alert-success mb-0 alert-dismissible fade show text-center" role = "alert">
+        Votre évenement a bien été modifié !
+        <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
+            <span aria-hidden = "true">&times;
+            </span>
+        </button>
+
+    </div> 
+    <?php
+} unset($_SESSION['modifyEventOK']);
 ?>

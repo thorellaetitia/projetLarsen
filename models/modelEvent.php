@@ -51,11 +51,12 @@ class event extends database {
         return $eventList->execute();
     }
 
+    //on crée une méthode pour afficher les événements par l'id de l'événement
     public function displayEventById() {
         //je fais ma requête dans une variable $query
         $query = 'SELECT * FROM `poqs_event` WHERE `users_id`=:users_id';
-        //le résultat de ma requête je le stocke dans $showProfileList
-        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        //le résultat de ma requête je le stocke dans $resultprofileevent
+        //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event) 
         $resultProfileEvent = $this->database->prepare($query);
         //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
         //Je lie le marqueur nominatif id à l'attribut id
@@ -113,7 +114,10 @@ class event extends database {
         //on exécute la requête
         $resultQueryModifyEvent->execute();
     }
-    
+
+    // on crée une méthode pour modifier les événements sans modifier la photo de l'événement
+    //car je ne veux pas obliger le user à modifier sa photo// la photo étant dans la base de 
+    //données //
     public function modifyEventWithoutPicture() {
         $query = 'UPDATE `poqs_event` SET `event_title` = :event_title, '
                 . '`event_date` = :event_date, '
@@ -150,16 +154,18 @@ class event extends database {
         $this->database->commit();
         //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
-    //on crée une méthode pour récupérer le nom de l'image avant de la supprimer
+
+    //on crée une méthode pour récupérer le nom de l'image avant de la supprimer//
     public function getImageNameBeforeDelete() {
         $query = 'SELECT `event_picture` FROM `poqs_event` WHERE `event_id` = :event_id';
-        
+
         $resultQuery = $this->database->prepare($query);
         $resultQuery->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
         $resultQuery->execute();
         return $resultQuery->fetch(PDO::FETCH_OBJ);
     }
 
+    //on crée une méthode pour afficher tous les événements//
     public function showAllEvents() {
 
         $query = 'SELECT *'
@@ -177,6 +183,7 @@ class event extends database {
         return $resultArrayAllEvents;
     }
 
+    // on crée une méthode por afficher les événements par catégorie et sous catégorie// 
     public function showByCategory($eventcategory_id, $eventsub_category_id) {
 
         $query = 'SELECT * FROM `poqs_event`'
@@ -198,18 +205,23 @@ class event extends database {
         return $arrayShowCategory;
     }
 
+//on crée une méthode pour afficher les événements via l'id de l'événement//
+    //le but : avant de modifier l'événement on pourra voir les informations enregistrés par le user// 
     public function showEventByIdEvent() {
         $query = 'SELECT * FROM `poqs_event` INNER JOIN `poqs_showplaces` ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id` WHERE `event_id` = :event_id ';
-        
+
         $resultQueryShowEvent = $this->database->prepare($query);
         $resultQueryShowEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
         $resultQueryShowEvent->execute();
         return $resultQueryShowEvent->fetch(PDO::FETCH_OBJ);
     }
-    
+//on crée une méthode pour récupérer tous les lieux de spectacle//
+    //afin de créer un select automatique / liste déroulante dans les formulaires création
+//d'événement et modifier un événement//
     public function getAllPlaces() {
         $query = 'SELECT * FROM `poqs_showplaces`';
         $resultAllPlaces = $this->database->query($query);
         return $resultAllPlaces->fetchAll(PDO::FETCH_OBJ);
     }
+
 }

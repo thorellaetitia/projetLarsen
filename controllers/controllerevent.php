@@ -4,13 +4,15 @@ require_once 'models/modelDatabase.php';
 require_once 'models/modelEvent.php';
 require_once 'models/modelUsers.php';
 
-//on instancie un nouvel objet event
+//on instancie un nouvel objet 
 $eventObj = new event();
 $profilEventObj = new event();
 //j'instancie un nouvel objet
 
+//j'utilise l'objet profileventobj pour utiliser la méthode getAllPlaces
+//qui me permet d'afficher une liste déroulante avec les lieux de spectacle dans mon formulaire//
 $allPlaces = $profilEventObj->getAllPlaces();
-//
+
 ///////////////// On édite les regex//////////////////////////////////////
 $regexEventCategoryId = '/^[0-9]$/';
 //autorise les lettres alplhabet majuscules, minuscules,accents, . espace et chiffres
@@ -42,6 +44,8 @@ if (isset($_SESSION['userlogin'])) {
     $profilEventObj->users_id = $_SESSION['users_id'];
 }
 
+//j'utilise l'objet profileventobj pour utiliser la méthode Displayeventbyid
+//afin d'afficher les événements via l'id de l'événement
 $arrayProfileEvent = $profilEventObj->displayEventById();
 
 //debut de la condition au click sur le bouton créer l'événement
@@ -149,14 +153,15 @@ if (isset($_POST['createEventBtn'])) {
             $errorsArrayevent['event_description'] = 'Merci de saisir une courte description';
         }
     }
-
+//si te tableau d'erreurs est vide alors
     if (count($errorsArrayevent) == 0) {
+        //on transfert la photo de l'événement dans notre dossier img
         if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
             echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
         } else {
             echo "désolé, il y a une erreur de chargement de fichier.";
         }
-
+        //on hydrate les attributs de l'objet//
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
         $eventObj->event_date = $event_date;
@@ -170,15 +175,20 @@ if (isset($_POST['createEventBtn'])) {
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
         $eventObj->CreateEvent();
+        //je crée une variable de session createEventok et je l'initialise avec = true
+        //l'objectif de cette variable est d'afficher un message une fois l'événement créé
         $_SESSION['createEventOk'] = true;
 
-        $modalErrorevent = true;
+        $modalErrorevent = true;//à garder ou pas ? doublon
         //si tout est ok renvoi vers mesevenements.php 
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil
         header('Location: mesevenements.php');
+        //toujours mettre un exit après un header, le script est arrêté, une fois l'événement
+        // créé il y a un renvoi vers la page mesevenements.php
         exit();
     } else {
+        //création d'une variable pour que le modal reste ouvert s'il y a des erreurs
         $modalStayOpenIfErrors = true;
     }
 }
