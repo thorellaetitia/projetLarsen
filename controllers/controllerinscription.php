@@ -25,7 +25,8 @@ $modalErrorinscription = false;
 
 //on realise des verifications de notre formulaire
 
-if ((isset($_POST['createUserBtn']))) { 
+if ((isset($_POST['createUserBtn']))) {
+    
 if (isset($_POST['usertypes_id'])) {
     $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
     if (!preg_match($regexLetter, $usertypes_id)) {
@@ -117,13 +118,14 @@ if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
     }
 }
 
-
+//création d'une condition si le tableau d'erreur contient au moins une erreur alors
+// le modal s'ouvre à nouveau
 if(count($errorsArrayinscription) !== 0){
     $modalErrorinscription = true;
 }
-
-
-
+//si le tableau d'erreurs est = à 0 et seulement si, alors l'objet ciblé sera créé et les variables
+//seront crées, la méthose create Users sera appliquée et les users seront récupérés dans la base
+// de données
 
 if (count($errorsArrayinscription) == 0) {
 

@@ -1,3 +1,7 @@
+<?php
+    include_once ('include/createanevent.php');
+?>
+
 <div id="headernavbar">
     <div class="container-fluid header">
         <div class="row" id="header">

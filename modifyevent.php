@@ -33,7 +33,7 @@ include_once('controllers/controllermodifyevent.php');
                     <a href="mesevenements.php">Retour mes événements</a>
                 </div>
             </div>
-            <div class="row m-2 d-flex justify-content-between"">
+            <div class="row m-2 d-flex justify-content-between">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify">  
                     <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Remplissez les informations liées à votre événement</p>
                 </div>

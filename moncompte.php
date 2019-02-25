@@ -23,8 +23,6 @@ include_once('controllers/controllermoncompte.php');
     <body>
         <?php
         include_once ('headernavbar.php');
-        ?>
-        <?php
         include_once ('navbar.php');
         ?>
         <div class="container-fluid">
@@ -60,8 +58,7 @@ include_once('controllers/controllermoncompte.php');
 
 
 
-            <!--<a href = "index.php" class = "btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>
-            > 
+<!--        <a href = "index.php" class = "btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>-->
             
     
     <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>

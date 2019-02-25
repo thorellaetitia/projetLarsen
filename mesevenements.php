@@ -23,8 +23,6 @@ include_once('controllers/controllermesevenements.php');
     <body>
         <?php
         include_once ('headernavbar.php');
-        ?>
-        <?php
         include_once ('navbar.php');
         ?>
         <div class="container-fluid">
@@ -35,13 +33,16 @@ include_once('controllers/controllermesevenements.php');
                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12  btn btn-outline-warning btn-sm mr-1">
                     <a href="index.php">créer mes événements</a>
                 </div>
-                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 btn btn-outline-warning btn-sm mr-1">
-                     <a href="moncompte.php">retour mon compte</a>
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 btn btn-outline-warning btn-sm mr-1">
+                    <a href="moncompte.php">retour mon compte</a>
                 </div>
             </div>
             <div class="text-center">                        
                 <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
-                 <?php $messagesucessevent ?>
+
+                <div class="alert alert-warning  <?= isset($showsuccessalert) ? $showsuccessalert : '' ?>" role="alert">
+                </div> 
+
             </div>
             <div class="row">
                 <?php
@@ -68,7 +69,7 @@ include_once('controllers/controllermesevenements.php');
                                 <!-- body container -->
                                 <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $events->eventcategory_name ?>">
                                     <div class="card-media-body-top">
-                                        <span class="subtle"> <?= $newdate = date ('d/m/Y',strtotime($events->event_date))?> à <?= $newdate2 = date ('H:i',strtotime($events->event_time)) ?></span>
+                                        <span class="subtle"> <?= $newdate = date('d/m/Y', strtotime($events->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($events->event_time)) ?></span>
                                         <div class="card-media-body-top-icons u-float-right d-flex justify-content-between ">
                                             <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Supprimer</a>
                                             <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>

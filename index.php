@@ -29,7 +29,6 @@ include_once('controllers/controllerindex.php');
         include_once ('navbar.php');
         include_once('include/seconnecter.php');
         include_once('include/inscription.php');
-        include_once ('include/createanevent.php');
         ?>
         <!--caroussel  -->
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

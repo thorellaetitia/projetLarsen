@@ -34,7 +34,7 @@ $errorsArraymodifyevent = [];
 
 
 //debut de la condition au click sur le bouton créer l'événement
-//et début des vérifs de chaque input du formulaire
+//et début des vérifications de chaque input du formulaire
 ////////////////////////////////////////////////////////////////////////////////////////////
 if (isset($_POST['modifyEventBtn'])) {
 
@@ -117,7 +117,7 @@ if (isset($_POST['modifyEventBtn'])) {
         }
     }
 
-/////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
+/////////////////////fin verification des fichiers UPLOAD////////////////////////////////////
 
     if (isset($_POST['showplaces_postalcode'])) {
         $showplaces_postalcode = htmlspecialchars($_POST['showplaces_postalcode']);
@@ -148,7 +148,11 @@ if (isset($_POST['modifyEventBtn'])) {
             $errorsArrayevent['event_description'] = 'Merci de saisir une courte description';
         }
     }
-
+////////////////////fin des vérifications de chaque input///////////////
+    
+    //si le tableau d'erreur est strictement égal à 0 et seulement si alors on transfert l'image chargé
+    //dans notre fichier image img/ puis on crée les objets en récupérant les variables stockés et enfin 
+    //on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
     if (count($errorsArraymodifyevent) == 0) {
         if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
             echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";

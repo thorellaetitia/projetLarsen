@@ -1,7 +1,7 @@
 <?php
 
 class users extends database { //on crée une class clients dont le parent est database donc clients héritent des attributs et methodes de database
-////on définit les attributs de la table clients car ils n'existent pas dans database
+////on définit les attributs de la table users car ils n'existent pas dans database
 
     public $users_id;
     public $users_name;
@@ -13,7 +13,7 @@ class users extends database { //on crée une class clients dont le parent est d
     public $users_admin;
     public $usertypes_id;
 
-//      création fonction createusers pour ajouter des users dans la bdd
+//      création fonction createusers pour ajouter des users dans la base de données
 //    on crée une fonction qui va nous permettre d'inscrire les internautes
     public function CreateUsers() {
         $query = 'INSERT INTO `poqs_users` SET `users_name` = :name,'
@@ -29,7 +29,7 @@ class users extends database { //on crée une class clients dont le parent est d
         //besoin de bindvalue pour faire le lien entre les éléments que l'on va rentrer dans la base et 
         //les éléments du formulaire.
         $usersList = $this->database->prepare($query);
-//        //les bindvalue sécurisent l'injection d'éléments dans la base en spécifiant les valeurs sring entiers...
+//        //les bindvalue sécurisent l'injection d'éléments dans la base en spécifiant les valeurs ...
         $usersList->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
         $usersList->bindValue(':name', $this->name, PDO::PARAM_STR);
         $usersList->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -42,13 +42,13 @@ class users extends database { //on crée une class clients dont le parent est d
         return $usersList->execute();
     }
 
-    //création fonction checkUsersByMail pour vérifier si l'adresse mail existe bien ds la bdd
-    //je crée ma fonction checkUsersByMail
+    //création fonction checkUsersByLogin pour vérifier si le login existe bien dans la base de données
+    //je crée ma fonction checkUsersByLogin
     public function checkUserBylogin($users_login) {
         //je stock ma requête dans une variable $query
         $query = "SELECT * FROM `poqs_users` WHERE `users_login` LIKE :users_login";
-        //le résultat de ma requête je le stocke dans $resultQueryAllPatients
-        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        //le résultat de ma requête je la stocke dans $resultQueryCheckUserByLogin
+        //$this = correspond aux attributs de ma classe users 
         $resultQuerycheckUserBylogin = $this->database->prepare($query);
         $resultQuerycheckUserBylogin->bindValue("users_login", $users_login, PDO::PARAM_STR);
         //avec le this il faut cibler l'élément de ma classe
@@ -57,6 +57,7 @@ class users extends database { //on crée une class clients dont le parent est d
         $dataUser = $resultQuerycheckUserBylogin->fetch(PDO::FETCH_OBJ);
         return $dataUser;
         //le résultat = on lui demande d'aller chercher les éléments users pour en faire un tableau 
+        //le parcourir et afficher ce que l'on souhaite
         //faire un fetch en utilisant l'objet PDO.
     }
 

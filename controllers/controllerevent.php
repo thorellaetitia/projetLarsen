@@ -30,10 +30,10 @@ $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/';
 ////////////////////////fin des regex///////////////////////////////////////////
 //on déclare un tableau d'erreurs vide
 $errorsArrayevent = [];
-
+//création de cette variable pour la fermeture du modal si toutes les informations rentrés par
+//le user sont correctes
 $modalErrorevent = false;
 
-$messagesucessevent = "Votre événement a été créé avec succès";
 
 if (isset($_SESSION['userlogin'])) {
     $profilEventObj->users_id = $_SESSION['users_id'];
@@ -42,7 +42,7 @@ if (isset($_SESSION['userlogin'])) {
 $arrayProfileEvent = $profilEventObj->displayEventById();
 
 //debut de la condition au click sur le bouton créer l'événement
-//et début des vérifs de chaque input du formulaire
+//et début des vérifications de chaque input du formulaire
 ////////////////////////////////////////////////////////////////////////////////////////////
 if (isset($_POST['createEventBtn'])) {
 
@@ -166,8 +166,6 @@ if (isset($_POST['createEventBtn'])) {
 
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
-//        $originalDate = "Y-m-d";
-//        $newdate = date("d-m-Y", strtotime($originalDate));
         $eventObj->event_date = $event_date;
         $eventObj->event_time = $event_time;
         $eventObj->event_free = $event_free;
@@ -185,9 +183,12 @@ if (isset($_POST['createEventBtn'])) {
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil
         header('Location: mesevenements.php');
-        $messagesucessevent;
+        //$showsuccessalert = false;
+//
+//if ($eventObj->CreateEvent() == true) {
+//    $showsuccessalert = 'votre événement a été créé avec succès !';
+//}
         exit();
-       
     } else {
         $modalStayOpenIfErrors = true;
     }
