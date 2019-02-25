@@ -13,7 +13,7 @@ class event extends database {
     public $event_description;
     public $users_id;
     public $eventcategory_id;
-    public $event_sub_category_id;
+    public $eventsub_category_id;
     public $event_free;
     public $showplaces_id;
 
@@ -89,14 +89,13 @@ class event extends database {
 
     //on crée une fonction pour modifier les événements
     public function modifyEvent() {
-        $query = 'UPDATE `poqs_event` SET `event_title` = :event_title,'
-                . ' `event_date` = :event_date,'
-                . '`event_time` = :event_time,'
-                . '`event_picture` = :event_picture,'
+        $query = 'UPDATE `poqs_event` SET `event_title` = :event_title, '
+                . ' `event_date` = :event_date, '
+                . '`event_time` = :event_time, '
+                . '`event_picture` = :event_picture, '
                 . '`event_description` = :event_description,'
-                . '`users_id` = :users_id,'
-                . '`eventcategory_id` = :eventcategory_id,'
-                . '`eventsub_category_id` = :eventsub_category_id,'
+                . '`eventcategory_id` = :eventcategory_id, '
+                . '`eventsub_category_id` = :eventsub_category_id, '
                 . '`showplaces_id` = :showplaces_id '
                 . 'WHERE `event_id` = :event_id';
         //on prépare la requête
@@ -107,7 +106,30 @@ class event extends database {
         $resultQueryModifyEvent->bindValue(':event_time', $this->event_time, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_picture', $this->event_picture, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
-        $resultQueryModifyEvent->bindvalue(':users_id', $this->users_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
+        $resultQueryModifyEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
+        //on exécute la requête
+        $resultQueryModifyEvent->execute();
+    }
+    
+    public function modifyEventWithoutPicture() {
+        $query = 'UPDATE `poqs_event` SET `event_title` = :event_title, '
+                . '`event_date` = :event_date, '
+                . '`event_time` = :event_time, '
+                . '`event_description` = :event_description,'
+                . '`eventcategory_id` = :eventcategory_id, '
+                . '`eventsub_category_id` = :eventsub_category_id, '
+                . '`showplaces_id` = :showplaces_id '
+                . 'WHERE `event_id` = :event_id';
+        //on prépare la requête
+        $resultQueryModifyEvent = $this->database->prepare($query);
+        //on fait le lien avec les bindvalue
+        $resultQueryModifyEvent->bindValue(':event_title', $this->event_title, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_date', $this->event_date, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_time', $this->event_time, PDO::PARAM_STR);
+        $resultQueryModifyEvent->bindValue(':event_description', $this->event_description, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':eventcategory_id', $this->eventcategory_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
@@ -128,7 +150,7 @@ class event extends database {
         $this->database->commit();
         //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
-    
+    //on crée une méthode pour récupérer le nom de l'image avant de la supprimer
     public function getImageNameBeforeDelete() {
         $query = 'SELECT `event_picture` FROM `poqs_event` WHERE `event_id` = :event_id';
         
@@ -176,4 +198,18 @@ class event extends database {
         return $arrayShowCategory;
     }
 
+    public function showEventByIdEvent() {
+        $query = 'SELECT * FROM `poqs_event` INNER JOIN `poqs_showplaces` ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id` WHERE `event_id` = :event_id ';
+        
+        $resultQueryShowEvent = $this->database->prepare($query);
+        $resultQueryShowEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
+        $resultQueryShowEvent->execute();
+        return $resultQueryShowEvent->fetch(PDO::FETCH_OBJ);
+    }
+    
+    public function getAllPlaces() {
+        $query = 'SELECT * FROM `poqs_showplaces`';
+        $resultAllPlaces = $this->database->query($query);
+        return $resultAllPlaces->fetchAll(PDO::FETCH_OBJ);
+    }
 }

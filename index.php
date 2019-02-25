@@ -87,7 +87,7 @@ include_once('controllers/controllerindex.php');
                                             <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($allEvents->event_title, 0, 20); ?>...</span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom">
-                                            <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?> / <?= $allEvents->showplaces_postalcode ?></span>
+                                            <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?></span>
                                             <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $allEvents->eventsub_category_name ?></span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">

@@ -20,6 +20,8 @@ if (isset($_GET['id'])) {
     unlink('img/' . $fileNameToDelete->event_picture);
     //on lui demande de supprimer l'événement
     $deleteEventObj->deleteEvent();
+    
+    $_SESSION['deleteEventok'] = true;
 }
 
 //on va utiliser l'objet $profilEventObj pour utiliser la fonction getAllDataEventCategory

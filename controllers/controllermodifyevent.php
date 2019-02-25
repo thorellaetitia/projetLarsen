@@ -7,6 +7,7 @@ require_once 'models/modelUsers.php';
 //on instancie un nouvel objet event
 $modifyEventObj = new event();
 
+$allPlaces = $modifyEventObj->getAllPlaces();
 
 ///////////////// On édite les regex//////////////////////////////////////
 $regexEventCategoryId = '/^[0-9]$/';
@@ -119,16 +120,6 @@ if (isset($_POST['modifyEventBtn'])) {
 
 /////////////////////fin verification des fichiers UPLOAD////////////////////////////////////
 
-    if (isset($_POST['showplaces_postalcode'])) {
-        $showplaces_postalcode = htmlspecialchars($_POST['showplaces_postalcode']);
-        if (!preg_match($regexLetternumber, $showplaces_postalcode)) {
-            $errorsArrayevent['showplaces_postalcode'] = 'Merci de saisir une chaine de caractères';
-        }
-        if (empty($showplaces_postalcode)) {
-            $errorsArrayevent['showplaces_postalcode'] = 'Merci de saisir une courte description';
-        }
-    }
-
     if (isset($_POST['showplaces_id'])) {
         $showplaces_id = htmlspecialchars($_POST['showplaces_id']);
         if (!preg_match($regexLetternumber, $showplaces_id)) {
@@ -149,36 +140,48 @@ if (isset($_POST['modifyEventBtn'])) {
         }
     }
 ////////////////////fin des vérifications de chaque input///////////////
-    
     //si le tableau d'erreur est strictement égal à 0 et seulement si alors on transfert l'image chargé
     //dans notre fichier image img/ puis on crée les objets en récupérant les variables stockés et enfin 
     //on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
     if (count($errorsArraymodifyevent) == 0) {
-        if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
-            echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
-        } else {
-            echo "désolé, il y a une erreur de chargement de fichier.";
-        }
-
-        $modifyEventObj->users_id = $_SESSION['users_id'];
+        
+        $modifyEventObj->event_id = $_GET['id'];
         $modifyEventObj->event_title = $event_title;
         $modifyEventObj->event_date = $event_date;
-        $modifyEventObj->event_time = $event_time;
-        $modifyEventObj->event_id = $_GET['id'];
+        $modifyEventObj->event_time = $event_time.':00';
         $modifyEventObj->event_picture = $_FILES["event_picture"]["name"];
         $modifyEventObj->event_description = $event_description;
         $modifyEventObj->eventcategory_id = $eventcategory_id;
         $modifyEventObj->eventsub_category_id = $eventsub_category_id;
         $modifyEventObj->showplaces_id = $showplaces_id;
+        
+        if ($_FILES['event_picture']['name'] == '') {
+            $modifyEventObj->modifyEventWithoutPicture();
+        }
+        else {
+            $modifyEventObj->modifyEvent();
+            if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
+                echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
+            } else {
+                echo "désolé, il y a une erreur de chargement de fichier.";
+            }
+        }
+        
+        
+        
+//on hydrate les attributs de l'objet $modifyEventObj
+        
+
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
-        $modifyEventObj->modifyEvent();
-
-
+        
         //si tout est ok renvoi vers moncompte.php 
 
-        header('Location: moncompte.php');
-        exit();
+//        header('Location: mesevenements.php');
+//        exit();
     }
 }
+
+$modifyEventObj->event_id = $_GET['id'];
+$resultQueryShowEvent = $modifyEventObj->showEventByIdEvent();
 

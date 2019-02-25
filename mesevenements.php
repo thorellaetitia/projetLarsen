@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['users_id'])){
+    header('Location: index.php');
+    exit();
+}
 include_once('controllers/controllermesevenements.php');
 ?>
 
@@ -40,9 +44,27 @@ include_once('controllers/controllermesevenements.php');
             <div class="text-center">                        
                 <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
 
-                <div class="alert alert-warning  <?= isset($showsuccessalert) ? $showsuccessalert : '' ?>" role="alert">
-                </div> 
-
+              <!-- MODAL CONFIRMATION SUPPRESSION EVENEMENT -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">suppression d'un évenement</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              Êtes-vous sûr de vouloir supprimer cet évenement ?
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                              <button type="button" class="btn btn-primary">Confirmer</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- FIN MODAL CONFIRMATION SUPPRESSION EVENEMENT-->
             </div>
             <div class="row">
                 <?php
@@ -80,7 +102,7 @@ include_once('controllers/controllermesevenements.php');
 
                                     </div>
                                     <div class="card-media-body-supporting-bottom">
-                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?> / <?= $events->showplaces_postalcode ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?></span>
                                         <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $events->eventsub_category_name ?></span>
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">

@@ -13,7 +13,7 @@ include_once('controllers/controllerevent.php');
             </div>
             <div class="modal-body">
                 <!--form-->
-                <form class="form-group" action="" method="post" enctype="multipart/form-data" role="form">
+                <form class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
                     <div class="form-inline">
                         <label class="checkbox" for="event_free">Plans gratuits</label>
                         <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free">
@@ -54,27 +54,16 @@ include_once('controllers/controllerevent.php');
                     </div>                  
                     <div class="form-group">
                         <label for="event_time">Heure : </label> 
-                        <input type="text" class="form-control" name="event_time" id="time" placeholder="ex h:m" value="<?= isset($_POST['event_time']) ? $_POST['event_time'] : '' ?>" required /><br>
+                        <input type="time" class="form-control" name="event_time" id="time" placeholder="ex h:m" value="<?= isset($_POST['event_time']) ? $_POST['event_time'] : '' ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="showplaces_id">Salles de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option> 
-                            <option value="1" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == 1 ? 'selected' : '' ?>>Le 106</option>
-                            <option value="2" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == 2 ? 'selected' : '' ?>>Le VOLCAN</option>
-                            <option value="3" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == 3 ? 'selected' : '' ?>>Théâtre Juliobona</option>
-                            <option value="4" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == 4 ? 'selected' : '' ?>>Le Tetris</option>
-                            <option value="5" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == 5 ? 'selected' : '' ?>>Le MuMa</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="showplaces_postalcode"> Code postal :</label>
-                        <select class="form-control py-2" name="showplaces_postalcode" required>
-                            <option disabled <?= !isset($_POST['showplaces_postalcode']) ? 'selected' : '' ?> >Veuillez renseigner un champ</option> 
-                            <option value="1" <?= isset($_POST['showplaces_postalcode']) && $_POST['showplaces_postalcode'] == 1 ? 'selected' : '' ?>>76000-Rouen</option>
-                            <option value="2" <?= isset($_POST['showplaces_postalcode']) && $_POST['showplaces_postalcode'] == 2 ? 'selected' : '' ?>>76600-Le Havre</option>
-                            <option value="3" <?= isset($_POST['showplaces_postalcode']) && $_POST['showplaces_postalcode'] == 3 ? 'selected' : '' ?>>76170-Lillebonne</option>
+                            <?php foreach ($allPlaces as $place) { ?>
+                            <option value="<?= $place->showplaces_id ?>" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-control-file">

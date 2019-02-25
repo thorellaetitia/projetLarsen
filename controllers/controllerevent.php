@@ -8,6 +8,9 @@ require_once 'models/modelUsers.php';
 $eventObj = new event();
 $profilEventObj = new event();
 //j'instancie un nouvel objet
+
+$allPlaces = $profilEventObj->getAllPlaces();
+//
 ///////////////// On édite les regex//////////////////////////////////////
 $regexEventCategoryId = '/^[0-9]$/';
 //autorise les lettres alplhabet majuscules, minuscules,accents, . espace et chiffres
@@ -24,7 +27,7 @@ $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/';
 //20 et 29 ou bien 30 et 31 pour le MM j'autorise entre 01 et 09 puis 10 à 12 pour le YYYY j'autorise 2018 2019 ou 2020 à 2022//
 $regexdate = '/^(20(1[89]|2[0-2]))-(0[1-9]|1[0-2])-(0[1-9]|([1-9])|[12][0-9]|3[01])$/';
 // autorise les chiffres
-$regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/';
+$regextime = '/^(0[0-9]|1[1-9]|2[0-3]):[0-5][0-9]$/';
 //autorise les chiffres, lettres et accents et formats jpg bmp et png
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/';
 ////////////////////////fin des regex///////////////////////////////////////////
@@ -93,7 +96,7 @@ if (isset($_POST['createEventBtn'])) {
     if (isset($_POST['event_time'])) {
         $event_time = htmlspecialchars($_POST['event_time']);
         if (!preg_match($regextime, $event_time)) {
-            $errorsArrayevent['event_time'] = 'Merci de saisir un horaire au format HH:MM:SS';
+            $errorsArrayevent['event_time'] = 'Merci de saisir un horaire au format HH:MM';
         }
         if (empty($event_time)) {
             $errorsArrayevent['event_time'] = 'Merci de saisir un horaire';
@@ -127,16 +130,6 @@ if (isset($_POST['createEventBtn'])) {
 
 /////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
 
-    if (isset($_POST['showplaces_postalcode'])) {
-        $showplaces_postalcode = htmlspecialchars($_POST['showplaces_postalcode']);
-        if (!preg_match($regexLetternumber, $showplaces_postalcode)) {
-            $errorsArrayevent['showplaces_postalcode'] = 'Merci de saisir une chaine de caractères';
-        }
-        if (empty($showplaces_postalcode)) {
-            $errorsArrayevent['showplaces_postalcode'] = 'Merci de saisir une courte description';
-        }
-    }
-
     if (isset($_POST['showplaces_id'])) {
         $showplaces_id = htmlspecialchars($_POST['showplaces_id']);
         if (!preg_match($regexLetternumber, $showplaces_id)) {
@@ -167,7 +160,7 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
         $eventObj->event_date = $event_date;
-        $eventObj->event_time = $event_time;
+        $eventObj->event_time = $event_time.':00';
         $eventObj->event_free = $event_free;
         $eventObj->event_picture = $_FILES["event_picture"]["name"];
         $eventObj->event_description = $event_description;
@@ -177,17 +170,13 @@ if (isset($_POST['createEventBtn'])) {
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
         $eventObj->CreateEvent();
+        $_SESSION['createEventOk'] = true;
 
         $modalErrorevent = true;
         //si tout est ok renvoi vers mesevenements.php 
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil
         header('Location: mesevenements.php');
-        //$showsuccessalert = false;
-//
-//if ($eventObj->CreateEvent() == true) {
-//    $showsuccessalert = 'votre événement a été créé avec succès !';
-//}
         exit();
     } else {
         $modalStayOpenIfErrors = true;
