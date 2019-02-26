@@ -21,6 +21,8 @@ if (isset($_GET['id'])) {
     //on lui demande de supprimer l'événement
     $deleteEventObj->deleteEvent();
     
+    //on créé une variable de session deleteEventOK qu'on intialise (true)//
+    //afin de créer un message lorsque l'événement est supprimé
     $_SESSION['deleteEventok'] = true;
 }
 

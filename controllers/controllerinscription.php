@@ -26,122 +26,120 @@ $modalErrorinscription = false;
 //on realise des verifications de notre formulaire
 
 if ((isset($_POST['createUserBtn']))) {
-    
-if (isset($_POST['usertypes_id'])) {
-    $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
-    if (!preg_match($regexLetter, $usertypes_id)) {
-        $errorsArrayevent['usertypes_id'] = 'Merci de sélectionner un statut';
-    }
-    if (empty($usertypes_id)) {
-        $errorsArrayevent['usertypes_id'] = 'Merci de faire votre choix';
-    }
-}
 
-if (isset($_POST['name'])) {
-    $name = htmlspecialchars($_POST['name']);
-    if (!preg_match($regexLetter, $name)) {
-        $errorsArrayinscription['name'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($name)) {
-        $errorsArrayinscription['name'] = 'Merci de saisir un nom';
-    }
-}
-
-if (isset($_POST['firstname'])) {
-    $firstname = htmlspecialchars($_POST['firstname']);
-    if (!preg_match($regexLetter, $firstname)) {
-        $errorsArrayinscription['firstname'] = 'Merci de saisir une chaîne de caractères';
-    }
-    if (empty($firstname)) {
-        $errorsArrayinscription['firstname'] = 'Merci de saisir un prénom';
-    }
-}
-
-if (isset($_POST['age'])) {
-    $age = htmlspecialchars($_POST['age']);
-    if (!preg_match($regexNumber, $age)) {
-        $errorsArrayinscription['age'] = 'Merci de saisir un chiffre';
-    }
-    if (empty($age)) {
-        $errorsArrayinscription['age'] = 'Merci de saisir votre âge';
-    }
-}
-
-if (isset($_POST['mail'])) {
-    $mail = htmlspecialchars($_POST['mail']);
-    if (!preg_match($regexMail, $mail)) {
-        $errorsArrayinscription['mail'] = 'Merci de saisir une adresse mail valide';
-    }
-    if (empty($mail)) {
-        $errorsArrayinscription['mail'] = 'Merci de saisir votre adresse mail';
-    }
-}
-
-if (isset($_POST['login'])) {
-    $login = htmlspecialchars($_POST['login']);
-    if (!preg_match($regexLetternumber, $login)) {
-        $errorsArrayinscription['login'] = 'Merci de saisir un login valide';
-    }
-    if (empty($login)) {
-        $errorsArrayinscription['login'] = 'Merci de saisir un login';
-    }
-}
-
-if (isset($_POST['password'])) {
-    $password = htmlspecialchars($_POST['password']);
-    if (!preg_match($regexPassword, $password)) {
-        $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
-    }
-    if (empty($password)) {
-        $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
-    }
-}
-
-if (isset($_POST['secondpassword'])) {
-    $secondpassword = htmlspecialchars($_POST['secondpassword']);
-    if (!preg_match($regexPassword, $secondpassword)) {
-        $errorsArrayinscription['secondpassword'] = 'Merci de saisir un mot de passe';
-
-        if ($secondpassword !== $password) {
-            $errorsArrayinscription['secondpassword'] = 'Mot de passe invalide';
+    if (isset($_POST['usertypes_id'])) {
+        $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
+        if (!preg_match($regexLetter, $usertypes_id)) {
+            $errorsArrayevent['usertypes_id'] = 'Merci de sélectionner un statut';
         }
-        if (empty($secondpassword)) {
-            $errorsArrayinscription['secondpassword'] = 'Veuillez rentrer un mot de passe';
+        if (empty($usertypes_id)) {
+            $errorsArrayevent['usertypes_id'] = 'Merci de faire votre choix';
         }
     }
-}
 
-if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
-    if ($_POST['password'] !== $_POST['secondpassword']) {
-        $errorsArrayinscription['password'] = 'Le mot de passe n\'est pas identique';
-        $errorsArrayinscription['secondpassword'] = 'Le mot de passe n\'est pas identique';
+    if (isset($_POST['name'])) {
+        $name = htmlspecialchars($_POST['name']);
+        if (!preg_match($regexLetter, $name)) {
+            $errorsArrayinscription['name'] = 'Merci de saisir une chaîne de caractères';
+        }
+        if (empty($name)) {
+            $errorsArrayinscription['name'] = 'Merci de saisir un nom';
+        }
     }
-}
+
+    if (isset($_POST['firstname'])) {
+        $firstname = htmlspecialchars($_POST['firstname']);
+        if (!preg_match($regexLetter, $firstname)) {
+            $errorsArrayinscription['firstname'] = 'Merci de saisir une chaîne de caractères';
+        }
+        if (empty($firstname)) {
+            $errorsArrayinscription['firstname'] = 'Merci de saisir un prénom';
+        }
+    }
+
+    if (isset($_POST['age'])) {
+        $age = htmlspecialchars($_POST['age']);
+        if (!preg_match($regexNumber, $age)) {
+            $errorsArrayinscription['age'] = 'Merci de saisir un chiffre';
+        }
+        if (empty($age)) {
+            $errorsArrayinscription['age'] = 'Merci de saisir votre âge';
+        }
+    }
+
+    if (isset($_POST['mail'])) {
+        $mail = htmlspecialchars($_POST['mail']);
+        if (!preg_match($regexMail, $mail)) {
+            $errorsArrayinscription['mail'] = 'Merci de saisir une adresse mail valide';
+        }
+        if (empty($mail)) {
+            $errorsArrayinscription['mail'] = 'Merci de saisir votre adresse mail';
+        }
+    }
+
+    if (isset($_POST['login'])) {
+        $login = htmlspecialchars($_POST['login']);
+        if (!preg_match($regexLetternumber, $login)) {
+            $errorsArrayinscription['login'] = 'Merci de saisir un login valide';
+        }
+        if (empty($login)) {
+            $errorsArrayinscription['login'] = 'Merci de saisir un login';
+        }
+    }
+
+    if (isset($_POST['password'])) {
+        $password = htmlspecialchars($_POST['password']);
+        if (!preg_match($regexPassword, $password)) {
+            $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
+        }
+        if (empty($password)) {
+            $errorsArrayinscription['password'] = 'Merci de saisir un mot de passe';
+        }
+    }
+
+    if (isset($_POST['secondpassword'])) {
+        $secondpassword = htmlspecialchars($_POST['secondpassword']);
+        if (!preg_match($regexPassword, $secondpassword)) {
+            $errorsArrayinscription['secondpassword'] = 'Merci de saisir un mot de passe';
+
+            if ($secondpassword !== $password) {
+                $errorsArrayinscription['secondpassword'] = 'Mot de passe invalide';
+            }
+            if (empty($secondpassword)) {
+                $errorsArrayinscription['secondpassword'] = 'Veuillez rentrer un mot de passe';
+            }
+        }
+    }
+
+    if (isset($_POST['password']) && isset($_POST['secondpassword'])) {
+        if ($_POST['password'] !== $_POST['secondpassword']) {
+            $errorsArrayinscription['password'] = 'Le mot de passe n\'est pas identique';
+            $errorsArrayinscription['secondpassword'] = 'Le mot de passe n\'est pas identique';
+        }
+    }
 
 //création d'une condition si le tableau d'erreur contient au moins une erreur alors
 // le modal s'ouvre à nouveau
-if(count($errorsArrayinscription) !== 0){
-    $modalErrorinscription = true;
-}
-//si le tableau d'erreurs est = à 0 et seulement si, alors l'objet ciblé sera créé et les variables
+    if (count($errorsArrayinscription) !== 0) {
+        $modalErrorinscription = true;
+    }
+//si le tableau d'erreurs est = à 0 et seulement si, alors les objets des attributs seront créés et les variables
 //seront crées, la méthose create Users sera appliquée et les users seront récupérés dans la base
 // de données
 
-if (count($errorsArrayinscription) == 0) {
+    if (count($errorsArrayinscription) == 0) {
 
-    $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $usersObj->name = $name;
-    $usersObj->firstname = $firstname;
-    $usersObj->mail = $mail;
-    $usersObj->age = $age;
-    $usersObj->login = $login;
-    $usersObj->usertypes_id = $usertypes_id;
-   
+        $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $usersObj->name = $name;
+        $usersObj->firstname = $firstname;
+        $usersObj->mail = $mail;
+        $usersObj->age = $age;
+        $usersObj->login = $login;
+        $usersObj->usertypes_id = $usertypes_id;
+        $_SESSION['inscriptionOK'] = true;
 ////j'éxécute la méthode createUsers avec les attributs précedement stockés
-    $usersObj->CreateUsers();
-    
-    
-}
+        $usersObj->CreateUsers();
+    }
 }
 ?>
 

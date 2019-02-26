@@ -65,15 +65,15 @@ include_once('controllers/controllermodifyevent.php');
                     <div class="form-group">
                         <label for="eventsub_category_id"> Sous-catégorie événement</label>
                         <select class="form-control py-2" name="eventsub_category_id" id="exampleFormControlSelect1">
-                            <option value="1" <?= $resultQueryShowEvent->eventsub_category_id == 1 ? 'selected' : ''?>>Concert</option>
-                            <option value="2" <?= $resultQueryShowEvent->eventsub_category_id == 2 ? 'selected' : ''?>>Danse</option>
-                            <option value="3" <?= $resultQueryShowEvent->eventsub_category_id == 3 ? 'selected' : ''?>>Cirque</option>
-                            <option value="4" <?= $resultQueryShowEvent->eventsub_category_id == 4 ? 'selected' : ''?>>Théâtre</option>
-                            <option value="5" <?= $resultQueryShowEvent->eventsub_category_id == 5 ? 'selected' : ''?>>Humour</option>
-                            <option value="6" <?= $resultQueryShowEvent->eventsub_category_id == 6 ? 'selected' : ''?>>Expo</option>
-                            <option value="7" <?= $resultQueryShowEvent->eventsub_category_id == 7 ? 'selected' : ''?>>Musée</option>
-                            <option value="8" <?= $resultQueryShowEvent->eventsub_category_id == 8 ? 'selected' : ''?>>Balade</option>
-                            <option value="9" <?= $resultQueryShowEvent->eventsub_category_id == 9 ? 'selected' : ''?>>Atelier</option>
+                            <option value="1" <?= $resultQueryShowEvent->eventsub_category_id == 1 ? 'selected' : '' ?>>Concert</option>
+                            <option value="2" <?= $resultQueryShowEvent->eventsub_category_id == 2 ? 'selected' : '' ?>>Danse</option>
+                            <option value="3" <?= $resultQueryShowEvent->eventsub_category_id == 3 ? 'selected' : '' ?>>Cirque</option>
+                            <option value="4" <?= $resultQueryShowEvent->eventsub_category_id == 4 ? 'selected' : '' ?>>Théâtre</option>
+                            <option value="5" <?= $resultQueryShowEvent->eventsub_category_id == 5 ? 'selected' : '' ?>>Humour</option>
+                            <option value="6" <?= $resultQueryShowEvent->eventsub_category_id == 6 ? 'selected' : '' ?>>Expo</option>
+                            <option value="7" <?= $resultQueryShowEvent->eventsub_category_id == 7 ? 'selected' : '' ?>>Musée</option>
+                            <option value="8" <?= $resultQueryShowEvent->eventsub_category_id == 8 ? 'selected' : '' ?>>Balade</option>
+                            <option value="9" <?= $resultQueryShowEvent->eventsub_category_id == 9 ? 'selected' : '' ?>>Atelier</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -95,10 +95,10 @@ include_once('controllers/controllermodifyevent.php');
                         <label for="showplaces_id">Salles de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <?php foreach ($allPlaces as $place) {
-                            ?>
-                            <option value="<?= $place->showplaces_id ?>" <?= $resultQueryShowEvent->showplaces_id == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
-                            <?php
-                                }
+                                ?>
+                                <option value="<?= $place->showplaces_id ?>" <?= $resultQueryShowEvent->showplaces_id == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
+                                <?php
+                            }
                             ?>
                         </select>
                     </div>
@@ -121,7 +121,8 @@ include_once('controllers/controllermodifyevent.php');
                 </form>
             </div>
             <!--fin du form-->
-
+<!--            //creation d'un bouton SCROLL TO TOP//-->-->
+            <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
         </div>
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>

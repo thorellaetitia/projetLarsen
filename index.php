@@ -81,8 +81,8 @@ include_once('controllers/controllerindex.php');
                                     <!-- body container -->
                                     <div class="card-media-body col-xs-12 col-sm-6 col-md-6 <?= $allEvents->eventcategory_name ?>">
                                         <div class="card-media-body-top">
-                                            <span class="subtle"><?= $newdate=date('d/m/Y',strtotime($allEvents->event_date)) ?> à <?= $newdate2=date('H:i',strtotime($allEvents->event_time)) ?></span>
- 
+                                            <span class="subtle"><?= $newdate = date('d/m/Y', strtotime($allEvents->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($allEvents->event_time)) ?></span>
+
                                             <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $allEvents->event_title; ?></span>
                                             <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($allEvents->event_title, 0, 20); ?>...</span>
                                         </div>
@@ -104,13 +104,20 @@ include_once('controllers/controllerindex.php');
                     ?>
                 </div>
             </div>
+<!--            //creation d'un bouton SCROLL TO TOP//-->
+             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
+           
 
             <!--fin des cards-->
         </section>
+
         <div class="parallaxbottom"></div>
+              
         <?php
         include_once ('footer.php');
         ?>
+
+
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

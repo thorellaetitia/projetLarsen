@@ -15,7 +15,7 @@ include_once('controllers/controllerinscription.php');
                 <!--form-->
                 
                 <form method="post" action="" >
-                    <div class="form-group text-center">
+                    <div class="form-group  text-center">
                         Vous êtes : <select name="usertypes_id" required >
                             <option>Veuillez renseigner un champ</option> 
                             <option value="1" <?= isset ($_POST['usertypes_id']) && $_POST['usertypes_id'] == 1 ? 'selected' : '' ?>>Professionnel</option>

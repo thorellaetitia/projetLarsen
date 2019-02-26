@@ -7,6 +7,8 @@ require_once 'models/modelUsers.php';
 //on instancie un nouvel objet event
 $modifyEventObj = new event();
 
+//on utilise l'objet modifyEventObj pour appliquer la méthode getAllplaces
+//pour récupérer les lieux d'événements et l'afficher dans mon formulaire via le foreach
 $allPlaces = $modifyEventObj->getAllPlaces();
 
 ///////////////// On édite les regex//////////////////////////////////////
@@ -31,8 +33,6 @@ $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/';
 ////////////////////////fin des regex///////////////////////////////////////////
 //on déclare un tableau d'erreurs vide
 $errorsArraymodifyevent = [];
-
-
 
 //debut de la condition au click sur le bouton créer l'événement
 //et début des vérifications de chaque input du formulaire
@@ -94,25 +94,25 @@ if (isset($_POST['modifyEventBtn'])) {
     }
 ///////verifications sur le type de fichier upload//////////
 //spécifie le dossier dans lequel les images sont stockées
-// Vérifie si chaque image est bien un fichier image ou du fake
+// Vérifie si chaque image est bien un fichier image ou non
     if (isset($_FILES["event_picture"])) {
         $target_dir = "img/";
 //spécifie le chemin du fichier à être chargé
         $target_file = $target_dir . basename($_FILES['event_picture']['name']);
-        //spécifie l'extension du fichier
+//spécifie l'extension du fichier
         $imageFileType = strtolower(pathinfo($_FILES['event_picture']['name'], PATHINFO_EXTENSION));
-        // Vérifie si le nom du fichier existe déjà dans la bdd
+// Vérifie si le nom du fichier existe déjà dans la base de données
         if (file_exists($target_file)) {
             $errorsArrayevent['event_picture'] = 'Le fichier existe déjà';
         }
-        // Vérifie le poids du fichier
+// Vérifie le poids du fichier
         if ($_FILES["event_picture"]["size"] > 500000) {
             $errorsArrayevent['event_picture'] = 'L\'image ne doit pas accéder 500kb';
         }
 
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
-        // Prise en compte de certains formats de fichiers
-        //création d'un tableau et si dans ce tableau on compare le fichier a uploadé et les formats autorisés
+// Prise en compte de certains formats de fichiers
+//création d'un tableau et si dans ce tableau on compare le fichier a uploadé et les formats autorisés
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
@@ -140,49 +140,47 @@ if (isset($_POST['modifyEventBtn'])) {
         }
     }
 ////////////////////fin des vérifications de chaque input///////////////
-    //si le tableau d'erreur est strictement égal à 0 et seulement si alors on transfert l'image chargé
-    //dans notre fichier image img/ puis on crée les objets en récupérant les variables stockés et enfin 
-    //on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
+//si le tableau d'erreur est vide alors on transfert l'image chargé
+//vers notre fichier image img/ puis on hydrate les attributs de l'objet en récupérant les variables stockés et enfin 
+//on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
     if (count($errorsArraymodifyevent) == 0) {
+        //on crée une variable de session modifyEventOK que l'on initialise (true) 
+        //pour crée une alerte lorsque l'événement est bien créé
         $_SESSION['modifyEventOK'] = true;
-        
+
         $modifyEventObj->event_id = $_GET['id'];
         $modifyEventObj->event_title = $event_title;
         $modifyEventObj->event_date = $event_date;
-        $modifyEventObj->event_time = $event_time.':00';
+        $modifyEventObj->event_time = $event_time . ':00';
         $modifyEventObj->event_picture = $_FILES["event_picture"]["name"];
         $modifyEventObj->event_description = $event_description;
         $modifyEventObj->eventcategory_id = $eventcategory_id;
         $modifyEventObj->eventsub_category_id = $eventsub_category_id;
         $modifyEventObj->showplaces_id = $showplaces_id;
-        
+
+        //si l'input de la photo est vide donc pas de photo chargé par le user
+        //on applique la méthode modifyEventWithoutPicture//
+        //on modifie l'événement sans la photo//
         if ($_FILES['event_picture']['name'] == '') {
             $modifyEventObj->modifyEventWithoutPicture();
-        }
-        else {
-            $modifyEventObj->modifyEvent();
-//            $modifyEventObj->event_id = $_GET['id'];
-//            $resultQueryDeletePicture = $modifyEventObj->showEventByIdEvent();
-//            unlink('././img/' . $resultQueryDeletePicture->event_picture);
+        } else { //sinon si l'input de la photo n'est pas vide cela veut dire que le user charge une
+            //nouvelle photo donc on applique la méthode modifyEvent
+            //cela veut dire on modifie l'événement y compris la photo
+            $modifyEventObj->event_id = $_GET['id'];
+            $resultQueryDeletePicture = $modifyEventObj->showEventByIdEvent();
+            unlink('././img/' . $resultQueryDeletePicture->event_picture);
             if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
-                echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
+                
             } else {
-                echo "désolé, il y a une erreur de chargement de fichier.";
+                
             }
+            $modifyEventObj->modifyEvent();
         }
-        
-        
-        
-//on hydrate les attributs de l'objet $modifyEventObj
-        
-
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
-        
         //si tout est ok renvoi vers moncompte.php 
-
-//        header('Location: mesevenements.php');
-//        exit();
+        header('Location: mesevenements.php');
+        exit();
     }
 }
 

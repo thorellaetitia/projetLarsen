@@ -27,16 +27,19 @@ include_once ('include/createanevent.php');
     </div>
 </div>
 <?php
+//si la variable de session cretaeventok = l'événement est bien créé alors on affiche l'alerte suivante
 if (isset($_SESSION['createEventOk'])) {
     ?>
     <div class="alert alert-warning mb-0 alert-dismissible fade show text-center" role="alert">
-        Votre évenement a bien été créé ! 
+        Votre évenement a été créé avec succès ! 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
 
     </div>
     <?php
+    //on souhaite détruire cette variable de session afin qu'elle disparaisse lorsque l'on change
+    //de page
 } unset($_SESSION['createEventOk']);
 ?>
 <?php
@@ -68,3 +71,33 @@ if (isset($_SESSION['modifyEventOK'])) {
     <?php
 } unset($_SESSION['modifyEventOK']);
 ?>
+
+
+<?php
+if (isset($_SESSION['inscriptionOK'])) {
+    ?>
+    <div class="alert alert-warning mb-0 alert-dismissible fade show text-center" role = "alert">
+        Votre inscription est validée, vous pouvez vous connecter !!!
+        <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
+            <span aria-hidden = "true">&times;
+            </span>
+        </button>
+
+    </div> 
+    <?php
+} unset($_SESSION['inscriptionOK']);
+?>
+
+<?php if (isset($_SESSION['userconnectedOK'])) {
+    ?> 
+    <div class="alert alert-light mb-0 alert-dismissible fade show text-center" role = "alert">
+        Bienvenue  <?= $_SESSION['users_login'] ?> , vous êtes bien connecté !
+        <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
+            <span aria-hidden = "true">&times;
+            </span>
+        </button>
+    </div> 
+    <?php
+} unset($_SESSION['userconnectedOK']);
+?>
+
