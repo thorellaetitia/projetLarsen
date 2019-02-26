@@ -77,6 +77,7 @@ if (isset($_POST['modifyEventBtn'])) {
         if (empty($event_date)) {
             $errorsArrayevent['event_date'] = 'Merci de saisir une date';
         }
+
     }
 
     if (isset($_POST['event_free'])) {

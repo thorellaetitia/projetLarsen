@@ -8,7 +8,6 @@ require_once 'models/modelUsers.php';
 $eventObj = new event();
 $profilEventObj = new event();
 //j'instancie un nouvel objet
-
 //j'utilise l'objet profileventobj pour utiliser la méthode getAllPlaces
 //qui me permet d'afficher une liste déroulante avec les lieux de spectacle dans mon formulaire//
 $allPlaces = $profilEventObj->getAllPlaces();
@@ -91,6 +90,9 @@ if (isset($_POST['createEventBtn'])) {
         if (empty($event_date)) {
             $errorsArrayevent['event_date'] = 'Merci de saisir une date';
         }
+        if (strtotime('today') > strtotime($event_date)) {
+            $errorsArrayevent['event_date'] = 'La date choisie n\'est pas valide';
+        }
     }
 
     if (isset($_POST['event_free'])) {
@@ -165,7 +167,7 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
         $eventObj->event_date = $event_date;
-        $eventObj->event_time = $event_time.':00';
+        $eventObj->event_time = $event_time . ':00';
         $eventObj->event_free = $event_free;
         $eventObj->event_picture = $_FILES["event_picture"]["name"];
         $eventObj->event_description = $event_description;
@@ -179,7 +181,6 @@ if (isset($_POST['createEventBtn'])) {
         //l'objectif de cette variable est d'afficher un message une fois l'événement créé
         $_SESSION['createEventOk'] = true;
 
-        $modalErrorevent = true;//à garder ou pas ? doublon
         //si tout est ok renvoi vers mesevenements.php 
         //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
         //car le formulaire est sur la page d'accueil

@@ -45,7 +45,7 @@ include_once('controllers/controllermesevenements.php');
                 <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
 
                 <!-- MODAL CONFIRMATION SUPPRESSION EVENEMENT -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,7 +59,7 @@ include_once('controllers/controllermesevenements.php');
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Confirmer</button>
+                                <a id="validateDeleteEvent" href="#" type="button" class="btn btn-primary">Confirmer</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,8 @@ include_once('controllers/controllermesevenements.php');
                                     <div class="card-media-body-top">
                                         <span class="subtle"> <?= $newdate = date('d/m/Y', strtotime($events->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($events->event_time)) ?></span>
                                         <div class="card-media-body-top-icons u-float-right d-flex justify-content-between ">
-                                            <a href="mesevenements.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Supprimer</a>
+                                            <!--mesevenements.php?id=<?= $events->event_id ?>-->
+                                            <a data-toggle="modal" data-target="#deleteEvent" data-delete-id="<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none delete-event">Supprimer</a>
                                             <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
                                         </div>
                                         <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $events->event_title; ?></span>
