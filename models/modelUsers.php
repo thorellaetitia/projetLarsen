@@ -46,11 +46,11 @@ class users extends database { //on crée une class clients dont le parent est d
     //je crée ma fonction checkUsersByLogin
     public function checkUserBylogin($users_login) {
         //je stock ma requête dans une variable $query
-        $query = "SELECT * FROM `poqs_users` WHERE `users_login` LIKE :users_login";
+        $query = 'SELECT * FROM `poqs_users` WHERE `users_login` LIKE :users_login';
         //le résultat de ma requête je la stocke dans $resultQueryCheckUserByLogin
         //$this = correspond aux attributs de ma classe users 
         $resultQuerycheckUserBylogin = $this->database->prepare($query);
-        $resultQuerycheckUserBylogin->bindValue("users_login", $users_login, PDO::PARAM_STR);
+        $resultQuerycheckUserBylogin->bindValue(':users_login', $users_login, PDO::PARAM_STR);
         //avec le this il faut cibler l'élément de ma classe
         //le fetchall permet de récupérer toutes les infos de la requete et les transformer ds un tableau d'objets
         $resultQuerycheckUserBylogin->execute();
@@ -65,19 +65,19 @@ class users extends database { //on crée une class clients dont le parent est d
     // sur la page moncompte.php
     public function displayUserById() {
         //je fais ma requête dans une variable $query
-        $query = 'SELECT *' 
-                . 'FROM `poqs_users`'
-                . 'INNER JOIN `poqs_usertypes`'
-                . 'ON `poqs_users`.`usertypes_id`=`poqs_usertypes`.`usertypes_id`'
-                . 'WHERE `users_id`=`:users_id`';
+        $query = 'SELECT  * ' 
+                . 'FROM `poqs_users` '
+                . 'INNER JOIN `poqs_usertypes` '
+                . 'ON `poqs_users`.`usertypes_id`=`poqs_usertypes`.`usertypes_id` '
+                . 'WHERE `poqs_users`.`users_id`=:users_id';
         //le résultat de ma requête je le stocke dans $resultprofileevent
         //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event)
         $resultProfileUser = $this->database->prepare($query);
         //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
         //Je lie le marqueur nominatif id à l'attribut id
-        $resultProfileUser->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
+        $resultProfileUser->bindvalue(':users_id', $this->users_id, PDO::PARAM_STR);
         $resultProfileUser->execute();
-        $arrayProfileUser = $resultProfileUser->fetchAll(PDO::FETCH_OBJ);
+        $arrayProfileUser = $resultProfileUser->fetch(PDO::FETCH_OBJ);
         return $arrayProfileUser;
         //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
         //faire un fetchALL en utilisant l'objet PDO.

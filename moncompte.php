@@ -39,31 +39,27 @@ include_once('controllers/controllermoncompte.php');
             </div>
 
             <div class="row">
-                <?php
-                foreach ($arrayProfileUser as $profileUser) {
-                    ?>
-                    <div class="col-sm-12 col-md-8 col-lg-8">
-                        <div class="card" >
-                            <i class="far fa-user fa-4x mr-2"></i>
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $profileUser-> users_name ?>Card title</h5>
-                                <p class="card-text"><?= $profileUser-> users_firstname ?> </p>
-                                <p class="card-text"><?= $profileUser-> usertypes_id ?> </p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><?= $profileUser-> users_mail ?></li>
-                                <li class="list-group-item"><?= $profileUser-> users_age ?></li>
-                                <li class="list-group-item"><?= $profileUser-> users_login ?></li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Supprimer</a>
-                                <a href="#" class="card-link">Modifier</a>
-                            </div>
+
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div class="card" >
+                        <i class="far fa-user fa-4x mr-2"></i>
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $arrayProfileUser->users_name ?> </h5>
+                            <p class="card-text"><?= $arrayProfileUser->users_firstname ?> </p>
+                            <p class="card-text"><?= $arrayProfileUser->usertypes_id ?> </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><?= $arrayProfileUser->users_mail ?></li>
+                            <li class="list-group-item"><?= $arrayProfileUser->users_age ?></li>
+                            <li class="list-group-item"><?= $arrayProfileUser->users_login ?></li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Supprimer</a>
+                            <a href="#" class="card-link">Modifier</a>
                         </div>
                     </div>
-                    <?php
-                }
-                ?>
+                </div>
+
 
             </div>
         </div>
