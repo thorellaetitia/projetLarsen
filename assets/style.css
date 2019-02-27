@@ -46,6 +46,16 @@
     background-color: #1a1a1a;
 }
 
+#search {
+    transform: translateX(-34%);
+}
+
+.profilecard {
+    background-color: wheat;
+    border-radius: 30px;
+}
+
+
 .container-fluid header {
     background-color: #1a1a1a;
 }

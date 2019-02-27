@@ -39,19 +39,18 @@ include_once('controllers/controllermoncompte.php');
             </div>
 
             <div class="row">
-
-                <div class="col-sm-12 col-md-8 col-lg-8">
-                    <div class="card" >
+                <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                    <div class="profilecard" >
                         <i class="far fa-user fa-4x mr-2"></i>
                         <div class="card-body">
-                            <h5 class="card-title"><?= $arrayProfileUser->users_name ?> </h5>
-                            <p class="card-text"><?= $arrayProfileUser->users_firstname ?> </p>
-                            <p class="card-text"><?= $arrayProfileUser->usertypes_id ?> </p>
+                            <h5 class="card-title">Nom : <?= $arrayProfileUser->users_name ?> </h5>
+                            <p class="card-text">Prénom : <?= $arrayProfileUser->users_firstname ?> </p>
+                            <p class="card-text">Statut : <?= $arrayProfileUser->usertypes_id ?> </p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><?= $arrayProfileUser->users_mail ?></li>
-                            <li class="list-group-item"><?= $arrayProfileUser->users_age ?></li>
-                            <li class="list-group-item"><?= $arrayProfileUser->users_login ?></li>
+                            <li class="list-group-item">Mail : <?= $arrayProfileUser->users_mail ?></li>
+                            <li class="list-group-item">âge : <?= $arrayProfileUser->users_age ?></li>
+                            <li class="list-group-item">Login : <?= $arrayProfileUser->users_login ?></li>
                         </ul>
                         <div class="card-body">
                             <a href="#" class="card-link">Supprimer</a>
