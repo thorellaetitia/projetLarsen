@@ -16,7 +16,8 @@ $allPlaces = $profilEventObj->getAllPlaces();
 $regexEventCategoryId = '/^[0-9]$/';
 //autorise les lettres alplhabet majuscules, minuscules,accents, . espace et chiffres
 $regexLetter = '/^[a-zA-ZÄ-ÿ\'\.\- 0-9]{1,}+$/';
-//autorise les lettres de l'alphabet seulement les majuscules et accents
+//autorise tout mais seulement 60 caracères
+$regexDescription = '/^.{0,60}$/';
 $regexLetternumber = '/^[\wÄ-ÿ\-]+$/';
 //autorise uniquement les chiffres et seulement 2 chiffres
 $regexNumber = '/^[0-9]{2}+$/';
@@ -148,8 +149,8 @@ if (isset($_POST['createEventBtn'])) {
 
     if (isset($_POST['event_description'])) {
         $event_description = htmlspecialchars($_POST['event_description']);
-        if (!preg_match($regexLetter, $event_description)) {
-            $errorsArrayevent['event_description'] = 'Merci de saisir une chaine de caractères';
+        if (!preg_match($regexDescription, $event_description)) {
+            $errorsArrayevent['event_description'] = 'le nombre de caractères est limité à 60';
         }
         if (empty($event_description)) {
             $errorsArrayevent['event_description'] = 'Merci de saisir une courte description';
