@@ -14,18 +14,18 @@ $deleteEventObj = new event();
 if (isset($_GET['id'])) {
     $deleteEventObj->event_id = $_GET['id'];
 
-    //on crée une méthode getImageNameBeforDelete pour récupérer le nom de l'image
+    //on crée une méthode getImageNameBeforDelete pour récupérer le nom de l'image chargé dasn la base de données à la création de l'événement
     $fileNameToDelete = $deleteEventObj->getImageNameBeforeDelete();
-    if ($fileNameToDelete) {
-        
     
+    if ($fileNameToDelete) {
+            
     //on lui demande de supprimer l'image on cible event_picture//
     unlink('img/' . $fileNameToDelete->event_picture);
     //on lui demande de supprimer l'événement
     $deleteEventObj->deleteEvent();
     
     //on créé une variable de session deleteEventOK qu'on intialise (true)//
-    //afin de créer un message lorsque l'événement est supprimé
+    //afin de créer un message lorsque l'événement sera supprimé
     $_SESSION['deleteEventok'] = true;
     
     }
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
 // via le foreach dans la vue meseveneemnts.php
 $resultAllDataEvent = $profilEventObj->getAllDataEventCategory();
 
-//$eventObj->event_picture = $_FILES["event_picture"]["name"];
+
 //on doit lui préciser aussi que l'objet $deleteEventObj est lié à l'id du users connecté $_SESSION
 //de cette façon on fait bien le lien entre l'id de l'événement et l'id du users
 $deleteEventObj->users_id = $_SESSION['users_id'];

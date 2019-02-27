@@ -13,7 +13,7 @@ $errorsArrayconnection = [];
 $modalErrorconnection = false;
 
 
-if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérifications
+if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérifications 
     
     if (isset($_POST['users_login'])) {
         $users_login = htmlspecialchars($_POST['users_login']);
@@ -35,14 +35,14 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
         $modalErrorconnection = true;
     }
 
-    //si le tableau d'erreurs lié à la connexion est strictement égal à 0 alors on 
+    //si le tableau d'erreurs lié à la connexion est vide lors on 
     //appliquera la méthode checkUserByLogin pour vérifier si le login existe bien dans la base de données.
     if (count($errorsArrayconnection) == 0) {
         $dataUser = $loginusersObj->checkUserBylogin($users_login);
 
-        //on va vérifier que le mot de passe soit égal au mot de passe récupéré dans la bdd
+        //on va vérifier que le mot de passe soit égal au mot de passe récupéré dans la base de données
         if (is_object($dataUser)) {
-            //si le mot de passe est le bon alors on créé les objets et on récupère
+            //si le mot de passe est le bon alors on hydrate les attributs de l'objet et on récupère
         // les informations suivantes via le $_SESSION
             if (password_verify($users_password, $dataUser->users_password)) {
                 $_SESSION['users_id'] = $dataUser->users_id;

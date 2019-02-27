@@ -45,7 +45,7 @@ include_once('controllers/controllermoncompte.php');
                         <div class="card-body">
                             <h5 class="card-title">Nom : <?= $arrayProfileUser->users_name ?> </h5>
                             <p class="card-text">Prénom : <?= $arrayProfileUser->users_firstname ?> </p>
-                            <p class="card-text">Statut : <?= $arrayProfileUser->usertypes_id ?> </p>
+                            <p class="card-text">Statut : <?= $arrayProfileUser->usertypes_type ?> </p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Mail : <?= $arrayProfileUser->users_mail ?></li>

@@ -18,12 +18,15 @@ $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/'; //autorise les lettres 
 $regexdate = '/^(20(1[89]|2[0-2]))-(0[1-9]|1[0-2])-(0[1-9]|([1-9])|[12][0-9]|3[01])$/'; //autorise le format date US ex 2018/01/12
 $regextime = '/^[0-9][0-9]:[0-3][0]:[0][0]$/'; // autorise les chiffres
 $regexformatfichier = '/^[\wÄ-ÿ\-]+((.jpg|.bmp|.png))+$/'; //autorise les chiffres, lettres et accents et formats jpg bmp et png
+//
 //on déclare un tableau d'erreurs vide
 $errorsArrayinscription = [];
 
+//le modal est initalisé à false au départ il reste fermé
 $modalErrorinscription = false;
 
-//on realise des verifications de notre formulaire
+////début des vérifications de chaque input du formulaire
+/////////////////////////////////////////////////////////////////////////////////////////
 
 if ((isset($_POST['createUserBtn']))) {
 
@@ -123,12 +126,14 @@ if ((isset($_POST['createUserBtn']))) {
     if (count($errorsArrayinscription) !== 0) {
         $modalErrorinscription = true;
     }
-//si le tableau d'erreurs est = à 0 et seulement si, alors les objets des attributs seront créés et les variables
-//seront crées, la méthose create Users sera appliquée et les users seront récupérés dans la base
+//si le tableau d'erreurs est = à 0 et seulement si, alors on hydrate les attributs de l'objet 
+//la méthode createUsers sera appliquée et les users seront récupérés dans la base
 // de données
 
     if (count($errorsArrayinscription) == 0) {
-
+//password_hash : Crée une clé de hachage pour un mot de passe
+//La fonction password_hash() crée un hachage en utilisant un algorithme de hachage fort et irréversible.
+        //le but étant de sécuriser les mots de passe de users
         $usersObj->password = $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $usersObj->name = $name;
         $usersObj->firstname = $firstname;

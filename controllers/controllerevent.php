@@ -18,6 +18,7 @@ $regexEventCategoryId = '/^[0-9]$/';
 $regexLetter = '/^[a-zA-ZÄ-ÿ\'\.\- 0-9]{1,}+$/';
 //autorise tout mais seulement 60 caracères
 $regexDescription = '/^.{0,60}$/';
+//autorise les lettres et chiffres et inclus les accents
 $regexLetternumber = '/^[\wÄ-ÿ\-]+$/';
 //autorise uniquement les chiffres et seulement 2 chiffres
 $regexNumber = '/^[0-9]{2}+$/';
@@ -39,7 +40,8 @@ $errorsArrayevent = [];
 //le user sont correctes
 $modalErrorevent = false;
 
-
+// Si la variable de session userlogin existe
+// alors j'utilise l'objet profilEvent et je lui indique que le users_id = à la variable de session 
 if (isset($_SESSION['userlogin'])) {
     $profilEventObj->users_id = $_SESSION['users_id'];
 }
@@ -48,16 +50,21 @@ if (isset($_SESSION['userlogin'])) {
 //afin d'afficher les événements via l'id de l'événement
 $arrayProfileEvent = $profilEventObj->displayEventById();
 
-//debut de la condition au click sur le bouton créer l'événement
+//début de la condition au click sur le bouton créer l'événement
 //et début des vérifications de chaque input du formulaire
 ////////////////////////////////////////////////////////////////////////////////////////////
+//Si le click sur le bouton du formulaire (createEventBtn) existe alors
 if (isset($_POST['createEventBtn'])) {
-
+//si la catégorie de mon événement existe
     if (isset($_POST['eventcategory_id'])) {
+        //ma catégorie sera = à ce que je récupère dans l'input
         $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
+        //si ma catégorie ne correspond pas à ce que j'ai défini dans mon expression régulière
         if (!preg_match($regexEventCategoryId, $eventcategory_id)) {
+            //alors tu m'affiches le message ci-dessous que tu stockes das mon tableau d'erreurs
             $errorsArrayevent['eventcategory_id'] = 'Merci de saisir une catégorie d\'événements';
         }
+        // si ma catégorie est vide alors tu m'affiches le message que tu stocke dans mon tableau d'erreurs
         if (empty($eventcategory_id)) {
             $errorsArrayeventvent['eventcategory_id'] = 'Merci de faire votre choix';
         }
@@ -109,16 +116,16 @@ if (isset($_POST['createEventBtn'])) {
             $errorsArrayevent['event_time'] = 'Merci de saisir un horaire';
         }
     }
-///////verifications sur le type de fichier upload//////////
+///////vérifications sur le type de fichier upload//////////
 //spécifie le dossier dans lequel les images sont stockées
-// Vérifie si chaque image est bien un fichier image ou du fake
+// Vérifie si chaque image est bien un fichier image ou non
     if (isset($_FILES["event_picture"])) {
         $target_dir = "img/";
 //spécifie le chemin du fichier à être chargé
         $target_file = $target_dir . basename($_FILES['event_picture']['name']);
         //spécifie l'extension du fichier
         $imageFileType = strtolower(pathinfo($_FILES['event_picture']['name'], PATHINFO_EXTENSION));
-        // Vérifie si le nom du fichier existe déjà dans la bdd
+        // Vérifie si le nom du fichier existe déjà dans la base de données
         if (file_exists($target_file)) {
             $errorsArrayevent['event_picture'] = 'Le fichier existe déjà';
         }
@@ -129,7 +136,7 @@ if (isset($_POST['createEventBtn'])) {
 
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
         // Prise en compte de certains formats de fichiers
-        //création d'un tableau et si dans ce tableau on compare le fichier à uploadé et les formats autorisés
+        //création d'un tableau et dans ce tableau on compare le fichier a télécharger et les formats autorisés
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
@@ -183,8 +190,6 @@ if (isset($_POST['createEventBtn'])) {
         $_SESSION['createEventOk'] = true;
 
         //si tout est ok renvoi vers mesevenements.php 
-        //s'il n'y a pas de renvoi pb de rechargement de la page régulièrement
-        //car le formulaire est sur la page d'accueil
         header('Location: mesevenements.php');
         //toujours mettre un exit après un header, le script est arrêté, une fois l'événement
         // créé il y a un renvoi vers la page mesevenements.php

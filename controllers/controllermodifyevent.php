@@ -144,7 +144,7 @@ if (isset($_POST['modifyEventBtn'])) {
     }
 ////////////////////fin des vérifications de chaque input///////////////
 //si le tableau d'erreur est vide alors on transfert l'image chargé
-//vers notre fichier image img/ puis on hydrate les attributs de l'objet en récupérant les variables stockés et enfin 
+//vers notre fichier image img/ puis on hydrate les attributs de l'objet en récupérant les variables stockées et enfin 
 //on applique la fonction modifyEvent et les informations seront modifiées dans la base de données
     if (count($errorsArraymodifyevent) == 0) {
         //on crée une variable de session modifyEventOK que l'on initialise (true) 
@@ -181,12 +181,14 @@ if (isset($_POST['modifyEventBtn'])) {
         }
 
         ////j'éxécute la méthode createEvent avec les attributs précedement stockés
-        //si tout est ok renvoi vers moncompte.php 
+        //si tout est ok renvoi vers mesevenemnents.php 
         header('Location: mesevenements.php');
         exit();
     }
 }
 
+//on utilise l'objet en lui spécifiant que l'id de l'événément = id dans l'url
+//on applique la méthode pour afficher les spectacles, une fois modifiés 
 $modifyEventObj->event_id = $_GET['id'];
 $resultQueryShowEvent = $modifyEventObj->showEventByIdEvent();
 
