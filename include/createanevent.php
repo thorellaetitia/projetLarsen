@@ -1,7 +1,7 @@
 <?php
 include_once('controllers/controllerevent.php');
 ?>
-
+<!--//debut du modal //-->
 <div class="modal fade bd-example-modal-lg <?= isset($modalStayOpenIfErrors) ? 'modalErrorevent' : '' ?>" id="createanevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -21,6 +21,8 @@ include_once('controllers/controllerevent.php');
                     <div class="form-group">
                         <label for="eventcategory_id"> Catégorie événement</label>
                         <select class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1" >
+<!--                            //création de ternaire pour récupérer les données entrées par le user -->
+                        <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
                             <option disabled <?= !isset($_POST['eventcategory_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <option value="1" <?= isset($_POST['eventcategory_id']) && ($_POST['eventcategory_id']== 1) ? 'selected' : '' ?>>Concert</option>
                             <option value="2" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory'] == 2 ? 'selected': ''?>>Spectacle</option>
@@ -60,7 +62,8 @@ include_once('controllers/controllerevent.php');
                     <div class="form-group">
                         <label for="showplaces_id">Salles de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
-                            <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option> 
+                            <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
+<!--                       //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
                             <?php foreach ($allPlaces as $place) { ?>
                             <option value="<?= $place->showplaces_id ?>" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
                             <?php } ?>

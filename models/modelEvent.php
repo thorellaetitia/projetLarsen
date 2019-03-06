@@ -182,15 +182,14 @@ class event extends database {
     //on crée une méthode pour afficher tous les événements//
     public function showAllEvents() {
 
-        $query = 'SELECT *'
-                . 'FROM `poqs_event`'
-                . 'INNER JOIN `poqs_eventcategory`'
-                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
-                . 'INNER JOIN `poqs_eventsub_category`'
-                . 'ON `poqs_event`.`eventcategory_id` = `poqs_eventsub_category`.`eventsub_category_id`'
-                . 'INNER JOIN `poqs_showplaces`'
-                . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
-
+        $query = 'SELECT * FROM `poqs_event`'
+                . ' INNER JOIN `poqs_eventcategory`'
+                . ' ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . ' INNER JOIN poqs_eventsub_category'
+                . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
+                . ' INNER JOIN `poqs_showplaces`'
+                . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
+                
         $result = $this->database->query($query);
         $resultArrayAllEvents = $result->fetchAll(PDO::FETCH_OBJ);
         return $resultArrayAllEvents;

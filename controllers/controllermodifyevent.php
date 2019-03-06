@@ -95,7 +95,7 @@ if (isset($_POST['modifyEventBtn'])) {
             $errorsArrayevent['event_time'] = 'Merci de saisir un horaire';
         }
     }
-///////verifications sur le type de fichier upload//////////
+///////vérifications sur le type de fichier upload//////////
 //spécifie le dossier dans lequel les images sont stockées
 // Vérifie si chaque image est bien un fichier image ou non
     if (isset($_FILES["event_picture"])) {

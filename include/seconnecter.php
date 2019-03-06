@@ -20,7 +20,9 @@ include_once('./controllers/controllerseconnecter.php');
                         <div class="form-group">
                             <label for="login">Votre login : </label>
                             <input type="text" name="users_login" id="login" placeholder="login" value="" required /><br>
+<!--                            //si le tableau d'erreur users_login n'est pas vide alors tu me crée l'erreur dans le tableau sinon tu m'affiches rien-->
                             <span class="error "><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span><br>
+<!--                            //Si les erreurs existent alors tu m'affiches le message suivant// -->
                             <span class="error text-danger"><p> <?= isset($messageErrorAccount) ? 'Ce compte n\'existe pas, merci d\'essayer à nouveau' : '' ?></p></span>
                         </div>
                         <div class="form-group">
@@ -40,5 +42,6 @@ include_once('./controllers/controllerseconnecter.php');
             </div>
         </div>
     </div>
+<!--    fin du modal-->
 </div>
 

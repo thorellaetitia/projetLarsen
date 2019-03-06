@@ -9,7 +9,7 @@ $loginusersObj = new users();
 //on déclare un tableau d'erreurs vide;
 $errorsArrayconnection = [];
 
-//création d'une variable pour l'ouverture du modal en cas d'erreurs
+//création d'une variable pour l'ouverture du modal en cas d'erreur
 $modalErrorconnection = false;
 
 
@@ -30,12 +30,12 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
         }
     }
 
-    //si et seulement si le tableau d'erreurs n'est pas égal à 0 alors le modal s'ouvre à nouveau
+    //si le tableau d'erreur ne correspond pas à 0 alors le modal s'ouvre à nouveau
     if (count($errorsArrayinscription) !== 0) {
         $modalErrorconnection = true;
     }
 
-    //si le tableau d'erreurs lié à la connexion est vide lors on 
+    //si le tableau d'erreurs lié à la connexion est vide alors on 
     //appliquera la méthode checkUserByLogin pour vérifier si le login existe bien dans la base de données.
     if (count($errorsArrayconnection) == 0) {
         $dataUser = $loginusersObj->checkUserBylogin($users_login);

@@ -57,6 +57,8 @@ include_once('controllers/controllermodifyevent.php');
                     <div class="form-group">
                         <label for="eventcategory_id"> Catégorie événement</label>
                         <select  class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1">
+                            <!--                            //création de ternaire pour récupérer les données entrées par le user -->
+                            <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
                             <option value="1" <?= $resultQueryShowEvent->eventcategory_id == 1 ? 'selected' : '' ?>>Concert</option>
                             <option value="2" <?= $resultQueryShowEvent->eventcategory_id == 2 ? 'selected' : '' ?> >Spectacle</option>
                             <option value="3" <?= $resultQueryShowEvent->eventcategory_id == 3 ? 'selected' : '' ?> >Expos</option>
@@ -94,6 +96,7 @@ include_once('controllers/controllermodifyevent.php');
                     <div class="form-group">
                         <label for="showplaces_id">Salles de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
+                            <!--                            //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
                             <?php foreach ($allPlaces as $place) {
                                 ?>
                                 <option value="<?= $place->showplaces_id ?>" <?= $resultQueryShowEvent->showplaces_id == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
@@ -121,7 +124,7 @@ include_once('controllers/controllermodifyevent.php');
                 </form>
             </div>
             <!--fin du form-->
-<!--            //creation d'un bouton SCROLL TO TOP//-->-->
+            <!--            //creation d'un bouton SCROLL TO TOP//-->-->
             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
         </div>
 

@@ -62,7 +62,7 @@ include_once('controllers/controllermoncompte.php');
 
             </div>
         </div>
-        <!--        //creation d'un bouton SCROLL TO TOP//-->-->
+        <!--        //creation d'un bouton SCROLL TO TOP//-->
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
 
 

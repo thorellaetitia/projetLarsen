@@ -1,5 +1,7 @@
 <?php
+//la variable de session est une superglobale, elle permet d'utiliser les variables de session sur toutes les pages//
 session_start();
+//si le user n'est pas connecté renvoi vers la page d'accueil du site index.php//
 if (!isset($_SESSION['users_id'])) {
     header('Location: index.php');
     exit();
@@ -51,7 +53,7 @@ include_once('controllers/controllermesevenements.php');
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Êtes-vous sûr de vouloir supprimer cet évenement ?
+                                Êtes-vous sûr de vouloir supprimer cet événement ?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -63,6 +65,7 @@ include_once('controllers/controllermesevenements.php');
                 <!-- FIN MODAL CONFIRMATION SUPPRESSION EVENEMENT-->
             </div>
             <div class="row">
+                <!-- on utilise un foreach pour parcourir le tableau $arrayProfileEvent et on lui demande d'afficher les informations via $event//-->
                 <?php
                 foreach ($arrayProfileEvent as $event) {
                     ?>
@@ -93,7 +96,8 @@ include_once('controllers/controllermesevenements.php');
                                             <a href="modifyevent.php?id=<?= $event->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
                                         </div>
                                         <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $event->event_title; ?></span>
-                                        <a class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"  data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-title="<?= ($events->event_title); ?>"><?= substr($events->event_title, 0, 15); ?>...</a>
+                                        <!--                                        //j'utilise la fonction php substr qui permet de limiter le texte ici 15 caractères....//-->
+                                        <a class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"  data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-title="<?= ($event->event_title); ?>"><?= substr($event->event_title, 0, 15); ?>...</a>
 
 
                                     </div>
@@ -111,14 +115,12 @@ include_once('controllers/controllermesevenements.php');
                         </div>
                     </div>
                     <?php
-                }
+                } 
                 ?>
             </div>
-            <!--            //creation d'un bouton SCROLL TO TOP//-->
+            <!--//creation d'un bouton SCROLL TO TOP//-->
             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
         </div>
-
-        <!--        <a href="index.php" class="btn btn-outline-warning btn-sm">Diffuser l'événement</a><br>-->
 
 
         <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>

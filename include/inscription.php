@@ -1,7 +1,7 @@
 <?php
 include_once('controllers/controllerinscription.php');
 ?>
-
+<!--//debut du modal//-->
 <div class="modal fade <?= $modalErrorinscription ? 'modalErrorinscription' : ''; ?>" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><!-- debut modal -->
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -12,15 +12,17 @@ include_once('controllers/controllerinscription.php');
                 </button>
             </div>
             <div class="modal-body">
-                <!--form-->
-                
-                <form method="post" action="" >
-                    <div class="form-group  text-center">
+                <!--début du form-->
+                <form method="post" action="" novalidate >
+                    <div class="form-group text-center">
                         Vous êtes : <select name="usertypes_id" required >
                             <option>Veuillez renseigner un champ</option> 
-                            <option value="1" <?= isset ($_POST['usertypes_id']) && $_POST['usertypes_id'] == 1 ? 'selected' : '' ?>>Professionnel</option>
-                            <option value="2" <?= isset ($_POST['usertypes_id']) && ($_POST['usertypes_id'] == 2) ? 'selected' : '' ?>>Particulier</option>
-                            <span class="error"><?= isset($errorsArrayevent['usertypes_id']) ? $errorsArrayevent['usertypes_id'] : ''; ?></span>
+                        <!-- //création de ternaire pour récupérer les données entrées par le user -->
+                        <!--début de la condition si usertypes_id existe et si usertypes_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
+                            <option value="1" <?= isset($_POST['usertypes_id']) && $_POST['usertypes_id'] == 1 ? 'selected' : '' ?>>Professionnel</option>
+                            <option value="2" <?= isset($_POST['usertypes_id']) && ($_POST['usertypes_id'] == 2) ? 'selected' : '' ?>>Particulier</option>
+<!--                            //si le tableau d'erreurs usertypes_id existe alors tu m'affiches l'erreur sinon tu m'affiches rien//-->
+                            <span class="error"><?= isset($errorsArrayinscription['usertypes_id']) ? $errorsArrayinscription['usertypes_id'] : ''; ?></span>
                         </select>
                     </div>
                     <div class="form-group">
@@ -64,7 +66,7 @@ include_once('controllers/controllerinscription.php');
                     </div>
                 </form>
                 <!--fin du form-->
-                
+
             </div>
         </div>
     </div>

@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllerinscription.php</file>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllerseconnecter.php</file>
+            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/models/modelEvent.php</file>
             <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllerindex.php</file>
             <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllerevent.php</file>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllermodifyevent.php</file>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllermoncompte.php</file>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/controllers/controllermesevenements.php</file>
-            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/modifyevent.php</file>
+            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/index.php</file>
+            <file>file:/C:/Users/Fiadone/Documents/www/ProjetPro/navbar.php</file>
         </group>
     </open-files>
 </project-private>
