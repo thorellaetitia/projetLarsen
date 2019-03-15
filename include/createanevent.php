@@ -21,27 +21,27 @@ include_once('controllers/controllerevent.php');
                     <div class="form-group">
                         <label for="eventcategory_id"> Catégorie événement</label>
                         <select class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1" >
-<!--                            //création de ternaire pour récupérer les données entrées par le user -->
-                        <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
+                            <!--                            //création de ternaire pour récupérer les données entrées par le user -->
+                            <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
                             <option disabled <?= !isset($_POST['eventcategory_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
-                            <option value="1" <?= isset($_POST['eventcategory_id']) && ($_POST['eventcategory_id']== 1) ? 'selected' : '' ?>>Concert</option>
-                            <option value="2" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory'] == 2 ? 'selected': ''?>>Spectacle</option>
-                            <option value="3" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory_id'] == 3 ? 'selected': ''?>>Expo</option>
+                            <option value="1" <?= isset($_POST['eventcategory_id']) && ($_POST['eventcategory_id'] == 1) ? 'selected' : '' ?>>Concert</option>
+                            <option value="2" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory'] == 2 ? 'selected' : '' ?>>Spectacle</option>
+                            <option value="3" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory_id'] == 3 ? 'selected' : '' ?>>Expo</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="eventsub_category_id"> Sous-catégorie événement</label>
                         <select class="form-control py-2" name="eventsub_category_id" id="exampleFormControlSelect1" >
                             <option disabled <?= !isset($_POST['eventsub_category_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
-                            <option value="1" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 1 ? 'selected' : ''?>>Concert</option>
-                            <option value="2" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 2 ? 'selected' : ''?>>Danse</option>
-                            <option value="3" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 3 ? 'selected' : ''?>>Cirque</option>
-                            <option value="4" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 4 ? 'selected' : ''?>>Théâtre</option>
-                            <option value="5" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 5 ? 'selected' : ''?>>Humour</option>
-                            <option value="6" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 6 ? 'selected' : ''?>>Expo</option>
-                            <option value="7" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 7 ? 'selected' : ''?>>Musée</option>
-                            <option value="8" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 8 ? 'selected' : ''?>>Balade</option>
-                            <option value="9" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id']== 9 ? 'selected' : ''?>>Atelier</option>
+                            <option value="1" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 1 ? 'selected' : '' ?>>Concert</option>
+                            <option value="2" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 2 ? 'selected' : '' ?>>Danse</option>
+                            <option value="3" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 3 ? 'selected' : '' ?>>Cirque</option>
+                            <option value="4" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 4 ? 'selected' : '' ?>>Théâtre</option>
+                            <option value="5" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 5 ? 'selected' : '' ?>>Humour</option>
+                            <option value="6" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 6 ? 'selected' : '' ?>>Expo</option>
+                            <option value="7" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 7 ? 'selected' : '' ?>>Musée</option>
+                            <option value="8" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 8 ? 'selected' : '' ?>>Balade</option>
+                            <option value="9" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 9 ? 'selected' : '' ?>>Atelier</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -63,9 +63,9 @@ include_once('controllers/controllerevent.php');
                         <label for="showplaces_id">Salles de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
-<!--                       //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
+                            <!--                       //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
                             <?php foreach ($allPlaces as $place) { ?>
-                            <option value="<?= $place->showplaces_id ?>" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
+                                <option value="<?= $place->showplaces_id ?>" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -80,7 +80,7 @@ include_once('controllers/controllerevent.php');
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark">Fermer</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-warning" name="createEventBtn">Créer</button>
                     </div>
                 </form>

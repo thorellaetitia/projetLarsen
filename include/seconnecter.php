@@ -19,21 +19,21 @@ include_once('./controllers/controllerseconnecter.php');
                     <form method="post" action="">
                         <div class="form-group">
                             <label for="login">Votre login : </label>
-                            <input type="text" name="users_login" id="login" placeholder="login" value="" required /><br>
+                            <input class="form-control" type="text" name="users_login" id="login" value="" required />
 <!--                            //si le tableau d'erreur users_login n'est pas vide alors tu me crée l'erreur dans le tableau sinon tu m'affiches rien-->
-                            <span class="error "><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span><br>
+                            <span class="error "><?= !empty($errorsArrayconnection['users_login']) ? $errorsArrayconnection['users_login'] : ''; ?></span>
 <!--                            //Si les erreurs existent alors tu m'affiches le message suivant// -->
                             <span class="error text-danger"><p> <?= isset($messageErrorAccount) ? 'Ce compte n\'existe pas, merci d\'essayer à nouveau' : '' ?></p></span>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe : </label>
-                            <input type="password" name="users_password" id="password" placeholder="mot de passe" value="" required /><br>
+                            <input class="form-control" type="password" name="users_password" id="password" value="" required />
                             <span class="error"><?= !empty($errorsArrayconnection['users_password']) ? $errorsArrayconnection['users_password'] : ''; ?></span>
                             <span class="error text-danger"><p> <?= isset($messageNonValidPassword) ? 'le mot de passe ne correspond pas au login, merci d\'essayer à nouveau' : '' ?></p></span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <input type="submit" class="btn btn-primary " name="connectBtn" value="Se connecter" /><br>
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-warning" name="connectBtn">Se connecter</button>
                         </div>
                     </form>
 
