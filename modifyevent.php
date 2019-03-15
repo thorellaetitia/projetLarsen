@@ -35,10 +35,10 @@ include_once('controllers/controllermodifyevent.php');
             </div>
             <div class="row m-2 d-flex justify-content-between">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify">  
-                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Remplissez les informations liées à votre événement</p>
+                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Remplisser les informations liées à votre événement</p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify"> 
-                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>N'oubliez pas la photo, qui permettra d'illustrer votre événement</p>
+                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>N'oublier pas la photo, qui permettra d'illustrer votre événement</p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify"> 
                     <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Valider la modification, click sur modifier</p>

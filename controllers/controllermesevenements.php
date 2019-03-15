@@ -35,12 +35,17 @@ if (isset($_GET['id'])) {
 $deleteEventObj->users_id = $_SESSION['users_id'];
 
 
+$profilEventObj->users_id = $_SESSION['users_id'];
+$resultEventNumber = $profilEventObj->countEventById();
+
 
 //on va utiliser l'objet $profilEventObj pour utiliser la fonction displayEventById
 // et utiliser la requête $arrayProfileEvent pour parcourir le tableau et afficher nos informations
 // via le foreach dans la vue mesevenements.php
 
 $arrayProfileEvent = $profilEventObj->displayEventById();
+
+
 
 
 

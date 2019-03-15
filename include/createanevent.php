@@ -26,7 +26,7 @@ include_once('controllers/controllerevent.php');
                             <option disabled <?= !isset($_POST['eventcategory_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <option value="1" <?= isset($_POST['eventcategory_id']) && ($_POST['eventcategory_id']== 1) ? 'selected' : '' ?>>Concert</option>
                             <option value="2" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory'] == 2 ? 'selected': ''?>>Spectacle</option>
-                            <option value="3" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory_id'] == 3 ? 'selected': ''?>>Expos</option>
+                            <option value="3" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory_id'] == 3 ? 'selected': ''?>>Expo</option>
                         </select>
                     </div>
                     <div class="form-group">

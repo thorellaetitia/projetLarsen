@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary col-12">
-    <a class="navbar-brand order-lg-1" data-toggle="modal" href="index.php"><img src="../assets/images/larsen.png" width="100px" /></a>       
+    <a class="navbar-brand order-lg-1" data-toggle="modal" href="http://projet"><img src="../assets/images/larsen.png" alt="logo larsen" width="100px" /></a>       
     <button class="navbar-toggler order-md-3 col-2 col-sm-1 col-md-1" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse order-lg-2 col-lg-7" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link zoom" href="index.php?eventcategory_id=1&eventsub_category_id=1#content">Concert <span class="sr-only">(current)</span></a>
+                <a class="nav-link zoom" id="content_concert" href="index.php?eventcategory_id=1&eventsub_category_id=1#content">Concert <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=2#content" id="navbarDropdownspectacle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link zoom dropdown-toggle" id="content_spectacle" href="index.php?eventcategory_id=2#content" id="navbarDropdownspectacle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Spectacle
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -20,18 +20,18 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link zoom dropdown-toggle" href="index.php?eventcategory_id=3#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link zoom dropdown-toggle" id="content_expo" href="index.php?eventcategory_id=3#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Expo
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=6#content">Expos</a>
-                    <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=7#content">Musées</a>
+                    <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=6#content">Expo</a>
+                    <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=7#content">Musée</a>
                     <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=8#content">Balade</a>
                     <a class="dropdown-item" href="index.php?eventcategory_id=3&eventsub_category_id=9#content">Atelier</a>
                 </div>
             </li>      
             <li class="nav-item active">
-                <a class="nav-link zoom dropdown-toggle" href="#plansgratuits" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link zoom dropdown-toggle"  id="content_free" href="#plansgratuits" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Plans gratuits
                 </a>
             </li>               

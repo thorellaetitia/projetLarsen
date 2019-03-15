@@ -18,7 +18,7 @@ class event extends database {
     public $showplaces_id;
 
 //    on crée une fonction qui va nous permettre de créer des événenements
-    // et les ajouter dans la base de données
+// et les ajouter dans la base de données
     public function CreateEvent() {
         $query = 'INSERT INTO `poqs_event` SET `event_title` = :event_title,'
 //:event_title = marqueur nominatif
@@ -47,16 +47,16 @@ class event extends database {
         $eventList->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $eventList->bindValue(':event_free', $this->event_free, PDO::PARAM_INT);
         $eventList->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
-        //lorsque l'on prépare la requête on doit l'éxécuter
+//lorsque l'on prépare la requête on doit l'éxécuter
         return $eventList->execute();
     }
 
-    //on crée une fonction pour afficher les événements par l'id du user
-    // sur la page mesvenements.php
+//on crée une fonction pour afficher les événements par l'id du user
+// sur la page mesvenements.php
     public function displayEventById() {
-        //je fais ma requête dans une variable $query
+//je fais ma requête dans une variable $query
         $query = 'SELECT * '
-                . 'FROM `poqs_event`' 
+                . 'FROM `poqs_event`'
                 . 'INNER JOIN `poqs_showplaces`'
                 . 'ON `poqs_event`.`showplaces_id`=`poqs_showplaces`.`showplaces_id`'
                 . 'INNER JOIN `poqs_eventcategory`'
@@ -64,24 +64,23 @@ class event extends database {
                 . 'INNER JOIN `poqs_eventsub_category`'
                 . 'ON `poqs_event`.`eventsub_category_id`=`poqs_eventsub_category`.`eventsub_category_id`'
                 . 'WHERE `users_id`=:users_id';
-        //le résultat de ma requête je le stocke dans $resultprofileevent
-        //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event) 
+//le résultat de ma requête je le stocke dans $resultprofileevent
+//$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event) 
         $resultProfileEvent = $this->database->prepare($query);
-        //avec le this, il faut cibler l'élément de ma classe 
-        //Je lie le marqueur nominatif :users_id à l'attribut users_id
+//avec le this, il faut cibler l'élément de ma classe 
+//Je lie le marqueur nominatif :users_id à l'attribut users_id
         $resultProfileEvent->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
-        //j'éxécute ma requete $query
+//j'éxécute ma requete $query
         $resultProfileEvent->execute();
-        //je crée un tableau $arrayProfileEvent avec le résultat de ma requête et je lui
-        //demande de parcourir via le fetchAll en utilisant l'objet PDO des informations dans ma vue, page mesevenements.php
+//je crée un tableau $arrayProfileEvent avec le résultat de ma requête et je lui
+//demande de parcourir via le fetchAll en utilisant l'objet PDO des informations dans ma vue, page mesevenements.php
         $arrayProfileEvent = $resultProfileEvent->fetchAll(PDO::FETCH_OBJ);
-         //on lui demande de nous retourner un résultat de $arrayProfileEvent
+//on lui demande de nous retourner un résultat de $arrayProfileEvent
         return $arrayProfileEvent;
-       
     }
 
-    //on crée une fonction qui va nous permettre d'afficher tous les éléments de l'événement
-    //// par catégorie (en lien avec la barre de navigation)
+//on crée une fonction qui va nous permettre d'afficher tous les éléments de l'événement
+//// par catégorie (en lien avec la barre de navigation)
     public function getAllDataEventCategory() {
 
         $query = 'SELECT * '
@@ -94,13 +93,13 @@ class event extends database {
                 . 'ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
 
         $result = $this->database->query($query);
-        //je fais un fetchAll car j'ai besoin de parcourir le tableau du résultat de ma requête et d'afficher
-        //les informations dans ma vue via un foreach
+//je fais un fetchAll car j'ai besoin de parcourir le tableau du résultat de ma requête et d'afficher
+//les informations dans ma vue via un foreach
         $resultAllDataEvent = $result->fetchAll(PDO::FETCH_OBJ);
         return $resultAllDataEvent;
     }
 
-    //on crée une fonction pour modifier les événements
+//on crée une fonction pour modifier les événements
     public function modifyEvent() {
         $query = 'UPDATE `poqs_event` SET `event_title` = :event_title, '
                 . ' `event_date` = :event_date, '
@@ -111,9 +110,9 @@ class event extends database {
                 . '`eventsub_category_id` = :eventsub_category_id, '
                 . '`showplaces_id` = :showplaces_id '
                 . 'WHERE `event_id` = :event_id';
-        //on prépare la requête
+//on prépare la requête
         $resultQueryModifyEvent = $this->database->prepare($query);
-        //on fait le lien avec les bindvalue
+//on fait le lien avec les bindvalue
         $resultQueryModifyEvent->bindValue(':event_title', $this->event_title, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_date', $this->event_date, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_time', $this->event_time, PDO::PARAM_STR);
@@ -123,13 +122,13 @@ class event extends database {
         $resultQueryModifyEvent->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
-        //on éxécute la requête
+//on éxécute la requête
         $resultQueryModifyEvent->execute();
     }
 
-    // on crée une méthode pour modifier les événements sans modifier la photo enregistré par le user
-    //car je ne veux pas obliger le user à modifier sa photo// la photo étant déjà dans la base de 
-    //données //
+// on crée une méthode pour modifier les événements sans modifier la photo enregistré par le user
+//car je ne veux pas obliger le user à modifier sa photo// la photo étant déjà dans la base de 
+//données //
     public function modifyEventWithoutPicture() {
         $query = 'UPDATE `poqs_event` SET `event_title` = :event_title, '
                 . '`event_date` = :event_date, '
@@ -139,9 +138,9 @@ class event extends database {
                 . '`eventsub_category_id` = :eventsub_category_id, '
                 . '`showplaces_id` = :showplaces_id '
                 . 'WHERE `event_id` = :event_id';
-        //on prépare la requête
+//on prépare la requête
         $resultQueryModifyEvent = $this->database->prepare($query);
-        //on fait le lien avec les bindvalue
+//on fait le lien avec les bindvalue
         $resultQueryModifyEvent->bindValue(':event_title', $this->event_title, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_date', $this->event_date, PDO::PARAM_STR);
         $resultQueryModifyEvent->bindValue(':event_time', $this->event_time, PDO::PARAM_STR);
@@ -150,36 +149,36 @@ class event extends database {
         $resultQueryModifyEvent->bindValue(':eventsub_category_id', $this->eventsub_category_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':showplaces_id', $this->showplaces_id, PDO::PARAM_INT);
         $resultQueryModifyEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
-        //on éxécute la requête
+//on éxécute la requête
         $resultQueryModifyEvent->execute();
     }
 
-    //on crée une fonction pour supprimer les événements
+//on crée une fonction pour supprimer les événements
     public function deleteEvent() {
         $query = 'DELETE FROM `poqs_event` WHERE `event_id`=:event_id';
-        //on commence une transaction et désactivation de l'autocommit =begintransaction
+//on commence une transaction et désactivation de l'autocommit =begintransaction
         $this->database->beginTransaction();
         $resultQueryDeleteEvent = $this->database->prepare($query);
         $resultQueryDeleteEvent->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
         $resultQueryDeleteEvent->execute();
-        //on valide les modifications et la connexion à la base de données = retour en mode auto-commit =commit
+//on valide les modifications et la connexion à la base de données = retour en mode auto-commit =commit
         $this->database->commit();
-        //on s'apercoit d'une erreur et on annule les modifications =rollBack//
+//on s'apercoit d'une erreur et on annule les modifications =rollBack//
     }
 
-    //on crée une méthode pour récupérer le nom de l'image dans notre dossier image img/ avant de la supprimer//
+//on crée une méthode pour récupérer le nom de l'image dans notre dossier image img/ avant de la supprimer//
     public function getImageNameBeforeDelete() {
         $query = 'SELECT `event_picture` FROM `poqs_event` WHERE `event_id` = :event_id';
-        //je prépare ma requête
+//je prépare ma requête
         $resultQuery = $this->database->prepare($query);
-        //je lie les données
+//je lie les données
         $resultQuery->bindValue(':event_id', $this->event_id, PDO::PARAM_INT);
-        //j'éxécute ma requête
+//j'éxécute ma requête
         $resultQuery->execute();
         return $resultQuery->fetch(PDO::FETCH_OBJ);
     }
 
-    //on crée une méthode pour afficher tous les événements//
+//on crée une méthode pour afficher tous les événements//
     public function showAllEvents() {
 
         $query = 'SELECT * FROM `poqs_event`'
@@ -189,13 +188,13 @@ class event extends database {
                 . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
                 . ' INNER JOIN `poqs_showplaces`'
                 . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
-                
+
         $result = $this->database->query($query);
         $resultArrayAllEvents = $result->fetchAll(PDO::FETCH_OBJ);
         return $resultArrayAllEvents;
     }
 
-    // on crée une méthode por afficher les événements par catégorie et sous catégorie// 
+// on crée une méthode por afficher les événements par catégorie et sous catégorie// 
     public function showByCategory($eventcategory_id, $eventsub_category_id) {
 
         $query = 'SELECT * FROM `poqs_event`'
@@ -217,8 +216,8 @@ class event extends database {
         return $arrayShowCategory;
     }
 
-    //on crée une méthode pour afficher les événements via l'id de l'événement//
-    //le but : Avant de modifier l'événement récupérer les données enregistrés par le user// 
+//on crée une méthode pour afficher les événements via l'id de l'événement//
+//le but : Avant de modifier l'événement récupérer les données enregistrés par le user// 
     public function showEventByIdEvent() {
         $query = 'SELECT * FROM `poqs_event`'
                 . ' INNER JOIN `poqs_showplaces`'
@@ -231,13 +230,25 @@ class event extends database {
         return $resultQueryShowEvent->fetch(PDO::FETCH_OBJ);
     }
 
-    //on crée une fonction pour récupérer tous les lieux de spectacle//
-    //afin de créer un select automatique / liste déroulante dans les formulaires création
-    //d'événement et modifier un événement//
+//on crée une fonction pour récupérer tous les lieux de spectacle//
+//afin de créer un select automatique / liste déroulante dans les formulaires création
+//d'événement et modifier un événement//
     public function getAllPlaces() {
         $query = 'SELECT * FROM `poqs_showplaces`';
         $resultAllPlaces = $this->database->query($query);
         return $resultAllPlaces->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    //on crée une fonction pour récupérer le nombre d'événements crée par le user sur la page mesevenements
+    public function countEventById() {
+        $query = 'SELECT count(*) AS `eventNumber` '
+                . 'FROM `poqs_event` '
+                . 'WHERE `users_id`= :users_id ';
+
+        $resultEventNumber = $this->database->prepare($query);
+        $resultEventNumber->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
+        $resultEventNumber->execute();
+        return $resultEventNumber->fetchColumn();
     }
 
 }

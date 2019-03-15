@@ -40,8 +40,16 @@ include_once('controllers/controllermesevenements.php');
                     <a href="moncompte.php">retour mon compte</a>
                 </div>
             </div>
-            <div class="text-center">                        
-                <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
+            <div class="text-center">       
+               
+                <h1 class="mt-5"><i class="myevents mx-auto"></i><?= $resultEventNumber ?> événement(s)pour l'instant</h1>
+                <?php if (isset($_SESSION['users_id'])&&($resultEventNumber ==0)) { ?>
+                <div class="firsteventbtn" ><p>Vous pouvez désormais créer votre événement<p>
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>
+                    <img src="assets/images/vintagegroupe.png" alt="event" id="myeventspicture"/></div>
+                    <?php 
+                }
+                ?>
                 <!-- MODAL CONFIRMATION SUPPRESSION EVENEMENT -->
                 <div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

@@ -131,7 +131,7 @@ if (isset($_POST['createEventBtn'])) {
         }
         // Vérifie le poids du fichier
         if ($_FILES["event_picture"]["size"] > 500000) {
-            $errorsArrayevent['event_picture'] = 'L\'image ne doit pas accéder 500kb';
+            $errorsArrayevent['event_picture'] = 'L\'image ne doit pas excéder 500kb';
         }
 
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];

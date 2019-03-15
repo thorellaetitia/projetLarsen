@@ -70,9 +70,27 @@
 a.nav-link.zoom:hover {
     font-size: 20px;
     color:orange;  
+
+}
+
+a#content_concert:hover {
     border-bottom: red solid 2px; 
     padding-bottom: 10px; 
+}
 
+a#content_spectacle:hover {
+    border-bottom: orange solid 2px; 
+    padding-bottom: 10px; 
+}
+
+a#content_expo:hover {
+    border-bottom: greenyellow solid 2px; 
+    padding-bottom: 10px; 
+}
+
+a#content_free:hover {
+    border-bottom: pink solid 2px; 
+    padding-bottom: 10px; 
 }
 
 span.error {
@@ -170,6 +188,15 @@ body {
     background-color: #f2af58;
 }
 
+#myeventspicture {
+    position : absolute;
+    top: 50px; 
+    left: 100px;
+}
+
+.firsteventbtn {
+    position : relative;
+}
 
 /*input{
     float: right;
@@ -387,14 +414,13 @@ card-media-body-heading {
 /*//////////////code couleur par card/////////////////////////*/
 .concert {
     border-color: red;
-
 }
 
 .spectacle {
     border-color: orange;
 }
 
-.expos {
+.expo {
     border-color: greenyellow;
 }
 
