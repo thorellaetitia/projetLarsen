@@ -33,17 +33,16 @@ if ((isset($_POST['createUserBtn']))) {
     if (isset($_POST['usertypes_id'])) {
         $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
         if (!preg_match($regexLetter, $usertypes_id)) {
-            $errorsArrayinscription['usertypes_id'] = 'Merci de sélectionner un statut';
+            $errorsArrayinscription['usertypes_id'] = 'Merci de sélectionner un champ';
         }
         if (empty($usertypes_id)) {
             $errorsArrayinscription['usertypes_id'] = 'Merci de faire votre choix';
         }
-    } 
-    else {
-        $errorsArrayinscription['usertypes_id'] = 'Le champ est obligatoire';
+    } else {
+        $errorsArrayinscription['usertypes_id'] = 'La sélection de ce champ est obligatoire';
     }
 
-        if (isset($_POST['name'])) {
+    if (isset($_POST['name'])) {
         $name = htmlspecialchars($_POST['name']);
         if (!preg_match($regexLetter, $name)) {
             $errorsArrayinscription['name'] = 'Merci de saisir une chaîne de caractères';
@@ -112,7 +111,7 @@ if ((isset($_POST['createUserBtn']))) {
                 $errorsArrayinscription['secondpassword'] = 'Mot de passe invalide';
             }
             if (empty($secondpassword)) {
-                $errorsArrayinscription['secondpassword'] = 'Merci de saisir votre mot de passe';
+                $errorsArrayinscription['secondpassword'] = 'Merci de saisir la confirmation de votre mot de passe';
             }
         }
     }

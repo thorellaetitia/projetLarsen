@@ -79,7 +79,7 @@ include_once('controllers/controllermodifyevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="event_title">Titre :</label>
+                        <label for="event_title">Titre / Artiste :</label>
                         <input class="form-control" name="event_title" id="title" placeholder="titre de l'événement" value="<?= $resultQueryShowEvent->event_title ?>" required/>
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
@@ -94,7 +94,7 @@ include_once('controllers/controllermodifyevent.php');
                         <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="showplaces_id">Salles de spectacle :</label>
+                        <label for="showplaces_id">Salle de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <!--                            //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
                             <?php foreach ($allPlaces as $place) {
@@ -107,7 +107,7 @@ include_once('controllers/controllermodifyevent.php');
                     </div>
                     <img class="w-50 pictureEvent" src="img/<?= $resultQueryShowEvent->event_picture ?>" alt="photo evenement" />
                     <div class="form-control-file">
-                        <label  for="event_picture">Photo </label> 
+                        <label  for="event_picture">Photo de l'événement / Artiste : </label> 
                         <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture"><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
@@ -119,7 +119,7 @@ include_once('controllers/controllermodifyevent.php');
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-dark">Fermer</button>
-                        <button type="submit" class="btn btn-warning" name="modifyEventBtn">Modifier</button>
+                        <button type="submit" class="btn btn-warning" name="modifyEventBtn">Modifier l'événement</button>
                     </div>
                 </form>
             </div>

@@ -15,11 +15,11 @@ include_once('controllers/controllerevent.php');
                 <!--form-->
                 <form class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate>
                     <div class="form-inline">
-                        <label class="checkbox" for="event_free">Plans gratuits</label>
+                        <label class="checkbox" for="event_free">Plan gratuit</label>
                         <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free">
                     </div>
                     <div class="form-group">
-                        <label for="eventcategory_id"> Catégorie événement</label>
+                        <label for="eventcategory_id"> Rubrique :</label>
                         <select class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1" >
                             <!--                            //création de ternaire pour récupérer les données entrées par le user -->
                             <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
@@ -28,9 +28,10 @@ include_once('controllers/controllerevent.php');
                             <option value="2" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory'] == 2 ? 'selected' : '' ?>>Spectacle</option>
                             <option value="3" <?= isset($_POST['eventcategory_id']) && $_POST['eventcategory_id'] == 3 ? 'selected' : '' ?>>Expo</option>
                         </select>
+                        <span class="error"><?= isset($errorsArrayevent['eventcategory_id']) ? $errorsArrayevent['eventcategory_id'] : '' ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="eventsub_category_id"> Sous-catégorie événement</label>
+                        <label for="eventsub_category_id"> Sous-rubrique :</label>
                         <select class="form-control py-2" name="eventsub_category_id" id="exampleFormControlSelect1" >
                             <option disabled <?= !isset($_POST['eventsub_category_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <option value="1" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 1 ? 'selected' : '' ?>>Concert</option>
@@ -43,10 +44,11 @@ include_once('controllers/controllerevent.php');
                             <option value="8" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 8 ? 'selected' : '' ?>>Balade</option>
                             <option value="9" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 9 ? 'selected' : '' ?>>Atelier</option>
                         </select>
+                        <span class="error"><?= isset($errorsArrayevent['eventsub_category_id']) ? $errorsArrayevent['eventsub_category_id'] : '' ?></span>
                     </div>
                     <div class="form-group">
                         <label for="event_title">Titre / Artiste :</label>
-                        <input class="form-control" type="text" name="event_title" id="title" value="<?= isset($_POST['event_title']) ? htmlspecialchars($_POST['event_title']) : '' ?>" placeholder="titre de l'événement" required />
+                        <input class="form-control" type="text" name="event_title" id="title" value="<?= isset($_POST['event_title']) ? htmlspecialchars($_POST['event_title']) : '' ?>" required />
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
@@ -68,20 +70,21 @@ include_once('controllers/controllerevent.php');
                                 <option value="<?= $place->showplaces_id ?>" <?= isset($_POST['showplaces_id']) && $_POST['showplaces_id'] == $place->showplaces_id ? 'selected' : '' ?>><?= $place->showplaces_name ?></option>
                             <?php } ?>
                         </select>
+                        <span class="error"><?= isset($errorsArrayevent['showplaces_id']) ? $errorsArrayevent['showplaces_id'] : '' ?></span>
                     </div>
                     <div class="form-control-file">
-                        <label  for="event_picture">Photo </label> 
+                        <label  for="event_picture">Photo de l'événement / Artiste : </label> 
                         <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture" id="image" placeholder="parcourir" /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="event_description">Description :</label>
-                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="description de l'événement" required><?= isset($_POST['event_description']) ? htmlspecialchars($_POST['event_description']) : '' ?></textarea><br>
+                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="60 caractères max" required><?= isset($_POST['event_description']) ? htmlspecialchars($_POST['event_description']) : '' ?></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-warning" name="createEventBtn">Créer</button>
+                        <button type="submit" class="btn btn-warning" name="createEventBtn">Créer un événement</button>
                     </div>
                 </form>
             </div>

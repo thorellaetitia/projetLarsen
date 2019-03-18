@@ -57,18 +57,21 @@ $arrayProfileEvent = $profilEventObj->displayEventById();
 if (isset($_POST['createEventBtn'])) {
 //si la catégorie de mon événement existe
     if (isset($_POST['eventcategory_id'])) {
-        //ma catégorie sera = à ce que je récupère dans l'input
+//ma catégorie sera = à ce que je récupère dans l'input
         $eventcategory_id = htmlspecialchars($_POST['eventcategory_id']);
-        //si ma catégorie ne correspond pas à ce que j'ai défini dans mon expression régulière
+//si ma catégorie ne correspond pas à ce que j'ai défini dans mon expression régulière
         if (!preg_match($regexEventCategoryId, $eventcategory_id)) {
-            //alors tu m'affiches le message ci-dessous que tu stockes das mon tableau d'erreurs
-            $errorsArrayevent['eventcategory_id'] = 'Merci de saisir une catégorie d\'événements';
+//alors tu m'affiches le message ci-dessous que tu stockes das mon tableau d'erreurs
+            $errorsArrayevent['eventcategory_id'] = 'Merci de saisir une rubrique';
         }
-        // si ma catégorie est vide alors tu m'affiches le message que tu stocke dans mon tableau d'erreurs
+// si ma catégorie est vide alors tu m'affiches le message que tu stocke dans mon tableau d'erreurs
         if (empty($eventcategory_id)) {
-            $errorsArrayeventvent['eventcategory_id'] = 'Merci de faire votre choix';
+            $errorsArrayevent['eventcategory_id'] = 'Merci de faire votre choix';
         }
+    } else {
+        $errorsArrayevent['eventcategory_id'] = 'La sélection d\'une rubrique est obligatoire';
     }
+
 
     if (isset($_POST['eventsub_category_id'])) {
         $eventsub_category_id = htmlspecialchars($_POST['eventsub_category_id']);
@@ -78,7 +81,10 @@ if (isset($_POST['createEventBtn'])) {
         if (empty($eventsub_category_id)) {
             $errorsArrayevent['eventsub_category_id'] = 'Merci de faire votre choix';
         }
+    } else {
+        $errorsArrayevent['eventsub_category_id'] = 'La sélection d\'une sous-rubrique est obligatoire';
     }
+
 
     if (isset($_POST['event_title'])) {
         $event_title = htmlspecialchars($_POST['event_title']);
@@ -86,7 +92,7 @@ if (isset($_POST['createEventBtn'])) {
             $errorsArrayevent['event_title'] = 'Merci de saisir une chaine de caractères';
         }
         if (empty($event_title)) {
-            $errorsArrayevent['event_title'] = 'Merci de saisir un titre';
+            $errorsArrayevent['event_title'] = 'Merci de saisir un titre ou un artiste';
         }
     }
 
@@ -119,28 +125,31 @@ if (isset($_POST['createEventBtn'])) {
 ///////vérifications sur le type de fichier upload//////////
 //spécifie le dossier dans lequel les images sont stockées
 // Vérifie si chaque image est bien un fichier image ou non
-    if (isset($_FILES["event_picture"])) {
+    if (isset($_FILES['event_picture'])) {
         $target_dir = "img/";
 //spécifie le chemin du fichier à être chargé
         $target_file = $target_dir . basename($_FILES['event_picture']['name']);
-        //spécifie l'extension du fichier
+//spécifie l'extension du fichier
         $imageFileType = strtolower(pathinfo($_FILES['event_picture']['name'], PATHINFO_EXTENSION));
-        // Vérifie si le nom du fichier existe déjà dans la base de données
+// Vérifie si le nom du fichier existe déjà dans la base de données
         if (file_exists($target_file)) {
             $errorsArrayevent['event_picture'] = 'Le fichier existe déjà';
         }
-        // Vérifie le poids du fichier
-        if ($_FILES["event_picture"]["size"] > 500000) {
+// Vérifie le poids du fichier
+        if ($_FILES['event_picture']['size'] > 500000) {
             $errorsArrayevent['event_picture'] = 'L\'image ne doit pas excéder 500kb';
         }
 
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
-        // Prise en compte de certains formats de fichiers
-        //création d'un tableau et dans ce tableau on compare le fichier a télécharger et les formats autorisés
+// Prise en compte de certains formats de fichiers
+//création d'un tableau et dans ce tableau on compare le fichier a télécharger et les formats autorisés
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
+    } else {
+        $errorsArrayevent['event_picture'] = 'Une photo est requise pour la création de l\'événement';
     }
+    
 
 /////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
 
@@ -150,8 +159,10 @@ if (isset($_POST['createEventBtn'])) {
             $errorsArrayevent['showplaces_id'] = 'Merci de renseigner une salle de spectacle';
         }
         if (empty($showplaces_id)) {
-            $errorsArrayevent['showplaces_id'] = 'Merci de faire votre choix';
+            $errorsArrayevent['showplaces_id'] = 'Merci de sélectionner une salle de spectacle';
         }
+    } else {
+        $errorsArrayevent['showplaces_id'] = 'La sélection de la salle est obligatoire';
     }
 
     if (isset($_POST['event_description'])) {
@@ -165,13 +176,13 @@ if (isset($_POST['createEventBtn'])) {
     }
 //si te tableau d'erreurs est vide alors
     if (count($errorsArrayevent) == 0) {
-        //on transfert la photo de l'événement dans notre dossier img
+//on transfert la photo de l'événement dans notre dossier img
         if (move_uploaded_file($_FILES["event_picture"]["tmp_name"], 'img/' . $_FILES["event_picture"]["name"])) {
             echo "le fichier " . basename($_FILES["event_picture"]["name"]) . " a été chargé.";
         } else {
             echo "désolé, il y a une erreur de chargement de fichier.";
         }
-        //on hydrate les attributs de l'objet//
+//on hydrate les attributs de l'objet//
         $eventObj->users_id = $_SESSION['users_id'];
         $eventObj->event_title = $event_title;
         $eventObj->event_date = $event_date;
@@ -183,19 +194,19 @@ if (isset($_POST['createEventBtn'])) {
         $eventObj->eventsub_category_id = $eventsub_category_id;
         $eventObj->showplaces_id = $showplaces_id;
 
-        ////j'éxécute la méthode createEvent avec les attributs précedement stockés
+////j'éxécute la méthode createEvent avec les attributs précedement stockés
         $eventObj->CreateEvent();
-        //je crée une variable de session createEventok et je l'initialise avec = true
-        //l'objectif de cette variable est d'afficher un message une fois l'événement créé
+//je crée une variable de session createEventok et je l'initialise avec = true
+//l'objectif de cette variable est d'afficher un message une fois l'événement créé
         $_SESSION['createEventOk'] = true;
 
-        //si tout est ok renvoi vers mesevenements.php 
+//si tout est ok renvoi vers mesevenements.php 
         header('Location: mesevenements.php');
-        //toujours mettre un exit après un header, le script est arrêté, une fois l'événement
-        // créé il y a un renvoi vers la page mesevenements.php
+//toujours mettre un exit après un header, le script est arrêté, une fois l'événement
+// créé il y a un renvoi vers la page mesevenements.php
         exit();
     } else {
-        //création d'une variable pour que le modal reste ouvert s'il y a des erreurs
+//création d'une variable pour que le modal reste ouvert s'il y a des erreurs
         $modalStayOpenIfErrors = true;
     }
 }
