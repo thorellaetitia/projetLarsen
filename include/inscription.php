@@ -23,7 +23,7 @@ include_once('controllers/controllerinscription.php');
                             <option value="1" <?= isset($_POST['usertypes_id']) && $_POST['usertypes_id'] == 1 ? 'selected' : '' ?>>Professionnel</option>
                             <option value="2" <?= isset($_POST['usertypes_id']) && ($_POST['usertypes_id'] == 2) ? 'selected' : '' ?>>Particulier</option>
                         </select>
-                        <span class="error"><p><?= isset($errorsArrayevent['usertypes_id']) ? $errorsArrayevent['usertypes_id'] : '' ?></p></span>
+                        <span class="error"><?= isset($errorsArrayinscription['usertypes_id']) ? $errorsArrayinscription['usertypes_id'] : '' ?></span>
                     </div>
                     <div class="form-group">
                         <label for="name">Votre nom : </label>

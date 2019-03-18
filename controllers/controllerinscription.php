@@ -33,18 +33,17 @@ if ((isset($_POST['createUserBtn']))) {
     if (isset($_POST['usertypes_id'])) {
         $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
         if (!preg_match($regexLetter, $usertypes_id)) {
-            $errorsArrayevent['usertypes_id'] = 'Merci de sélectionner un statut';
+            $errorsArrayinscription['usertypes_id'] = 'Merci de sélectionner un statut';
         }
         if (empty($usertypes_id)) {
-            $errorsArrayevent['usertypes_id'] = 'Merci de faire votre choix';
+            $errorsArrayinscription['usertypes_id'] = 'Merci de faire votre choix';
         }
     } 
     else {
-        $errorsArrayevent['usertypes_id'] = 'Le champ est obligatoire';
+        $errorsArrayinscription['usertypes_id'] = 'Le champ est obligatoire';
     }
 
-    
-    if (isset($_POST['name'])) {
+        if (isset($_POST['name'])) {
         $name = htmlspecialchars($_POST['name']);
         if (!preg_match($regexLetter, $name)) {
             $errorsArrayinscription['name'] = 'Merci de saisir une chaîne de caractères';
