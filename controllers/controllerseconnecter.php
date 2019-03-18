@@ -14,7 +14,6 @@ $modalErrorconnection = false;
 
 
 if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérifications 
-    
     if (isset($_POST['users_login'])) {
         $users_login = htmlspecialchars($_POST['users_login']);
         if (empty($_POST['users_login'])) {
@@ -43,7 +42,7 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
         //on va vérifier que le mot de passe soit égal au mot de passe récupéré dans la base de données
         if (is_object($dataUser)) {
             //si le mot de passe est le bon alors on hydrate les attributs de l'objet et on récupère
-        // les informations suivantes via le $_SESSION
+            // les informations suivantes via le $_SESSION
             if (password_verify($users_password, $dataUser->users_password)) {
                 $_SESSION['users_id'] = $dataUser->users_id;
                 $_SESSION['users_name'] = $dataUser->users_name;
@@ -58,16 +57,18 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
                 header('Location: mesevenements.php');
                 exit();
                 //sinon
-            } else { 
+            } else {
+                //création d'une variable si le mot de passe n'est pas valide alors le modal reste ouvert et création ternaire dans le controller//
+                $modalconnectionstayOpenIfNonValidPassword = true;
                 //création d'un message si le user se trompe de mot de passe
                 $messageNonValidPassword = true;
             }
         } else {
+             //création d'une variable si le login user n'est pas valide alors le modal reste ouvert et création ternaire dans le controller//
+            $modalconnectionstayOpenIfNonValidUser = true;
             //création d'un message si le user n'a pas de compte
             $messageErrorAccount = true;
             
         }
-        
     }
-    
 }

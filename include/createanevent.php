@@ -45,7 +45,7 @@ include_once('controllers/controllerevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="event_title">Titre :</label>
+                        <label for="event_title">Titre / Artiste :</label>
                         <input class="form-control" type="text" name="event_title" id="title" value="<?= isset($_POST['event_title']) ? htmlspecialchars($_POST['event_title']) : '' ?>" placeholder="titre de l'événement" required />
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
@@ -60,7 +60,7 @@ include_once('controllers/controllerevent.php');
                         <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="showplaces_id">Salles de spectacle :</label>
+                        <label for="showplaces_id">Salle de spectacle :</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <!--                       //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->

@@ -16,13 +16,14 @@ include_once('controllers/controllerinscription.php');
                 <form method="post" action="" novalidate >
                     <div class="form-group">
                         <label for="usertypes_id"> Vous êtes :</label>
-                        <select class="form-control py-2" name="usertypes_id" required >
+                        <select class="form-control py-2" name="usertypes_id">
                             <option disabled <?= !isset($_POST['usertypes_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option> 
                             <!-- //création de ternaire pour récupérer les données entrées par le user -->
                             <!--début de la condition si usertypes_id existe et si usertypes_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
                             <option value="1" <?= isset($_POST['usertypes_id']) && $_POST['usertypes_id'] == 1 ? 'selected' : '' ?>>Professionnel</option>
-                            <option value="2" <?= isset($_POST['usertypes_id']) && ($_POST['usertypes_id'] == 2) ? 'selected' : '' ?>>Particulier</option>                  
+                            <option value="2" <?= isset($_POST['usertypes_id']) && ($_POST['usertypes_id'] == 2) ? 'selected' : '' ?>>Particulier</option>
                         </select>
+                        <span class="error"><p><?= isset($errorsArrayevent['usertypes_id']) ? $errorsArrayevent['usertypes_id'] : '' ?></p></span>
                     </div>
                     <div class="form-group">
                         <label for="name">Votre nom : </label>
@@ -45,7 +46,7 @@ include_once('controllers/controllerinscription.php');
                         <span class="error"><?= isset($errorsArrayinscription['mail']) ? $errorsArrayinscription['mail'] : ''; ?></span>
                     </div>                         
                     <div class="form-group">
-                        <label for="login">Votre login : </label>
+                        <label for="login">Votre pseudo : </label>
                         <input class="form-control" type="text" name="login" id="login" value="<?= (isset($login)) ? $login : ''; ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayinscription['login']) ? $errorsArrayinscription['login'] : ''; ?></span>
                     </div>
