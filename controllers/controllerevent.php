@@ -101,11 +101,11 @@ if (isset($_POST['createEventBtn'])) {
         if (!preg_match($regexdate, $event_date)) {
             $errorsArrayevent['event_date'] = 'Merci de saisir une date au format JJ/MM/YYYY';
         }
-        if (empty($event_date)) {
-            $errorsArrayevent['event_date'] = 'Merci de saisir une date';
-        }
         if (strtotime('today') > strtotime($event_date)) {
             $errorsArrayevent['event_date'] = 'La date choisie n\'est pas valide';
+        }
+        if (empty($event_date)) {
+            $errorsArrayevent['event_date'] = 'Merci de saisir une date';
         }
     }
 
@@ -139,17 +139,17 @@ if (isset($_POST['createEventBtn'])) {
         if ($_FILES['event_picture']['size'] > 500000) {
             $errorsArrayevent['event_picture'] = 'L\'image ne doit pas excéder 500kb';
         }
-
         $arrayValidFormat = ["jpg", "png", "jpeg", "bmp"];
 // Prise en compte de certains formats de fichiers
 //création d'un tableau et dans ce tableau on compare le fichier a télécharger et les formats autorisés
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
-    } else {
-        $errorsArrayevent['event_picture'] = 'Une photo est requise pour la création de l\'événement';
+        if (empty($event_picture)) {
+            $errorsArrayevent['event_picture'] = 'Vous n\'avez sélectionné aucune photo, elle est obligatoire';
+        }
     }
-    
+
 
 /////////////////////fin verif des fichiers UPLOAD////////////////////////////////////
 

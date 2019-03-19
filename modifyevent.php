@@ -38,10 +38,10 @@ include_once('controllers/controllermodifyevent.php');
                     <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Remplisser les informations liées à votre événement</p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify"> 
-                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>N'oublier pas la photo, qui permettra d'illustrer votre événement</p>
+                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>N'oublier pas la photo, elle permettra d'illustrer votre événement</p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 border steptomodify"> 
-                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Valider la modification, click sur modifier</p>
+                    <p><i class="fas fa-bullhorn fa-2x mt-2 mr-2"></i>Pour valider la modification, cliquer sur modifier</p>
                 </div>
             </div>
             <div class="text-center">                        
@@ -51,11 +51,11 @@ include_once('controllers/controllermodifyevent.php');
                 <!--                //////debut du form/////////-->
                 <form id="formmodifyevent" class="form-group" action="" method="post" enctype="multipart/form-data" role="form" novalidate="">
                     <div class="form-inline">
-                        <label class="checkbox" for="event_free">Plans gratuits</label>
+                        <label class="checkbox" for="event_free">Plan gratuit</label>
                         <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free">
                     </div>
                     <div class="form-group">
-                        <label for="eventcategory_id"> Catégorie événement</label>
+                        <label for="eventcategory_id"> Rubrique : </label>
                         <select  class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1">
                             <!--                            //création de ternaire pour récupérer les données entrées par le user -->
                             <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
@@ -65,7 +65,7 @@ include_once('controllers/controllermodifyevent.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="eventsub_category_id"> Sous-catégorie événement</label>
+                        <label for="eventsub_category_id"> Sous-rubrique : </label>
                         <select class="form-control py-2" name="eventsub_category_id" id="exampleFormControlSelect1">
                             <option value="1" <?= $resultQueryShowEvent->eventsub_category_id == 1 ? 'selected' : '' ?>>Concert</option>
                             <option value="2" <?= $resultQueryShowEvent->eventsub_category_id == 2 ? 'selected' : '' ?>>Danse</option>
@@ -105,20 +105,24 @@ include_once('controllers/controllermodifyevent.php');
                             ?>
                         </select>
                     </div>
-                    <img class="w-50 pictureEvent" src="img/<?= $resultQueryShowEvent->event_picture ?>" alt="photo evenement" />
                     <div class="form-control-file">
-                        <label  for="event_picture">Photo de l'événement / Artiste : </label> 
-                        <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture"><br>
+                        <label for="event_picture">Photo de l'événement / Artiste : </label> 
+                        <div>
+                            <p class="p-3 mb-2 bg-warning text-white">Vous souhaitez garder la photo ? Alors pas besoin de la charger à nouveau</p>
+                            <p class="p-3 mb-2 bg-warning text-white">Vous souhaitez la modifier ? Alors chargez une nouvelle photo et le tour est joué</p>
+                            <img class="w-35 pictureEvent border border-warning" src="img/<?= $resultQueryShowEvent->event_picture ?>" alt="photo événement" />
+                        </div>
+                        <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture"  placeholder="modifier" ><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
 
                     <div class="form-group">
                         <label for="event_description">Description :</label>
-                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="description de l'événement" required ><?= $resultQueryShowEvent->event_description ?></textarea><br>
+                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="60 caractères maximum" required ><?= $resultQueryShowEvent->event_description ?></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-dark">Fermer</button>
+                        <a type="button" class="btn btn-dark" href="mesevenements.php">Fermer</a>
                         <button type="submit" class="btn btn-warning" name="modifyEventBtn">Modifier l'événement</button>
                     </div>
                 </form>

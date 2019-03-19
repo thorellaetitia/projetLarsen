@@ -42,7 +42,7 @@ include_once('controllers/controllermesevenements.php');
             </div>
             <div class="text-center">       
                
-                <h1 class="mt-5"><i class="myevents mx-auto"></i><?= $resultEventNumber ?> événement(s)pour l'instant</h1>
+                <h1 class="mt-5"><i class="myevents mx-auto"></i><?= $resultEventNumber ?> événement(s)créé(s) pour l'instant</h1>
                 <?php if (isset($_SESSION['users_id'])&&($resultEventNumber ==0)) { ?>
                 <div class="firsteventbtn" ><p>Vous pouvez désormais créer votre événement<p>
                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>

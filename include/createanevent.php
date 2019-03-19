@@ -79,7 +79,7 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="form-group">
                         <label for="event_description">Description :</label>
-                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="60 caractères max" required><?= isset($_POST['event_description']) ? htmlspecialchars($_POST['event_description']) : '' ?></textarea><br>
+                        <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="60 caractères maximum" required><?= isset($_POST['event_description']) ? htmlspecialchars($_POST['event_description']) : '' ?></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
                     <div class="modal-footer">
