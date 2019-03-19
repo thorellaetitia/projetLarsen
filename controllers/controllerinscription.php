@@ -32,9 +32,9 @@ if ((isset($_POST['createUserBtn']))) {
 
     if (isset($_POST['usertypes_id'])) {
         $usertypes_id = htmlspecialchars($_POST['usertypes_id']);
-        if (!preg_match($regexLetter, $usertypes_id)) {
-            $errorsArrayinscription['usertypes_id'] = 'Merci de sélectionner un champ';
-        }
+//        if (!preg_match($regexLetter, $usertypes_id)) {
+//            $errorsArrayinscription['usertypes_id'] = 'Merci de sélectionner un champ';
+//        }
         if (empty($usertypes_id)) {
             $errorsArrayinscription['usertypes_id'] = 'Merci de faire votre choix';
         }

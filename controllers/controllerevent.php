@@ -145,7 +145,7 @@ if (isset($_POST['createEventBtn'])) {
         if (!in_array($imageFileType, $arrayValidFormat)) {
             $errorsArrayevent['event_picture'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
         }
-        if (empty($event_picture)) {
+        if (empty($_FILES['event_picture'])) {
             $errorsArrayevent['event_picture'] = 'Vous n\'avez sélectionné aucune photo, elle est obligatoire';
         }
     }
