@@ -56,14 +56,17 @@ class event extends database {
     public function displayEventById() {
 //je fais ma requête dans une variable $query
         $query = 'SELECT * '
-                . 'FROM `poqs_event`'
-                . 'INNER JOIN `poqs_showplaces`'
-                . 'ON `poqs_event`.`showplaces_id`=`poqs_showplaces`.`showplaces_id`'
-                . 'INNER JOIN `poqs_eventcategory`'
-                . 'ON `poqs_event`.`eventcategory_id`=`poqs_eventcategory`.`eventcategory_id`'
-                . 'INNER JOIN `poqs_eventsub_category`'
-                . 'ON `poqs_event`.`eventsub_category_id`=`poqs_eventsub_category`.`eventsub_category_id`'
-                . 'WHERE `users_id`=:users_id';
+                . ' FROM `poqs_event`'
+                . ' INNER JOIN `poqs_showplaces`'
+                . ' ON `poqs_event`.`showplaces_id`=`poqs_showplaces`.`showplaces_id`'
+                . ' INNER JOIN `poqs_eventcategory`'
+                . ' ON `poqs_event`.`eventcategory_id`=`poqs_eventcategory`.`eventcategory_id`'
+                . ' INNER JOIN `poqs_eventsub_category`'
+                . ' ON `poqs_event`.`eventsub_category_id`=`poqs_eventsub_category`.`eventsub_category_id`'
+                . ' WHERE `users_id`=:users_id'
+                . ' ORDER BY `event_date` ASC';
+        
+        
 //le résultat de ma requête je le stocke dans $resultprofileevent
 //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event) 
         $resultProfileEvent = $this->database->prepare($query);
@@ -187,7 +190,8 @@ class event extends database {
                 . ' INNER JOIN poqs_eventsub_category'
                 . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
                 . ' INNER JOIN `poqs_showplaces`'
-                . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`';
+                . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
+                . ' ORDER BY `event_date` ASC';
 
         $result = $this->database->query($query);
         $resultArrayAllEvents = $result->fetchAll(PDO::FETCH_OBJ);
@@ -205,7 +209,8 @@ class event extends database {
                 . ' INNER JOIN `poqs_showplaces`'
                 . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
                 . ' WHERE poqs_eventsub_category.eventsub_category_id = :eventsub_category_id'
-                . ' AND poqs_eventcategory.eventcategory_id = :eventcategory_id';
+                . ' AND poqs_eventcategory.eventcategory_id = :eventcategory_id'
+                . ' ORDER BY `event_date` ASC';
 
         $resultQueryShowCategory = $this->database->prepare($query);
 

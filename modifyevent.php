@@ -123,7 +123,7 @@ include_once('controllers/controllermodifyevent.php');
                     </div>
                     <div class="text-center">
                         <a type="button" class="btn btn-dark" href="mesevenements.php">Fermer</a>
-                        <button type="submit" class="btn btn-warning" name="modifyEventBtn">Modifier l'événement</button>
+                        <button type="submit" class="btn btn-warning" name="modifyEventBtn">Modifier</button>
                     </div>
                 </form>
             </div>

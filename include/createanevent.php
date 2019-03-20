@@ -84,7 +84,7 @@ include_once('controllers/controllerevent.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-warning" name="createEventBtn">Créer un événement</button>
+                        <button type="submit" class="btn btn-warning" name="createEventBtn">Créer</button>
                     </div>
                 </form>
             </div>
