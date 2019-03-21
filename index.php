@@ -39,13 +39,29 @@ include_once('controllers/controllerindex.php');
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="assets/images/ballet-1376250_1280.jpg" alt="First slide">
+                    <img class="d-block w-100" src="assets/images/balletv2.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="p-3 mb-2 bg-warning text-white">DANSE variation Hip-Hop</h2>
+                        <h2 class="text-light bg-dark">DOUBLE - Cie Dessources (Belgique)</h2>
+                        <p>mardi 23 Avril à 20h30 THEATRE JULIOBONA #LILLEBONNE</p>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="assets/images/concert-984276_1280.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="assets/images/concertv2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="p-3 mb-2 bg-danger text-white">CONCERT </h2>
+                        <h2 class="text-light bg-dark">ARCHIVE  + 1ère partie en concert au TETRIS</h2>
+                        <p>jeudi 7 Novembre à 20h30 LE TETRIS #LE HAVRE</p>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="assets/images/museum-1177081_1280.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="assets/images/museumv2.jpg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 id="background expo">EXPOSITION</h2>
+
+                        <h2 class="text-light bg-dark">RAOUL DUFY AU HAVRE</h2>
+                        <p>du 18 Mai au 3 Novembre Le MUMA #LE HAVRE</p>
+                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -70,8 +86,14 @@ include_once('controllers/controllerindex.php');
                             <div class="containerevent">
 
                                 <div class="card-media row">
+
                                     <div class="card-media-object-container col-xs-12 col-sm-6 col-md-6">
-                                        <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"></div>
+                                        <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"><?php if (strtotime('today') > strtotime($allEvents->event_date)) {
+                            ?>
+                                                <div class="shadow-sm p-3 mb-5 bg-info text-white rounded position-absolute">Complet</div>
+                                                <?php
+                                            }
+                                            ?></div>
                                         <ul class="card-media-object-social-list">
                                             <!--bouton qui permet l'affichage du descriptif de l'événement-->
                                             <li type="button" class="rounded-circle bg-warning ml-1 mb-2" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?= $allEvents->event_description ?>"><i class="mx-auto fas fa-search-plus text-dark pt-2"></i></li>
@@ -79,6 +101,7 @@ include_once('controllers/controllerindex.php');
                                     </div>
                                     <!--modal-->
                                     <!-- body container -->
+
                                     <div class="card-media-body col-xs-12 col-sm-6 col-md-6 <?= $allEvents->eventcategory_name ?>">
                                         <div class="card-media-body-top">
                                             <span class="subtle"><?= $newdate = date('d/m/Y', strtotime($allEvents->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($allEvents->event_time)) ?></span>
@@ -104,15 +127,15 @@ include_once('controllers/controllerindex.php');
                     ?>
                 </div>
             </div>
-<!--            //creation d'un bouton SCROLL TO TOP//-->
-             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
-           
+            <!--            //creation d'un bouton SCROLL TO TOP//-->
+            <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
+
 
             <!--fin des cards-->
         </section>
 
         <div class="parallaxbottom"></div>
-              
+
         <?php
         include_once ('footer.php');
         ?>

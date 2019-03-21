@@ -197,23 +197,6 @@ body {
     position : relative;
 }
 
-/*input{
-    float: right;
-    width: 250px;
-}
-
-select {
-    display: block;
-    float: right;
-    width: 250px;
-}
-
-label {
-    display:block;
-    width: 180px;
-    text-align: center;
-}*/
-
 #footer {
     width: 200px;
     height: 250px;
@@ -419,6 +402,10 @@ card-media-body-heading {
 
 .expo {
     border-color: greenyellow;
+}
+
+#background expo {
+    background-color: greenyellow;
 }
 
 .card-media-body-top {
