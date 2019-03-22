@@ -55,10 +55,9 @@ include_once('controllers/controllerindex.php');
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="assets/images/museumv2.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="assets/images/expov2.jpg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 id="background expo">EXPOSITION</h2>
-
+                        <h2 class="p-3 mb-2 bg-success text-white">EXPOSITION</h2>
                         <h2 class="text-light bg-dark">RAOUL DUFY AU HAVRE</h2>
                         <p>du 18 Mai au 3 Novembre Le MUMA #LE HAVRE</p>
                     </div>
@@ -77,23 +76,45 @@ include_once('controllers/controllerindex.php');
         <div class="parallaxtop"></div>
         <!--debut des cards-->
         <section id="content">
+            <?php
+            if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
+                if (($_GET['eventcategory_id'] == 1) && ($_GET['eventsub_category_id'] == 1)) {
+                    ?>
+            <div class="filter concert"><img src="/assets/images/musicv2.jpg" /></div> 
+                    <?php
+                }
+                if (($_GET['eventcategory_id'] == 2) && ($_GET['eventsub_category_id'] == 2 || 3 || 4 || 5)) {
+                    ?>
+                    <div class="filter spectacle"><img src="/assets/images/theatrev2.jpg" /></div> 
+                    <?php
+                }
+                if (($_GET['eventcategory_id'] == 3) && ($_GET['eventsub_category_id'] == 6 || 7 || 8 || 9)) {
+                    ?>
+                    <div class="filter musée"><img src="/assets/images/museumv2.jpg" /></div> 
+                    <?php
+                }
+            } else {
+                
+            }
+            ?>
+
             <div class="container-fluid">
                 <div class="row">
                     <?php
                     foreach ($arrayShowCategory as $allEvents) {
                         ?>
+
                         <div class="col-sm-12 col-md-12 col-lg-6">
                             <div class="containerevent">
 
                                 <div class="card-media row">
 
                                     <div class="card-media-object-container col-xs-12 col-sm-6 col-md-6">
-                                        <div class="card-media-object" style="background-image: url(img/<?= $allEvents->event_picture ?>);"><?php if (strtotime('today') > strtotime($allEvents->event_date)) {
-                            ?>
-                                                <div class="shadow-sm p-3 mb-5 bg-info text-white rounded position-absolute">Complet</div>
-                                                <?php
-                                            }
-                                            ?></div>
+                                        <div class="card-media-object <?php if (strtotime('today') > strtotime($allEvents->event_date)) { ?>
+                                                 grayscale
+                                                 <?php
+                                             }
+                                             ?>" style="background-image: url(img/<?= $allEvents->event_picture ?>); "></div>
                                         <ul class="card-media-object-social-list">
                                             <!--bouton qui permet l'affichage du descriptif de l'événement-->
                                             <li type="button" class="rounded-circle bg-warning ml-1 mb-2" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?= $allEvents->event_description ?>"><i class="mx-auto fas fa-search-plus text-dark pt-2"></i></li>

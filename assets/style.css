@@ -1,4 +1,4 @@
- .introduction {
+.introduction {
     background-color: #1a1a1a;
     color : #ffffff;
     text-align : center;
@@ -69,6 +69,22 @@
 a.nav-link.zoom:hover {
     font-size: 20px;
     color:orange;  
+
+}
+
+.grayscale {
+    opacity: 0.2;
+}
+
+.filter concert {
+
+}
+
+.filter spectacle img {
+    filter : sepia(100%);
+}
+
+.filter musée {
 
 }
 
@@ -404,9 +420,6 @@ card-media-body-heading {
     border-color: greenyellow;
 }
 
-#background expo {
-    background-color: greenyellow;
-}
 
 .card-media-body-top {
     display: block;

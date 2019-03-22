@@ -18,10 +18,9 @@ class event extends database {
     public $showplaces_id;
 
 //    on crée une fonction qui va nous permettre de créer des événenements
-// et les ajouter dans la base de données
+// et les ajouter dans la base de données //:event_title = marqueur nominatif
     public function CreateEvent() {
         $query = 'INSERT INTO `poqs_event` SET `event_title` = :event_title,'
-//:event_title = marqueur nominatif
                 . ' `event_date` = :event_date,'
                 . ' `event_time` = :event_time,'
                 . ' `event_picture` = :event_picture,'

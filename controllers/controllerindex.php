@@ -7,6 +7,7 @@ require_once 'models/modelUsers.php';
 //on instancie un nouvel objet event
 $allEventsObj = new event();
 
+
 //je récupère les deux id categories et sous catégories dans l'url via le Get
 //// pour afficher les événements par catégorie (dans les rubriques de la navbar)
 
