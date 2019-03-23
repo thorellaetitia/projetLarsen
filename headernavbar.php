@@ -6,11 +6,11 @@ include_once ('include/createanevent.php');
     <div class="container-fluid header">
         <div class="row" id="header">
             <div class="introduction col-lg-4 col-md-4 col-sm-12">
-                <p class="intro float-md-left float-sm-center">Larsen, votre agenda culturel gratuit</p> 
+                <p class="intro float-md-left float-sm-center">Larsen, votre agenda culturel gratuit où il est possible de créer votre événement</p> 
             </div>            
             <div class="connection col-lg-4 col-md-4 col-sm-12">
                 <?php if (isset($_SESSION['userlogin'])) { ?>
-                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>
+                    <button type="button" class="btn btn-outline-warning mt-2" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent" >Créer son événement</button>
                 <?php } ?>
             </div>
 

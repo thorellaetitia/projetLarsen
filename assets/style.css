@@ -77,15 +77,15 @@ a.nav-link.zoom:hover {
 }
 
 .filter concert {
-
+    font-family: 'Permanent Marker', cursive;
 }
 
-.filter spectacle img {
-    filter : sepia(100%);
+.musee {
+    color: #a8f72e;
 }
 
-.filter musée {
-
+.background-expo {
+    background-color: #a8f72e;
 }
 
 a#content_concert:hover {

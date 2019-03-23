@@ -31,7 +31,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 ////lors du click sur les boutons supprimer
-        $('.delete-event').click(function () {
+$('.delete-event').click(function () {
     //tu vas me récupérer l'id de l'evenement dans l'attribut data-delete-id
     //data-delete-id se trouve dans le bouton supprimer de ma card
     ///dataset = pour récupérer les attributs data-.....

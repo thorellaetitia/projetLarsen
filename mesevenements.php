@@ -33,13 +33,14 @@ include_once('controllers/controllermesevenements.php');
         ?>
         <div class="container-fluid">
             <div class="row justify-content-between mt-2">
-                <div class="btn btn-outline-warning btn-sm ml-1">
-                    <a href="index.php">Retour site</a>
+                <div >
+                    <a class="btn btn-outline-warning btn-sm ml-1" href="index.php">Retour site</a>
                 </div>
-                <div class="btn btn-outline-warning btn-sm mr-1">
-                    <a href="moncompte.php">retour mon compte</a>
+                <div >
+                    <a class="btn btn-outline-warning btn-sm mr-1" href="moncompte.php">retour mon compte</a>
                 </div>
             </div>
+            
             <div class="text-center">       
                
                 <h1 class="mt-5"><i class="fas fa-music fa-2x mr-3"></i><?= $resultEventNumber ?> événement(s)créé(s) pour l'instant<i class="fas fa-music fa-2x ml-3"></i></h1>
@@ -105,7 +106,7 @@ include_once('controllers/controllermesevenements.php');
                                         </div>
                                         <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $event->event_title; ?></span>
                                         <!--                                        //j'utilise la fonction php substr qui permet de limiter le texte ici 15 caractères....//-->
-                                        <a class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"  data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-title="<?= ($event->event_title); ?>"><?= substr($event->event_title, 0, 15); ?>...</a>
+                                        <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block" data-toggle="popover" data-content="<?= $event->event_title; ?>"><button class="btn btn-link" type="button"><?= substr($event->event_title, 0, 15); ?>...</button></span>
 
 
                                     </div>

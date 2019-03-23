@@ -17,6 +17,7 @@ include_once('controllers/controllerindex.php');
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
         <link rel="stylesheet" href="assets/style.css" />
         <title>MON PROJET PRO</title>
@@ -41,7 +42,7 @@ include_once('controllers/controllerindex.php');
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="assets/images/balletv2.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="p-3 mb-2 bg-warning text-white">DANSE variation Hip-Hop</h2>
+                        <h2 class="p-3 mb-2 bg-warning text-dark">DANSE variation Hip-Hop</h2>
                         <h2 class="text-light bg-dark">DOUBLE - Cie Dessources (Belgique)</h2>
                         <p>mardi 23 Avril à 20h30 THEATRE JULIOBONA #LILLEBONNE</p>
                     </div>
@@ -49,7 +50,7 @@ include_once('controllers/controllerindex.php');
                 <div class="carousel-item">
                     <img class="d-block w-100" src="assets/images/concertv2.jpg" alt="Second slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="p-3 mb-2 bg-danger text-white">CONCERT </h2>
+                        <h2 class="p-3 mb-2 bg-danger text-dark">CONCERT </h2>
                         <h2 class="text-light bg-dark">ARCHIVE  + 1ère partie en concert au TETRIS</h2>
                         <p>jeudi 7 Novembre à 20h30 LE TETRIS #LE HAVRE</p>
                     </div>
@@ -57,7 +58,7 @@ include_once('controllers/controllerindex.php');
                 <div class="carousel-item">
                     <img class="d-block w-100" src="assets/images/expov2.jpg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2 class="p-3 mb-2 bg-success text-white">EXPOSITION</h2>
+                        <h2 class="p-3 mb-2 text-dark background-expo">EXPOSITION</h2>
                         <h2 class="text-light bg-dark">RAOUL DUFY AU HAVRE</h2>
                         <p>du 18 Mai au 3 Novembre Le MUMA #LE HAVRE</p>
                     </div>
@@ -80,21 +81,23 @@ include_once('controllers/controllerindex.php');
             if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
                 if (($_GET['eventcategory_id'] == 1) && ($_GET['eventsub_category_id'] == 1)) {
                     ?>
-            <div class="filter concert"><img src="/assets/images/musicv2.jpg" /></div> 
+                    <div class="filter concert text-danger text-center display-3">Concerts</div> 
                     <?php
                 }
                 if (($_GET['eventcategory_id'] == 2) && ($_GET['eventsub_category_id'] == 2 || 3 || 4 || 5)) {
                     ?>
-                    <div class="filter spectacle"><img src="/assets/images/theatrev2.jpg" /></div> 
+                    <div class="filter spectacle text-warning text-center display-3">Spectacles</div>
                     <?php
                 }
                 if (($_GET['eventcategory_id'] == 3) && ($_GET['eventsub_category_id'] == 6 || 7 || 8 || 9)) {
                     ?>
-                    <div class="filter musée"><img src="/assets/images/museumv2.jpg" /></div> 
+                    <div class="text-center display-3 musee">Expos</div>
                     <?php
                 }
             } else {
-                
+                ?>
+                <div class="text-dark text-center display-3">Tous</div>
+                <?php
             }
             ?>
 
@@ -128,7 +131,7 @@ include_once('controllers/controllerindex.php');
                                             <span class="subtle"><?= $newdate = date('d/m/Y', strtotime($allEvents->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($allEvents->event_time)) ?></span>
 
                                             <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $allEvents->event_title; ?></span>
-                                            <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"><?= substr($allEvents->event_title, 0, 20); ?>...</span>
+                                            <span class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block" data-toggle="popover" data-content="<?= $allEvents->event_title; ?>"><button class="btn btn-link" type="button"><?= substr($allEvents->event_title, 0, 15); ?>...</button></span>
                                         </div>
                                         <div class="card-media-body-supporting-bottom">
                                             <span class="card-media-body-supporting-bottom-text subtle"><?= $allEvents->showplaces_name ?></span>
