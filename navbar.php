@@ -38,9 +38,10 @@
         </ul>
     </div>
     <div class="order-md-2 order-lg-3 col-12 col-sm-12 col-md-8 col-lg-4">
-        <form class="form-inline justify-content-center mb-2 mr-2">
-            <input class="col-8 col-sm-6 col-md-6 col-lg-10 form-control mr-1" type="text" placeholder="recherche à proximité">
-            <div><button class="col-1 btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit"><i class="fas fa-search" id="search"></i></button></div>
+        <form action="index.php" method="get" id="searchnav" class="form-inline justify-content-center mb-2 mr-2">
+            <input class="col-8 col-sm-6 col-md-6 col-lg-10 form-control mr-1" type="search" name="terme" placeholder="rechercher">
+            <input class="col-1 btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit" name="search" value="chercher">
+<!--            <i class="fas fa-search" id="search"></i>-->
         </form>
     </div>
 </nav>

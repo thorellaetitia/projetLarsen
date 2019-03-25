@@ -32,6 +32,14 @@
     margin-right: 0px;
 }*/
 
+.inputwarning {
+    font-size: 10px;
+    color : red;
+}
+
+.datawarning {
+    font-size: 10px;
+}
 
 #loginpicto {
     margin-left: 10px;

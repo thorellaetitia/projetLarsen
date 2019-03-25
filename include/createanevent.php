@@ -19,7 +19,7 @@ include_once('controllers/controllerevent.php');
                         <input class="checkbox mb-0" name="event_free" type="checkbox" value="" id="event_free">
                     </div>
                     <div class="form-group">
-                        <label for="eventcategory_id"> Rubrique :</label>
+                        <label for="eventcategory_id"> Rubrique* </label>
                         <select class="form-control py-2"  name="eventcategory_id"  id="exampleFormControlSelect1" >
                             <!--                            //création de ternaire pour récupérer les données entrées par le user -->
                             <!--début de la condition si eventcategory_id existe et si eventcategory_id correspond à 1 alors tu m'affiches cette valeur par défaut sinon tu m'affiches rien-->
@@ -31,7 +31,7 @@ include_once('controllers/controllerevent.php');
                         <span class="error"><?= isset($errorsArrayevent['eventcategory_id']) ? $errorsArrayevent['eventcategory_id'] : '' ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="eventsub_category_id"> Sous-rubrique :</label>
+                        <label for="eventsub_category_id"> Sous-rubrique* </label>
                         <select class="form-control py-2" name="eventsub_category_id" id="exampleFormControlSelect1" >
                             <option disabled <?= !isset($_POST['eventsub_category_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <option value="1" <?= isset($_POST['eventsub_category_id']) && $_POST['eventsub_category_id'] == 1 ? 'selected' : '' ?>>Concert</option>
@@ -47,22 +47,22 @@ include_once('controllers/controllerevent.php');
                         <span class="error"><?= isset($errorsArrayevent['eventsub_category_id']) ? $errorsArrayevent['eventsub_category_id'] : '' ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="event_title">Titre / Artiste :</label>
+                        <label for="event_title">Titre / Artiste* </label>
                         <input class="form-control" type="text" name="event_title" id="title" value="<?= isset($_POST['event_title']) ? htmlspecialchars($_POST['event_title']) : '' ?>" required />
                         <span class="error"><?= isset($errorsArrayevent['event_title']) ? $errorsArrayevent['event_title'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="event_date">Date : </label> 
+                        <label for="event_date">Date* </label> 
                         <input type="date" class="form-control" name="event_date" id="date" placeholder="ex jj/mm/yyyy" value="<?= isset($_POST['event_date']) ? $_POST['event_date'] : '' ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_date']) ? $errorsArrayevent['event_date'] : ''; ?></span>
                     </div>                  
                     <div class="form-group">
-                        <label for="event_time">Heure : </label> 
+                        <label for="event_time">Heure* </label> 
                         <input type="time" class="form-control" name="event_time" id="time" placeholder="ex h:m" value="<?= isset($_POST['event_time']) ? $_POST['event_time'] : '' ?>" required /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_time']) ? $errorsArrayevent['event_time'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="showplaces_id">Salle de spectacle :</label>
+                        <label for="showplaces_id">Salle de spectacle*</label>
                         <select class="form-control py-2" name="showplaces_id" required>
                             <option disabled <?= !isset($_POST['showplaces_id']) ? 'selected' : '' ?>>Veuillez renseigner un champ</option>
                             <!--                       //utilisation d'un foreach pour parcourir le tableau $allPlaces et afficher les informations via $place dans un select-->
@@ -73,15 +73,16 @@ include_once('controllers/controllerevent.php');
                         <span class="error"><?= isset($errorsArrayevent['showplaces_id']) ? $errorsArrayevent['showplaces_id'] : '' ?></span>
                     </div>
                     <div class="form-control-file">
-                        <label  for="event_picture">Photo de l'événement / Artiste : </label> 
+                        <label  for="event_picture">Photo de l'événement / Artiste* </label> 
                         <input type="file" class="form-control-file text-center mb-2" accept="image/*" name="event_picture" id="image" placeholder="parcourir" /><br>
                         <span class="error"><?= isset($errorsArrayevent['event_picture']) ? $errorsArrayevent['event_picture'] : ''; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="event_description">Description :</label>
+                        <label for="event_description">Description* </label>
                         <textarea class="form-control" name="event_description" id="description" rows="4" placeholder="60 caractères maximum" required><?= isset($_POST['event_description']) ? htmlspecialchars($_POST['event_description']) : '' ?></textarea><br>
                         <span class="error"><?= isset($errorsArrayevent['event_description']) ? $errorsArrayevent['event_description'] : ''; ?></span>
                     </div>
+                     <p class="inputwarning">Tous les champs marqués * sont obligatoires</p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-warning" name="createEventBtn">Créer</button>

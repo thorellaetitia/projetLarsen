@@ -64,8 +64,8 @@ class event extends database {
                 . ' ON `poqs_event`.`eventsub_category_id`=`poqs_eventsub_category`.`eventsub_category_id`'
                 . ' WHERE `users_id`=:users_id'
                 . ' ORDER BY `event_date` ASC';
-        
-        
+
+
 //le résultat de ma requête je le stocke dans $resultprofileevent
 //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event) 
         $resultProfileEvent = $this->database->prepare($query);
@@ -253,6 +253,18 @@ class event extends database {
         $resultEventNumber->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
         $resultEventNumber->execute();
         return $resultEventNumber->fetchColumn();
+    }
+
+    //on crée une fonction pour éxécuter des recherches via la barre de recherche
+    public function searchEvents() {
+        $query = 'SELECT * FROM `poqs_event` '
+                . 'WHERE `event_description` LIKE :search1 '
+                . 'or `event_title` LIKE :search2';
+        $resultQuerySearchEvents = $this->database->prepare($query);
+        $resultQuerySearchEvents->bindValue(':search1', '%' . $this->event_description . '%', PDO::PARAM_STR);
+        $resultQuerySearchEvents->bindValue(':search2', '%' . $this->event_title . '%', PDO::PARAM_STR);
+        $resultQuerySearchEvents->execute();
+        return $resultQuerySearchEvents->fetchAll(PDO::FETCH_OBJ);
     }
 
 }

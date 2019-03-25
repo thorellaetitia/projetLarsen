@@ -81,17 +81,17 @@ include_once('controllers/controllerindex.php');
             if (isset($_GET['eventcategory_id']) && ($_GET['eventsub_category_id'])) {
                 if (($_GET['eventcategory_id'] == 1) && ($_GET['eventsub_category_id'] == 1)) {
                     ?>
-                    <div class="filter concert text-danger text-center display-3">Concerts</div> 
+                    <div class="filter concert text-danger text-center display-3">Concert</div> 
                     <?php
                 }
                 if (($_GET['eventcategory_id'] == 2) && ($_GET['eventsub_category_id'] == 2 || 3 || 4 || 5)) {
                     ?>
-                    <div class="filter spectacle text-warning text-center display-3">Spectacles</div>
+                    <div class="filter spectacle text-warning text-center display-3">Spectacle</div>
                     <?php
                 }
                 if (($_GET['eventcategory_id'] == 3) && ($_GET['eventsub_category_id'] == 6 || 7 || 8 || 9)) {
                     ?>
-                    <div class="text-center display-3 musee">Expos</div>
+                    <div class="text-center display-3 musee">Expo</div>
                     <?php
                 }
             } else {
