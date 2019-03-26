@@ -30,6 +30,8 @@ function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+
 ////lors du click sur les boutons supprimer
 $('.delete-event').click(function () {
     //tu vas me récupérer l'id de l'evenement dans l'attribut data-delete-id

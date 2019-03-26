@@ -258,11 +258,17 @@ class event extends database {
     //on crée une fonction pour éxécuter des recherches via la barre de recherche
     public function searchEvents() {
         $query = 'SELECT * FROM `poqs_event` '
-                . 'WHERE `event_description` LIKE :search1 '
-                . 'or `event_title` LIKE :search2';
+                . ' INNER JOIN `poqs_eventcategory`'
+                . ' ON `poqs_event`.`eventcategory_id` = `poqs_eventcategory`.`eventcategory_id`'
+                . ' INNER JOIN poqs_eventsub_category'
+                . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
+                . ' INNER JOIN `poqs_showplaces`'
+                . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
+                . ' WHERE `event_description` LIKE :search1'
+                . ' OR `event_title` LIKE :search2';
         $resultQuerySearchEvents = $this->database->prepare($query);
-        $resultQuerySearchEvents->bindValue(':search1', '%' . $this->event_description . '%', PDO::PARAM_STR);
-        $resultQuerySearchEvents->bindValue(':search2', '%' . $this->event_title . '%', PDO::PARAM_STR);
+        $resultQuerySearchEvents->bindValue(':search1', $this->event_description . '%', PDO::PARAM_STR);
+        $resultQuerySearchEvents->bindValue(':search2', $this->event_title . '%', PDO::PARAM_STR);
         $resultQuerySearchEvents->execute();
         return $resultQuerySearchEvents->fetchAll(PDO::FETCH_OBJ);
     }
