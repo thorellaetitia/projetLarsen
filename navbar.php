@@ -38,7 +38,7 @@
         </ul>
     </div>
     <div class="order-md-2 order-lg-3 col-12 col-sm-12 col-md-8 col-lg-4">
-        <form action="index.php" method="get" id="searchnav" class="form-inline justify-content-center mb-2 mr-2">
+        <form action="index.php#content" method="get" id="searchnav" class="form-inline justify-content-center mb-2 mr-2">
             <input class="col-8 col-sm-6 col-md-6 col-lg-10 form-control mr-1" type="search" name="terme" placeholder="rechercher">
             <button class="col-1 btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit" name="search"><i class="fas fa-search fa-2x" id="search"></i></button>
         </form>
