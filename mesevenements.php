@@ -47,7 +47,7 @@ include_once('controllers/controllermesevenements.php');
                 <?php if (isset($_SESSION['users_id'])&&($resultEventNumber ==0)) { ?>
                 <div class="firsteventbtn" ><p>Vous pouvez désormais créer votre événement<p>
                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#createanevent" data-whatever="createanevent">Créer son événement</button>
-                    <img src="assets/images/vintagegroupe.png" alt="event" id="myeventspicture"/></div>
+                    <img class="w-100" src="assets/images/vintagegroupe.png" alt="event" /></div>
                     <?php 
                 }
                 ?>

@@ -96,7 +96,7 @@ include_once('controllers/controllerindex.php');
                 }
             } else {
                 ?>
-                <div class="text-dark text-center display-3">Agenda</div>
+                <div class="text-dark text-center display-3">A l'affiche</div>
                 <?php
             }
             ?>

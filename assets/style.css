@@ -211,12 +211,6 @@ body {
     background-color: #f2af58;
 }
 
-#myeventspicture {
-    position : absolute;
-    top: 50px; 
-    left: 100px;
-}
-
 .firsteventbtn {
     position : relative;
 }
