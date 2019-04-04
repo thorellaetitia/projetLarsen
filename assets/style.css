@@ -26,7 +26,7 @@
 }
 
 .pictureEvent {
-    height: 200px;
+    height: 150px;
 }
 /*#headerbtnconnexion {
     margin-right: 0px;
@@ -224,7 +224,7 @@ body {
     background-image: url("../assets/images/clown-362155_1280.jpg");
 
     /* Set a specific height */
-    height: 20rem;
+    height: 15rem;
     opacity:0.5;
 
     /* Create the parallax scrolling effect */
@@ -238,7 +238,7 @@ body {
     background-image: url("../assets/images/admission-2974645_1280.jpg");
 
     /* Set a specific height */
-    height: 20rem;
+    height: 15rem;
     opacity: 0.5;
 
     /* Create the parallax scrolling effect */
@@ -423,6 +423,10 @@ card-media-body-heading {
 }
 
 
+#eventpicturemodify {
+    max-width: 35px;
+}
+
 .card-media-body-top {
     display: block;
 }
@@ -567,10 +571,10 @@ a:hover {
         display: none;
     }
     .parallaxbottom {
-        height: 10rem;
+        display: none;
     }
     .parallaxtop {
-        height: 10rem;
+        display: none;
     }
 }
 

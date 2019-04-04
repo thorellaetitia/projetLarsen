@@ -190,7 +190,7 @@ class event extends database {
                 . ' ON `poqs_event`.`eventsub_category_id` = `poqs_eventsub_category`.`eventsub_category_id`'
                 . ' INNER JOIN `poqs_showplaces`'
                 . ' ON `poqs_event`.`showplaces_id` = `poqs_showplaces`.`showplaces_id`'
-                . ' ORDER BY `event_date` ASC';
+                . ' ORDER BY `event_date` DESC';
 
         $result = $this->database->query($query);
         $resultArrayAllEvents = $result->fetchAll(PDO::FETCH_OBJ);
